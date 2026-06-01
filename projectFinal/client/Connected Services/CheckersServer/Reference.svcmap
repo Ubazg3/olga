@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                ID="ce39f4c8-d1f6-4e8a-8c3e-7b6c4f0e8a81"
+                xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings>
+      <NamespaceMapping TargetNamespace="*"
+                        ClientNamespace="CheckersClient.CheckersServer" />
+    </NamespaceMappings>
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1"
+                         Category="List" />
+    </CollectionMappings>
+    <ProxySerializerType>Auto</ProxySerializerType>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="Model" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:9100/CheckersService/mex"
+                    Protocol="mex"
+                    SourceId="1" />
+  </MetadataSources>
+  <Metadata />
+  <Extensions />
+</ReferenceGroup>

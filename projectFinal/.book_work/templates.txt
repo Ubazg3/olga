@@ -1,0 +1,44 @@
+TOTAL body children: 1058
+--- first 20 children (tag | style | text[:50]) ---
+  0 w:p      [] בית ספר מקיף ז' הקריה אשדוד
+  1 w:p      [] 
+  2 w:p      [] 
+  3 w:p      [] ♕
+  4 w:p      [] Online Checkers
+  5 w:p      [] תיק פרויקט בהנדסת תוכנה
+  6 w:p      [] חלופה: תכנות אסינכרוני ומסדי נתונים
+  7 w:p      [] התלמיד : עידן ברשישט
+  8 w:p      [] ת.ז. : 332940972מנחה: אולגה גנדלמןתאריך: יוני 2026
+  9 w:p      [] 
+ 10 w:p      [] 
+ 11 w:p      [] 
+ 12 w:p      [] 
+ 13 w:p      [] 
+ 14 w:p      [1] תקציר
+ 15 w:p      [] המסמך הזה מתעד פרויקט גמר בהנדסת תוכנה: פיתוח של מ
+ 16 w:p      [] המסמך מתואר בחמישה חלקים: סקירה והקשר, ניתוח-נתוני
+ 17 w:p      [] 
+ 18 w:p      [2] מילות מפתח
+ 19 w:p      [] WCF Service Library  ·  3-Tier Architecture  ·  MV
+index of תקציר: 14 ; index of פרק 1: 24
+last child tag: w:sectPr
+
+===== TEMPLATE XML =====
+
+----- H1 -----
+<w:p xmlns:ns1="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ns1:paraId="70B360FB" ns1:textId="2C9C682F" w:rsidR="00ED0968" w:rsidRDefault="00ED0968" w:rsidP="00ED0968"><w:pPr><w:pStyle w:val="1" /><w:bidi /><w:rPr><w:rFonts w:ascii="David" w:hAnsi="David" w:cs="David" /><w:b /><w:color w:val="7B1F1F" /><w:sz w:val="44" /><w:rtl /></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="David" w:hAnsi="David" w:cs="David" /><w:b /><w:color w:val="7B1F1F" /><w:sz w:val="44" /><w:rtl /></w:rPr><w:lastRenderedPageBreak /><w:t>תקציר</w:t></w:r></w:p>
+
+----- H2 -----
+<w:p xmlns:ns1="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ns1:paraId="7D77F494" ns1:textId="7DEED869" w:rsidR="00ED0968" w:rsidRDefault="00ED0968" w:rsidP="00ED0968"><w:pPr><w:pStyle w:val="2" /><w:bidi /><w:rPr><w:rFonts w:ascii="David" w:hAnsi="David" w:cs="David" /><w:b /><w:color w:val="1A1F2A" /><w:rtl /></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="David" w:hAnsi="David" w:cs="David" /><w:b /><w:color w:val="1A1F2A" /><w:rtl /></w:rPr><w:t>מילות מפתח</w:t></w:r></w:p>
+
+----- H3 -----
+<w:p xmlns:ns1="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ns1:paraId="442E4D4A" ns1:textId="3F57EC1F" w:rsidR="00ED0968" w:rsidRDefault="00ED0968" w:rsidP="00ED0968"><w:pPr><w:pStyle w:val="3" /><w:bidi /><w:rPr><w:rFonts w:cs="David" /><w:b /><w:color w:val="1A1F2A" /><w:sz w:val="26" /><w:rtl /></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="David" /><w:b /><w:color w:val="1A1F2A" /><w:sz w:val="26" /></w:rPr><w:t>UC1</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:b /><w:color w:val="1A1F2A" /><w:sz w:val="26" /><w:rtl /></w:rPr><w:t xml:space="preserve"> · הרשמת שחקן</w:t></w:r></w:p>
+
+----- BODY -----
+<w:p xmlns:ns1="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ns1:paraId="794B078B" ns1:textId="05FC70B5" w:rsidR="00ED0968" w:rsidRDefault="00ED0968" w:rsidP="00ED0968"><w:pPr><w:bidi /><w:rPr><w:rFonts w:cs="David" /></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>המסמך הזה מתעד פרויקט גמר בהנדסת תוכנה: פיתוח של מערכת רב-משתתפים למשחקי דמקה</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> (</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>אנגלית, 8</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve">x8) </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>עם שרת</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> WCF </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>מרכזי ושלושה לקוחות עצמאיים</w:t></w:r><w:r w:rsidR="00856760"><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t xml:space="preserve">, </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>אפליקציית</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> WPF </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>לדסקטופ, אתר</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> ASP.NET </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>לפאנל מנהל מהדפדפן, ואפליקציית</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> MAUI </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>למובייל. המערכת מאוכלסת ב</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve">-Microsoft Access </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>דרך</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> OleDb, </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>מציעה מטצמייקינג אוטומטי, מנוע</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> Elo </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>לדירוג שחקנים, מצב משחק נגד בוט, פלייבק של משחקים שהסתיימו, ומנגנון איתור ניתוקים שמעניש שחקן שעוזב באמצע. כל חוקי הדמקה</w:t></w:r><w:r w:rsidR="00856760"><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t xml:space="preserve">, </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>חובת אכילה, שרשור אכילות, הכתרה</w:t></w:r><w:r w:rsidR="00856760"><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t xml:space="preserve">, </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>נאכפים אך ורק בצד השרת על-ידי המנוע</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t xml:space="preserve"> CheckersEngine, </w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /><w:rtl /></w:rPr><w:t>באופן שלא ניתן לעקיפה מצד הלקוח</w:t></w:r><w:r><w:rPr><w:rFonts w:cs="David" /></w:rPr><w:t>.</w:t></w:r></w:p>
+
+----- BOLD -----
+<w:p xmlns:ns1="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" ns1:paraId="397CA867" ns1:textId="7E553707" w:rsidR="00ED0968" w:rsidRDefault="00ED0968" w:rsidP="00ED0968"><w:pPr><w:bidi /><w:jc w:val="center" /><w:rPr><w:rFonts w:ascii="Segoe UI Symbol" w:hAnsi="Segoe UI Symbol" w:cs="Segoe UI Symbol" /><w:b /><w:color w:val="7B1F1F" /><w:sz w:val="160" /><w:rtl /></w:rPr></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Segoe UI Symbol" w:hAnsi="Segoe UI Symbol" w:cs="Segoe UI Symbol" w:hint="cs" /><w:b /><w:color w:val="7B1F1F" /><w:sz w:val="160" /><w:rtl /></w:rPr><w:t>♕</w:t></w:r></w:p>
+
+----- SECTPR (last child) -----
+<w:sectPr xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:rsidR="00ED0968" w:rsidRPr="00ED0968" w:rsidSect="00ED0968"><w:headerReference w:type="even" r:id="rId11" /><w:headerReference w:type="default" r:id="rId12" /><w:footerReference w:type="even" r:id="rId13" /><w:footerReference w:type="default" r:id="rId14" /><w:headerReference w:type="first" r:id="rId15" /><w:footerReference w:type="first" r:id="rId16" /><w:pgSz w:w="11906" w:h="16838" /><w:pgMar w:top="1296" w:right="1440" w:bottom="1296" w:left="1440" w:header="708" w:footer="708" w:gutter="0" /><w:cols w:space="708" /><w:docGrid w:linePitch="360" /></w:sectPr>

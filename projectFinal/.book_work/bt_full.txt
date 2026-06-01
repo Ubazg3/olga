@@ -1,0 +1,784 @@
+[IMAGE]
+בית הספר: מקיף ז׳ הקריה אשדוד
+    תיק פרוייקט הנדסת תוכנה – יולי 2026
+   חלופה: תכנות אסינכרוני ומסדי נתונים
+מגיש: בנימין ברמק י"ב 2תעודת זהות: 332067883מנחה: אולגה גנדלמן
+Battle-Thunder
+משחק ספינות קרב דו-משתתפי
+[IMAGE]
+רשימת נושאים לבחירה של הפרוייקט
+[IMAGE]
+### H1 ### תוכן עניינים
+דף שער...............................................................................................................................................1
+רשימת נושאים לבחירת הפרוייקט.........................................................................................................2
+תוכן עניינים........................................................................................................................................3
+1. מבוא ורקע לפרויקט.....................................................................................................................................4
+2. מענה למחוון על פי דרישות הבחינה............................................................................................................15
+3. ניתוח המערכת...........................................................................................................................................19
+4. בסיס הנתונים............................................................................................................................................23
+5. ארכיטקטורת המערכת...............................................................................................................................28
+6. צד שרת – שירות WCF............................................................................................................................. 31
+7. צד לקוח – WPF........................................................................................................................................34
+8. אבטחה והגנה על נתונים............................................................................................................................36
+9. תהליכים מרכזיים במערכת........................................................................................................................38
+10. בדיקות ותסריטי שימוש...........................................................................................................................40
+11. מדריך למשתמש.......................................................................................................................................43
+12. סיכום אישי – רפלקציה............................................................................................................................44
+13. ביבליוגרפיה..............................................................................................................................................45
+14. נספחים – קוד מלא...................................................................................................................................46
+### H1 ### 1. מבוא ורקע לפרויקט
+## H2 ## 1.1 רקע והשראה לפרויקט
+הבחירה לפתח את Battle Thunder נובעת מאהבה אישית למשחקים אסטרטגיים בכלל, ולמשחק הצוללות הקלאסי ששיחקתי בתור ילד. הכללים פשוטים, אבל העומק הטקטי עצום. הצירוף של ניחוש, ניהול סיכויים וניסיון לחשוב כמו היריב יוצר חוויה הוגנת ולא צפויה גם אחרי משחקים רבים.
+המטרה שלי בפרויקט הייתה לקחת את החוויה הקלאסית הזאת ולהעביר אותה לעידן המודרני: לאפשר משחק רב-משתתפים בזמן אמת דרך הרשת בין שני שחקנים שיושבים על שני מחשבים שונים, להוסיף יריב מבוסס בינה מלאכותית בעל אסטרטגיית חיפוש אמיתית עבור שחקנים בודדים, לנהל מערכת דירוג ELO גלובלית, ולספק את כל זה דרך שלושה לקוחות נפרדים – Desktop (WPF), Web (Blazor), ומובייל (MAUI) – שכולם פונים לאותו שרת ולאותו מסד נתונים.
+המערכת בנויה כאדריכלות שרת-לקוח מלאה: השרת אחראי על הלוגיקה, על שמירת הנתונים ועל סנכרון השחקנים, והלקוחות (בכל שלושת הפלטפורמות) הם רק תצוגה ובקרת מצב. כל לקוח ניגש אל השרת באמצעות הפרוטוקול המתאים לו – WCF Duplex עבור לקוח ה-WPF, SignalR ו-REST API עבור לקוחות ה-Web וה-MAUI.
+## H2 ## 1.2 שם הפרויקט ותיאורו
+שם הפרויקט: Battle Thunder – משחק קרב צוללות רב-משתתפים בזמן אמת.
+המערכת היא יישום שרת-לקוח מלא עם תקשורת דו-כיוונית. כל שחקן נרשם, מתחבר, מציב חמש ספינות (Carrier בגודל 5, Battleship בגודל 4, Submarine בגודל 3, ושני Destroyer בגודל 2) על לוח 10×10 הנשמר אצלו ואצל השרת בלבד, ואז מתחיל קרב תורות מול יריב אנושי (Multiplayer) או מול יריב מבוסס בינה מלאכותית (Singleplayer). במהלך המשחק כל ירייה מעדכנת בזמן אמת את שני הצדדים, מתעדכן צבע התא, נשמרת היסטוריית הקרב, נסגרים תורות, ומועברות הודעות צ׳אט בין השחקנים. בסיום נשמרות הסטטיסטיקות במסד הנתונים ומופיעה אופציה לבקש Rematch מהיריב או לחזור לתפריט הראשי. בנוסף מתן ממשק ניהול ((Admin לחסימה וניהול משתמשים.
+## H2 ## 1.3 קהל היעד
+המערכת פונה לארבעה סוגי משתמשים שונים:
+שחקנים פרטיים שאוהבים משחקי אסטרטגיה ימיים – כל גיל, ללא צורך בידע טכני.
+שחקנים שמחפשים חוויה מהירה של 10–15 דקות מול יריב חי, מבלי להוריד אפליקציה כבדה.
+שחקנים בודדים שרוצים לתרגל אסטרטגיות מול יריב AI חכם המבוסס על אלגוריתם Hunt/Target אמיתי, ולא רק על ירייה אקראית.
+שחקנים תחרותיים שמעוניינים לטפס בלוח המובילים הגלובלי באמצעות מערכת דירוג ELO עם 24 דרגות.
+## H2 ## 1.4 מטרות המערכת
+מטרות על:
+יצירת חוויית משחק רב-משתתפים בזמן אמת עם תקשורת דו כיוונית אמיתית מול שרת מרכזי.
+בניית יריב AI חכם שמספק אתגר אמיתי גם לשחקנים מנוסים.
+הצגת אותה מערכת באמצעות שלושה לקוחות שונים: WPF, Web ו-MAUI המתחברים לאותו שרת ולאותו מסד נתונים.
+מתן ממשק נקי, בעיצוב נאוטי כהה ברוח משחקי, עם אנימציות, אפקטים וצלילים.
+מערכת דירוג ELO גלובלית עם 6 דרגות (Iron, Bronze, Silver, Gold, Diamond, Master) ו-24 תת-דרגות, לפי המודל המקובל במשחקים תחרותיים.
+מטרות נלוות:
+הצפנת סיסמאות בעזרת BCrypt עם Salt אקראי למניעת דליפות מידע.
+זיהוי אוטומטי של ניתוקי לקוח (קריסת אפליקציה או ניתוק רשת) ושחרור היריב מהמשחק.
+מערכת Rematch הוגנת – שני השחקנים חייבים להסכים לפני התחלת משחק חדש.
+צ׳אט פנימי בתוך המשחק עם הגבלת אורך הודעה למניעת הצפה.
+מערכת הישגים (Achievements) הכוללת תגי Bronze/Silver/Gold.
+היסטוריית התחברויות לכל משתמש ויומן ניצחונות מלא.
+פאנל ניהול (Admin) המאפשר למשתמשים מיוחסים לצפות בכל המשתמשים, לאפס סטטיסטיקות ולמחוק חשבונות.
+## H2 ## 1.5 תיאור כללי של המערכת
+המערכת בנויה לפי אדריכלות שכבות נקייה, עם הפרדה מלאה בין שכבת התצוגה, שכבת הלוגיקה ושכבת הנתונים. הבחירה בארכיטקטורה זו מאפשרת לצרף לקוחות נוספים בעתיד מבלי לגעת בקוד השרת או במסד הנתונים, וזאת אכן מה שעשיתי כאשר הוספתי את לקוח ה-Web ולקוח ה-MAUI לאחר שכבר היה לקוח WPF פעיל.
+השכבות העיקריות במערכת הן:
+שכבת Model – מחלקות נתונים (User, Base, GameStateDto, ShipPlacementDto, AttackResultDto, PlayerStatsDto ועוד) המשותפות לשרת וללקוחות דרך WCF DataContract או דרך JSON serialization.
+שכבת ViewDB – שכבת גישה למסד הנתונים, יורשת ממחלקה אבסטרקטית BaseDB שמכילה את הפעולות הכלליות (Select, AddToDB, SaveChanges) עם הגנה מלאה מפני SQL Injection באמצעות פרמטרי OleDb.
+שכבת BusinessLogic – לוגיקה עסקית: ניהול משתמשים (UserManager עם תבנית Singleton), הצפנת סיסמאות (PasswordManager עם BCrypt).
+שכבת WCF Server – שירות WCF Duplex בפרוטוקול netTcpBinding המשמש את לקוח ה-WPF, יחד עם שני שירותים נוספים בפרוטוקול basicHttpBinding לאימות ולסטטיסטיקות.
+שכבת Web Server (Blazor + REST API + SignalR Hub) – שרת ASP.NET Core שמספק את לקוח ה-Web, חושף REST API למשתמשים שאינם דפדפן (כמו MAUI), ומכיל Hub של SignalR למשחק רב-משתתפים בזמן אמת.
+שכבת לקוח WPF – ממשק שולחני עשיר, מבוסס Pages עם ניווט באמצעות Frame, אנימציות Storyboard ו-Callback Handlers שמטפלים באירועי השרת.
+שכבת לקוח Blazor Web – אפליקציה בדפדפן בעיצוב זהה לזה של הלקוח השולחני, עם תמיכה ב-Add to Home Screen על iOS.
+שכבת לקוח MAUI – אפליקציה נטיבית לאנדרואיד (וגם ל-Windows) המשתמשת ב-HttpClient לקריאות REST וב-SignalR Client למשחק בזמן אמת.
+## H2 ## 1.6 גבולות המערכת
+בכל פרויקט תוכנה חשוב להגדיר במפורש מה כן בתחום ומה לא, כדי לא לקרוס תחת עומס של דרישות. הבחירות שלי היו:
+המערכת אכן כוללת:
+שלושה לקוחות פעילים: WPF Desktop, Web (Blazor Server), ו-MAUI (Android + Windows).
+שני סוגי משתמשים – שחקן רגיל ומנהל (Admin) – כאשר ההבחנה מתבצעת בקובץ AdminConfig עם רשימת שמות משתמש מורשים.
+משחק מול בינה מלאכותית ומול שחקן אחר, במצבים מדורגים (Ranked) ובלתי מדורגים (Unranked).
+חשיפת השרת לאינטרנט באמצעות שירות מנהור (ngrok), כדי לאפשר משחק מול שחקנים שאינם על אותו LAN.
+המערכת אינה כוללת:
+הצפנת תקשורת ברמת התווך (TLS/HTTPS) – הקריאות מתבצעות ב-NetTcp/HTTP בסביבת LAN. הצפנה ניתנת להוספה בעתיד דרך הגדרת תעודה.
+שמירת היסטוריית הצ׳אט במסד הנתונים – הודעות מועברות בזמן אמת בלבד.
+אינטגרציה עם רשתות חברתיות (Google/Facebook Sign-In) או רכישות בתוך האפליקציה.
+## H2 ## 1.7 סביבות פיתוח, שפות ושכבות
+סביבת פיתוח: Microsoft Visual Studio
+שפת תכנות:   C#עבור לוגיקת השרת והלקוח ו XAML עבור עיצוב ממשק המשתמש
+טכנלוגיות מרכזיות:
+Wpf (Windows Presentation Foundation) לצד הלקוח
+WCF (Web Communication Foundation) או שירותי רשת מקבילים לניהול התקשורת.
+OleDb לעבודה מול בסיס נתונים Access
+ארכיטקטורת שכבות: הפרוייקט מחולק לשכבות: Model (ייצוג נתונים) ViewDB (גישה למסד נתונים), BussinessLogic (ניהול לוגיקת המשחק( ו Client (ממשק המשתמש)
+## H2 ## 1.8 אתגרים מרכזיים בפרויקט
+במהלך הפיתוח התמודדתי עם מספר אתגרים מרכזיים. אני מציין כאן את החשובים שבהם, יחד עם הפתרון שמצאתי לכל אחד:
+זיהוי ניתוקי לקוח:
+לקוח שקורס אינו מספיק לקרוא ל-LeaveGame ולכן השרת אינו יודע שהיריב נעלם. הפתרון: בכל פעם שלקוח מתחבר (JoinGame), אני נרשם לאירועי channel.Faulted ו-channel.Closed שלו, ואם אחד מהם נורה אני משחרר את היריב, מודיע לו, ומנקה את ה-Session. נדרשת הגנה מפני אירועים כפולים (reconnect-safety) כדי שלא תתרחש מחיקה כפולה.
+סנכרון תורות בין שני שחקנים:
+מי המשחק שלו? איך מודיעים? איך מונעים מצב שבו שני שחקנים יורים בו-זמנית? הפתרון: שדה CurrentTurn ב-GameSession, נעילה (lock) על כל פעולת FireShot, ושימוש ב-OnYourTurn Callback ליריב לאחר כל ירייה.
+גלישה לאינטרנט הציבורי:
+LAN בלבד לא מספיק כדי לשחק מול חברים מרחוק. הפתרון: שירות ngrok יוצר מנהור HTTPS ציבורי לשרת המקומי. עם דומיין קבוע אני יכול להזמין חברים בכל מקום בעולם להיכנס לכתובת אחת ולשחק נגדי.
+## H2 ## 1.9 חידושים ומאפיינים מיוחדים
+יש בפרויקט מספר מאפיינים שאינם נפוצים בפרויקטי תיכון:
+ארכיטקטורת WCF Duplex עם CallbackContract וניהול Channel Lifecycle.
+יריב AI מבוסס Probability Density – לא אלגוריתם אקראי, אלא חישוב הסתברויות שמתעדכן אחרי כל ירייה.
+שלושה לקוחות נפרדים (WPF + Blazor + MAUI) המתחברים לאותו שרת ולאותו מסד נתונים.
+מערכת SignalR Hub עם IGameClient interface שמאפשרת ל-Blazor users ול-MAUI users להזדווג ולשחק זה נגד זה.
+חשיפה ציבורית של השרת באמצעות ngrok, עם דומיין קבוע ב-HTTPS.
+מערכת Admin מובנית עם רשימת מנהלים בקוד, עם דף ניהול גרפי שמאפשר צפייה במשתמשים, איפוס סטטיסטיקות ומחיקה.
+Logger מקצועי בשרת עם רמות חומרה (INFO/WARN/ERROR), כתיבה לקובץ והדפסה צבעונית לקונסול, וכל פעולת IO עטופה ב-try/catch כדי שלעולם לא תקרוס.
+SafeCallback Pattern – פונקציה ייעודית שעוטפת כל קריאת Callback ומונעת מאחת שנכשלה להפיל את כל המשחק.
+## H2 ## 1.10 מדריך למשתמש
+[IMAGE]
+## H2 ## תרשים דפים:
+## H2 ## 
+## H2 ## 
+[IMAGE]
+## H2 ## שחקן מתחיל את כניסתו למשחק מכאן, אם יש לו כבר משתמש יכול להזין ישירות את פרטי המשתמש ולהיכנס ישר.
+[IMAGE]
+## H2 ## אם אין משתמש אז ייצור ואז יכניס את הפרטים של המשתמש וייכנס למשחק.
+## H2 ## 
+[IMAGE]
+## H2 ## 
+## H2 ## המסך הראשי של המשחק, עם הרבה מאוד אפשרויות לכפתורים וכל כפתור מוביל למשהו אחר.
+[IMAGE]
+## H2 ## שחקן יכול לשחק במשחק מדורג או לא מדורג נגד אנשים אמיתיים או לשחק נגד בוט.
+[IMAGE]
+## H2 ## ככה נראה תכנון של כל שחקן לפני שנכנסים למשחק, השחקן צריך להחליט היכן ישים את ספינותיו, יש באפשרותו לסובב ספינה ב 90 מעלות או לשים ספינות באופן רנדומלי, ואם לא אהב את איך שהוא שם, הוא יכול למחוק את כל הלוח ולהתחיל מחדש, וכשהשחקן מוכן, ילחץ על הכפתור של ""ready for battle .זה דף המשחק עצמו, כאן רואים שתי לוחות, אחת מהם זה הלוח של השחקן שיכול לראות איפה שם את ספינותיו, והלוח השני זה הלוח שהוא צריך לנחש איפה הספינות של היריב.בנוסף יש צאט פנימי ששני השחקנים יוכלו לדבר אחד עם השני, כפתור FIRE שיורה לריבוע הרצוי על ידי השחקן, וכפתור SURRENDER למקרה והשחקן רוצה לסיים את המשחק מהר ולוותר.
+[IMAGE]
+## H2 ## למקרה והשחקן לא בטוח אם לוותר, יש חלון נוסף השואל אותו אם הוא באמת רוצה, על מנת למנוע טעויות לחיצה של השחקן.
+[IMAGE]
+## H2 ## חלון המראה STATS של השחקן בזמן המשחק, הנכלל גם בסוף ב STATS הראשי של השחקן.
+## H2 ## טבלה גלובלית של כל השחקנים עם ה STATS שלהם.
+[IMAGE]
+## H2 ## match history שמראה את רשימת המשחקים של השחקן.
+[IMAGE]
+## H2 ## טבלת Achievements לשחקנים שיוכלו להיראות יותר מגניבים שהשיגו הישג שאחרים לא השיגו.
+## H2 ## דף הגדרות למקרה והשחקן ירצה לשנות משהו.
+[IMAGE]
+## H2 ## 
+## H2 ## כפתור יציאה למקרה והשחקן ירצה לצאת מהמשתמש.
+### H1 ### 2. מענה למחוון על פי דרישות הבחינה
+פרק זה מציג את המענה לדרישות המחוון של חלופת "שירותי אינטרנט, תכנות אסינכרוני ומסדי נתונים". המענה מוצג בשקיפות מלאה – לכל סעיף כתוב מה הפרויקט מספק, ולסעיפים שאינם מקבלים מענה מלא מצוין הדבר במפורש כדי לאפשר תיאום ציפיות עם המנחה.
+## H2 ## 2.1 דרישות חובה (סעיפים 1–8)
+## H2 ## 2.2 הרחבות לסעיף 9 (יכולות בסיס)
+## H2 ## 2.3 הרחבות לסעיף 10 (יכולות מתקדמות)
+## H2 ## 2.4 סיכום המענה למחוון
+המענה למחוון: 8 דרישות חובה (מתוך 8) מקבלות מענה מלא לאחר ההתרחבות עם הוספת לקוחות ה-Web וה-MAUI ו-3 טבלאות נוספות (MatchHistory, Achievements, LoginHistory). בנוסף, 3 הרחבות בסעיף 9 (ירושות, אירועים/Delegates, הצפנה) ו-3 הרחבות בסעיף 10 (Async, SQL Injection, קוד אסינכרוני).
+החוזק היחסי של הפרויקט מתבטא בארכיטקטורת WCF Duplex המתקדמת, באלגוריתם ה-AI Probability Density, ובעובדה שאותו שרת משרת שלושה לקוחות שונים – יכולת שאינה נפוצה בפרויקטי תיכון.
+### H1 ### 3. ניתוח המערכת
+## H2 ## 3.1 מסמך ייזום
+שם הפרויקט: Battle Thunder – משחק קרב צוללות רב-משתתפים.
+בעיה קיימת:
+משחק הצוללות הקלאסי מצריך שני אנשים שיושבים פיזית באותו חדר. אין דרך נוחה לשחק משחק רציני נגד חבר שגר רחוק. גם משחקי הצוללות הדיגיטליים הקיימים לרוב פשטניים, אין יריב AI חכם, אין שמירת היסטוריית ניצחונות, אין ניתוקי שחקנים מנוהלים, ואין צ׳אט פנימי.
+פתרון מוצע:
+מערכת שרת לקוח שמאפשרת לשני שחקנים לשחק קרב צוללות בזמן אמת מכל מקום בעולם, עם תקשורת דו-כיוונית מלאה, יריב AI חכם, מערכת רישום והתחברות מאובטחת, סטטיסטיקות אישיות, לוח מובילים גלובלי, צ׳אט פנימי, ניהול ניתוקים אוטומטי, מערכת Rematch הוגנת, ולקוחות לכמה פלטפורמות שונות.
+ערך עסקי:
+משחק רב-משתתפים מהיר וממוקד ללא צורך בהורדה של פלטפורמה כבדה.
+יריב AI שמאפשר תרגול לבד באופן משמעותי – לא רק תיק חבטות.
+שקיפות סטטיסטית – כל שחקן יודע בדיוק כמה ניצח, כמה הפסיד, ומה אחוז הניצחונות שלו.
+תחרותיות גלובלית באמצעות לוח המובילים.
+גמישות פלטפורמה – לשחק מהמחשב הביתי (WPF), מהדפדפן בכל מקום (Web), או מהטלפון הנייד (MAUI).
+## H2 ## 3.2 מצב קיים מול מצב עתידי
+## H2 ## 3.3 בעלי תפקידים במערכת
+## H2 ## 3.4 Use Cases
+[IMAGE]
+## H2 ## 3.5 עץ תהליכים (Process Tree)
+עץ התהליכים מתאר את ההזדמנויות שיש לשחקן ברגע נתון, על-פי מצב המערכת. מהשורש (Battle Thunder) מתפצלים שני ענפים עיקריים: אימות וזיהוי (התחברות, רישום, יציאה) ומשחק (מול AI או מול שחקן אחר).
+תרשים: עץ תהליכים – Process Tree
+שורש: Battle Thunder
+ענף 1 – אימות וזיהוי: רישום משתמש חדש → התחברות → תפריט ראשי → יציאה.
+ענף 2 – משחק:
+        ▸ משחק נגד AI (offline) – הצבת ספינות → קרב מול AI → סיום → תפריט.
+        ▸ משחק רב-משתתפים – בחירת מצב (Ranked/Unranked) → המתנה ליריב → הצבת ספינות → קרב → סיום → Rematch או יציאה.
+ענף 3 – צפייה בנתונים: לוח מובילים / היסטוריית משחקים / הישגים / היסטוריית התחברויות.
+ענף 4 – ניהול (Admin בלבד): רשימת משתמשים → איפוס סטטיסטיקות / מחיקת חשבון / יומן משחקים גלובלי.
+## H2 ## 3.6 ERD – תרשים קשרי גומלין
+מבנה הנתונים מורכב מ-7 טבלאות. הקשרים בין הטבלאות הם:
+UserDataTable ↔ PlayerStats – קשר 1-ל-1 דרך השדה Username.
+UserDataTable ↔ MatchHistory – קשר 1-ל-N (משתמש אחד יכול להופיע במספר משחקים, כ-Winner או כ-Loser).
+UserDataTable ↔ LoginHistory – קשר 1-ל-N (כל משתמש יכול להתחבר פעמים רבות).
+UserDataTable ↔ Achievements – קשר N-ל-N דרך טבלת הקישור PlayerAchievements (כל משתמש יכול להרוויח מספר הישגים, וכל הישג יכול להיות שייך למספר משתמשים).
+[IMAGE]
+UserDataTable ↔ RankedTierChanges – קשר 1-ל-N (כל פעם שמשתמש עולה דרגה או יורד, נוסף תיעוד).
+### H1 ### 4. בסיס הנתונים
+## H2 ## 4.1 בחירת מסד הנתונים
+מסד הנתונים של Battle Thunder ממומש ב-Microsoft Access (.accdb), עם גישה דרך OleDb בלבד. הבחירה הזו נובעת משלוש סיבות:
+פשטות פיתוח – אין צורך בשרת DB נפרד (SQL Server, MySQL) שצריך להתקין, להגדיר משתמשים ולהריץ כשירות. הקובץ .accdb הוא קובץ יחיד שיושב במחשב, וזה מספיק לפרויקט בקנה מידה זה.
+עמידה בדרישות החלופה – המחוון של חלופת "שירותי אינטרנט, תכנות אסינכרוני ומסדי נתונים" מצפה למסד נתונים מנורמל עם פעולות SELECT/INSERT/UPDATE/DELETE ופרמטרים מאובטחים. Access מספק את כל זה דרך OleDb.
+ניתן ליצור שאילתות מורכבות, לקבוע מפתחות זרים, ולהשתמש בכל פעולות ה-SQL הסטנדרטיות.
+## H2 ## 4.2 פירוט הטבלאות (מילון נתונים)
+מסד הנתונים מכיל 7 טבלאות. כל אחת מתעדת היבט שונה של המערכת:
+1. UserDataTable – טבלת משתמשים
+מאחסנת את פרטי המשתמשים הרשומים. זוהי הטבלה היחידה שמשמשת ב-Authentication, ואליה מתייחסות כל הטבלאות האחרות באמצעות Username.
+[IMAGE]
+2. PlayerStats – טבלת סטטיסטיקות שחקן
+מתעדכנת בסיום כל משחק. נוצרת רק לאחר שהמשתמש סיים את המשחק הראשון שלו (Upsert pattern – INSERT אם אינה קיימת, UPDATE אם כן).
+[IMAGE]
+3. MatchHistory – טבלת היסטוריית משחקים
+בכל סיום משחק (גם רב-משתתפים וגם מול AI) נוסף רקורד חדש. זה מאפשר לכל שחקן לראות את היסטוריית המשחקים שלו.
+[IMAGE]
+4. Achievements – קטלוג ההישגים
+טבלה סטטית שמכילה את כל ההישגים האפשריים. נוצרת פעם אחת ולא משתנה במהלך הפעלת המשחק.
+[IMAGE]
+5. PlayerAchievements – טבלת הקישור (Many-to-Many)
+טבלת קישור המקשרת בין UserDataTable ל-Achievements. בכל הישג שהשחקן מרוויח, נוסף רקורד חדש. זוהי הטבלה היחידה שמייצגת קשר Many-to-Many.
+[IMAGE]
+6. LoginHistory – טבלת היסטוריית התחברויות
+מתעדת כל ניסיון התחברות (מוצלח או כושל). מאפשרת לשחקן לראות אם מישהו ניסה להתחבר אליו, ולמנהל לאתר התנהגות חשודה.
+[IMAGE]
+7. RankedTierChanges – טבלת שינויי דרגה
+מתעדת כל פעם שהשחקן עולה או יורד דרגה (Iron → Bronze, Bronze → Silver וכו׳). מאפשרת לעקוב אחרי ההיסטוריה התחרותית של השחקן.
+[IMAGE]
+## H2 ## 4.3 קשרי הגומלין (ERD)
+הקשרים בין הטבלאות בנויים סביב Username כמזהה מרכזי, מאחר שהשם הוא ייחודי במערכת ומבטיח חיבור פשוט בין כל הנתונים של אותו משתמש:
+UserDataTable ↔ PlayerStats – קשר 1-ל-1 דרך Username.
+UserDataTable ↔ MatchHistory – קשר 1-ל-N (משתמש מופיע פעמיים, כ-Winner וכ-Loser).
+UserDataTable ↔ LoginHistory – קשר 1-ל-N.
+UserDataTable ↔ Achievements – קשר N-ל-M דרך טבלת הקישור PlayerAchievements.
+UserDataTable ↔ RankedTierChanges – קשר 1-ל-N (כל עלייה/ירידה של דרגה היא רשומה נוספת).
+MatchHistory ↔ RankedTierChanges – קשר 1-ל-1 (כל שינוי דרגה מקושר למשחק שגרם לו).
+## H2 ## 4.4 דוגמאות לשאילתות במערכת
+להלן דוגמאות לשאילתות אופייניות במערכת. כולן מוגנות מפני SQL Injection באמצעות פרמטרים (Placeholder ?).
+שאילתת SELECT עם פרמטר (התחברות)
+UserDB.GetByUsername — נקרא כל פעם שמשתמש מתחבר:
+SELECT * FROM UserDataTable WHERE [Username] = ?
+שאילתת INSERT עם 3 פרמטרים (רישום)
+UserDB.AddToDB — נקרא בעת רישום משתמש חדש:
+INSERT INTO UserDataTable (Username, PasswordHash, Gmail) VALUES (?, ?, ?)
+שאילתת ORDER BY עם TOP (לוח מובילים)
+StatsDB.GetLeaderboard — מחזירה את Top-50 מסודר לפי Elo, ושוברת שוויון לפי Wins:
+SELECT TOP 50 Username, Wins, Losses, TotalGames, Elo
+FROM PlayerStats
+ORDER BY Elo DESC, Wins DESC
+שאילתת COUNT לבדיקת קיום (לפני Upsert)
+StatsDB.Upsert — בודקת אם השחקן כבר קיים ב-PlayerStats לפני שמחליטים האם להשתמש ב-INSERT או UPDATE:
+SELECT COUNT(*) FROM PlayerStats WHERE Username = ?
+שאילתת UPDATE עם מצברים (סיום משחק)
+StatsDB.Upsert — מעלה את Wins ואת TotalGames בעבודה אחת:
+UPDATE PlayerStats
+SET [Wins] = [Wins] + 1, TotalGames = TotalGames + 1, Elo = ?
+WHERE Username = ?
+שאילתת SELECT מורכבת עם WHERE OR (היסטוריית משחקים)
+HistoryDB.GetMatchHistory — מחזירה את כל המשחקים שבהם המשתמש הופיע, גם כמנצח וגם כמפסיד:
+SELECT TOP 50 MatchId, WinnerUsername, LoserUsername, IsRanked,
+       DatePlayed, WinnerEloDelta, LoserEloDelta,
+       DurationSeconds, WinnerShots, WinnerHits
+FROM MatchHistory
+WHERE WinnerUsername = ? OR LoserUsername = ?
+ORDER BY DatePlayed DESC
+שאילתת INSERT עם 9 פרמטרים (תיעוד משחק)
+HistoryDB.InsertMatch — בכל סיום משחק נכתבת רשומה מלאה ל-MatchHistory:
+INSERT INTO MatchHistory
+  (WinnerUsername, LoserUsername, IsRanked, DatePlayed,
+   WinnerEloDelta, LoserEloDelta, DurationSeconds,
+   WinnerShots, WinnerHits)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+שאילתת DELETE עם cascade ידני (מחיקת משתמש)
+UserDB.DeleteUser — מנהל מוחק חשבון משתמש. נדרש למחוק גם רשומות תלויות:
+DELETE FROM UserDataTable      WHERE Username = ?
+DELETE FROM PlayerStats        WHERE Username = ?
+DELETE FROM PlayerAchievements WHERE Username = ?
+(MatchHistory ו-LoginHistory לא נמחקות – שומרים תיעוד היסטורי גם אחרי מחיקה.)
+### H1 ### 5. ארכיטקטורת המערכת
+## H2 ## 5.1 תרשים שכבות (Layered Architecture)
+המערכת בנויה לפי עיקרון של הפרדה ברורה בין שכבות. כל שכבה אחראית על דבר אחד מוגדר, וכל שכבה גבוהה יותר משתמשת רק בשכבה שמתחתיה. החלוקה מבטיחה שאם מוסיפים לקוח חדש (כפי שעשיתי כשהוספתי את Web ו-MAUI) אין צורך לשנות שום דבר בשכבות התחתונות.
+תרשים: Layer Diagram
+מלמעלה למטה:
+שכבת תצוגה (3 אפליקציות לקוח): WPF Desktop / Blazor Web / MAUI Android
+שכבת תקשורת: WCF Duplex (NetTcp) / SignalR (WebSocket) / REST API (HTTP)
+שכבת שירותים: WCF Services (Service1, BattleshipService) / ASP.NET Core Controllers / SignalR Hub
+שכבת לוגיקה עסקית: UserManager (Singleton), PasswordManager (BCrypt), MatchmakingService, MultiplayerGameSession, TokenService
+שכבת גישת נתונים (ViewDB): UserDB, StatsDB, HistoryDB – כולן יורשות מ-BaseDB
+שכבת Model: User, Base, GameStateDto, ShipPlacementDto, AttackResultDto, GameOverInfo ועוד
+שכבת אחסון: קובץ Microsoft Access (ShipDataBaseaccdb.accdb)
+## H2 ## 5.2 מבנה הסולושן (Solution Structure)
+הקוד מאורגן ב-4 פרויקטים בתוך סולושן אחד. בנוסף, פרויקט MAUI נפרד שמשתמש ב-API של הפרויקט הראשי.
+NewShipsCurrentFixed/
+│
+├── NewShips/                        ← לקוח WPF
+│   ├── App.xaml + App.xaml.cs
+│   ├── MainWindow.xaml(.cs)
+│   ├── Page1.xaml(.cs)              ← דף התחברות
+│   ├── SignUp.xaml(.cs)             ← דף רישום
+│   ├── PlayPage.xaml(.cs)           ← תפריט ראשי
+│   ├── PlayMenu.xaml(.cs)           ← בחירת מצב משחק
+│   ├── ShipPlacementPage.xaml(.cs)  ← הצבת ספינות
+│   ├── GamePage.xaml(.cs)           ← מסך הקרב
+│   ├── LeaderBoardPage.xaml(.cs)    ← לוח מובילים
+│   ├── BattleshipClient.cs          ← עוטף WCF Duplex
+│   ├── AIOpponent.cs                ← אלגוריתם AI
+│   └── SoundManager.cs              ← נגן צלילים
+│
+├── WcfServiceLibrary1/              ← שרת WCF
+│   ├── Service1.svc.cs              ← אימות, סטטיסטיקות
+│   ├── BattleshipService.cs         ← לוגיקת המשחק
+│   ├── GameSession.cs               ← state של משחק יחיד
+│   ├── BusinessLogic/Users/UserManager.cs
+│   ├── BusinessLogic/Security/PasswordManager.cs
+│   ├── ViewDB/BaseDB.cs             ← מחלקה אבסטרקטית
+│   ├── ViewDB/UserDB.cs
+│   ├── ViewDB/StatsDB.cs
+│   └── ViewDB/HistoryDB.cs
+│
+├── BattleThunderWeb/                ← שרת Web + לקוח Web
+│   ├── Program.cs                   ← Bootstrapping
+│   ├── Pages/                       ← Razor pages
+│   │   ├── Login, Register, PlayPage
+│   │   ├── ShipPlacement, AIGame, MultiplayerGame
+│   │   ├── Leaderboard, MatchHistory, Achievements
+│   │   └── Admin, About
+│   ├── Controllers/                 ← REST API
+│   │   ├── AuthController, StatsController
+│   │   ├── HistoryController, AchievementsController
+│   │   └── MatchController
+│   ├── Hubs/BattleshipHub.cs        ← SignalR Hub
+│   ├── Services/                    ← מקבילות לשרת WCF
+│   │   ├── AuthService, TokenService
+│   │   ├── MatchmakingService, MultiplayerGameSession
+│   │   ├── MultiplayerClient (Blazor)
+│   │   └── SignalRGameClient (MAUI)
+│   ├── Data/BaseDB.cs, UserDB.cs, StatsDB.cs, HistoryDB.cs
+│   └── wwwroot/                     ← CSS, JS, תמונות
+│
+└── BattleThunderMaui/               ← אפליקציית MAUI
+    ├── MauiProgram.cs
+    ├── AppShell.xaml(.cs)
+    ├── Views/                       ← דפי XAML
+    │   ├── LoginPage, RegisterPage
+    │   ├── MenuPage, ShipPlacementPage
+    │   ├── AiGamePage, MultiplayerGamePage
+    │   └── LeaderboardPage, MatchHistoryPage, AchievementsPage
+    ├── Services/AppState, MultiplayerClient (SignalR)
+    ├── Api/ApiClient (HttpClient wrapper)
+    └── Game/AiOpponent, AiGameState
+## H2 ## 5.3 תרשים פריסה (Deployment Diagram)
+מבחינת פריסה (Deployment), המערכת רצה במספר צמתים:
+מחשב השרת (פיזי): מארח את BattleThunderWeb.exe (שרת ASP.NET Core שמאזין על פורט 5166), את שירותי ה-WCF, ואת קובץ ה-Access.
+שירות ngrok (בענן): מקבל את כל הבקשות מהאינטרנט הציבורי ומעביר אותן ל-localhost:5166 במחשב השרת. הדומיין הקבוע: https://retread-greeting-disburse.ngrok-free.dev
+מחשבי לקוח (WPF Desktop): מותקנים על מחשבי המשתמשים. מתחברים ישירות לשרת ה-WCF דרך LAN.
+דפדפנים (Blazor Web): רצים בכל מחשב/טלפון עם דפדפן מודרני. מתחברים לכתובת ngrok.
+אפליקציות MAUI (Android): מותקנות על מכשיר אנדרואיד. מתחברות לכתובת ngrok דרך WiFi/Mobile data.
+## H2 ## 5.4 זרימת הנתונים בין הרכיבים
+נדגים את זרימת המידע באמצעות שני תרחישים מרכזיים:
+תרחיש 1 – משחק רב-משתתפים בין שני שחקנים:
+שחקן A מתחבר מ-WPF, שחקן B מתחבר מטלפון אנדרואיד (MAUI).
+שניהם לוחצים PLAY ובוחרים Ranked.
+MatchmakingService רואה ששניהם בתור (אחד דרך MultiplayerClient של Blazor, השני דרך SignalRGameClient של SignalR).
+MatchmakingService יוצר MultiplayerGameSession חדש המכיל את שניהם דרך הממשק IGameClient.
+שניהם מקבלים MatchFound notification ומעוברים להצבת ספינות.
+בקרב, כל ירייה עוברת דרך GameSession.FireShot שמוודא תקינות, מעדכן את ה-state, שומר במסד הנתונים (בסיום), ומשגר ShotFired לשני השחקנים בו-זמנית.
+תרחיש 2 – פתיחת לוח מובילים מ-MAUI:
+המשתמש לוחץ "STATS" באפליקציית MAUI.
+ApiClient.GetLeaderboardAsync שולח GET /api/stats/leaderboard?top=50 לכתובת ngrok.
+ngrok מעביר את הבקשה ל-localhost:5166 במחשב השרת.
+ASP.NET Core מנתב את הבקשה ל-StatsController.Leaderboard.
+StatsDB.GetLeaderboard(50) מבצע שאילתת SELECT TOP 50 ORDER BY Elo ב-Access.
+התוצאה מומרת ל-JSON ומוחזרת ל-MAUI שמציג אותה ב-CollectionView.
+### H1 ### 6. צד שרת – שירותי WCF ו-Web
+## H2 ## 6.1 שני שרתים – למה ולאיך
+המערכת מכילה שני שרתים נפרדים, כל אחד עם תחום אחריות משלו:
+שרת WCF (WcfServiceLibrary1) – משרת בעיקר את לקוח ה-WPF. מבוסס netTcpBinding לתקשורת דו-כיוונית מהירה ב-LAN, ועל basicHttpBinding לאימות וסטטיסטיקות. זהו השרת המקורי של הפרויקט.
+שרת Web (BattleThunderWeb) – שרת ASP.NET Core שמתפקד בשלושה תפקידים: (1) Blazor Server המציג את אפליקציית ה-Web, (2) REST API ללקוח ה-MAUI, (3) SignalR Hub למשחק רב-משתתפים בין לקוחות Web ו-MAUI.
+שני השרתים חולקים את אותו מסד נתונים (קובץ .accdb). זה מאפשר למשתמש להירשם דרך כל לקוח – ולהתחבר אחר-כך מכל לקוח אחר עם אותם פרטים.
+## H2 ## 6.2 שירות WCF ראשי – IBattleshipService
+ה-Contract של ה-WCF מוגדר בממשק IBattleshipService. הוא מציג את כל הפעולות שלקוח ה-WPF יכול לקרוא להן:
+JoinGame(string username) – מצטרף לתור משחקים. אם יש יריב ממתין, נוצר GameSession חדש; אחרת השחקן ממתין.
+PlaceShips(List&lt;ShipPlacementDto&gt; ships) – מציב את 5 הספינות של השחקן.
+FireShot(int row, int col) – יורה בלוח של היריב, מחזיר AttackResultDto.
+SendChatMessage(string text) – משדר הודעת צ׳אט ליריב.
+RequestRematch() – מבקש משחק חדש מהיריב. אם שניהם הסכימו, המשחק מתחיל מחדש.
+LeaveGame() – יוצא מהמשחק. השרת מודיע ליריב.
+בנוסף, ה-Contract מכיל [CallbackContract(typeof(IBattleshipCallback))] שמאפשר לשרת לדחוף הודעות ללקוח, ללא צורך ב-Polling. הקריאות מהשרת אל הלקוח הן:
+OnGameStarted, OnYourTurn, OnShotFired, OnChatReceived, OnGameOver, OnOpponentDisconnected, OnRematchRequested, OnRematchStarted ועוד.
+## H2 ## 6.3 לוגיקה עסקית – GameSession ו-MultiplayerGameSession
+ב-WCF, הלוגיקה של משחק יחיד נמצאת ב-GameSession.cs. ב-Web, היא נמצאת ב-MultiplayerGameSession.cs. שתי המחלקות עושות את אותו דבר עקרונית, אבל בארכיטקטורות שונות (WCF Callback Contract לעומת IGameClient interface).
+ניהול state בזיכרון
+כל משחק פעיל נשמר במילון בזיכרון של השרת (Dictionary&lt;int, GameSession&gt;). המפתח הוא מזהה המשחק. כך השרת מטפל בעשרות משחקים בו-זמנית מבלי לגעת במסד הנתונים בכל ירייה – רק בסיום משחק התוצאה נשמרת ב-DB.
+Matchmaking
+ב-MatchmakingService, יש שני תורים נפרדים: ranked ו-unranked. כשמישהו מצטרף, השרת בודק אם יש מישהו אחר בתור (עם שם משתמש שונה!), ואם כן – מתחיל משחק. אחרת השחקן מצטרף לתור עד שיריב נוסף יבוא.
+סנכרון תורות עם נעילות
+כל פעולת FireShot עטופה ב-lock(_lock) כדי שלא יתרחש מצב שבו שני שחקנים יורים בו-זמנית ושני הצדדים מנסים לעדכן את אותו state. הנעילה מוסרת לפני קריאת ה-Callback ליריב, כדי לא לגרום ל-Deadlock במקרה שה-Callback של היריב נכשל.
+## H2 ## 6.4 תכנות אסינכרוני (Asynchronous Programming)
+כל הפעולות החשובות במערכת אסינכרוניות. זה הכרחי כדי שה-UI לא יקפא בזמן שהשרת מחכה לתשובה.
+בצד ה-WCF Client:
+הלקוח עוטף כל קריאה לשרת ב-Task.Run, וכל אירוע Callback מהשרת עובר דרך Dispatcher.Invoke כדי להתעדכן ב-UI Thread.
+public async Task<bool> FireShotAsync(int row, int col)
+{
+    return await Task.Run(() => _proxy.FireShot(row, col));
+}
+בצד ה-Web (Blazor):
+כל ה-Razor components משתמשים ב-async event handlers. הקריאות לשרת מועברות דרך MultiplayerClient שעוטף אותן ב-await. כאשר הסטטוס משתנה (StateChanged event), נקרא InvokeAsync(StateHasChanged) כדי לעדכן את ה-UI ב-thread הנכון.
+בצד ה-MAUI:
+ApiClient עוטף את HttpClient ומחזיר Task&lt;T?&gt; לכל קריאה. MultiplayerClient משתמש ב-Microsoft.AspNetCore.SignalR.Client ובכל אירוע מ-Hub משתמש ב-MainThread.BeginInvokeOnMainThread כדי להבטיח שעדכוני UI יבוצעו על ה-UI Thread.
+## H2 ## 6.5 שכבת גישת הנתונים (Data Access Layer)
+שכבת ה-DB מורכבת ממחלקה אבסטרקטית BaseDB וממחלקות יורשות UserDB, StatsDB ו-HistoryDB. הירושה מאפשרת שיתוף קוד (פעולות SELECT/INSERT/UPDATE/DELETE גנריות) ובאותה עת לאפשר לכל יורשת לממש את ה-CreateModel שלה (איך להמיר רשומה ב-DB לאובייקט מודל).
+מחלקת BaseDB
+המחלקה האבסטרקטית BaseDB מספקת:
+connectionString סטטי – שמירת ה-Connection String פעם אחת לכל המופעים.
+connection, command, reader – אובייקטים של OleDb שמשותפים לכל הפעולות.
+NewEntity() אבסטרקטית – כל יורשת מחזירה את סוג ה-Entity שלה (User, וכו׳).
+CreateModel(Base entity) וירטואלית – כל יורשת ממירה רשומה ב-reader לאובייקט בזיכרון.
+Select(string sql) – פעולת SELECT גנרית שמחזירה List&lt;Base&gt; באמצעות פולימורפיזם.
+SaveChanges(OleDbCommand cmd, Base entity) – פעולה גנרית ל-INSERT/UPDATE/DELETE.
+Count, Max, InsertAndGetID – פעולות עזר נוספות.
+המחלקות היורשות
+UserDB יורשת מ-BaseDB ומוסיפה:
+GetByUsername(string) – שליפת משתמש לפי שם (להתחברות).
+GetById(int) – שליפה לפי מזהה.
+GetAllUsers() – שליפת כל המשתמשים (לדף Admin).
+DeleteUser(string) – מחיקת משתמש עם cascade ידני ל-PlayerStats ול-PlayerAchievements.
+StatsDB מוסיפה: GetStats, GetLeaderboard, SaveResult, SaveRankedResult, ResetStats, GetEloAfter, Upsert.
+HistoryDB מוסיפה: InsertMatch, GetMatchHistory, GetAllMatches, CountWinsByMode, CountTotalMatches, InsertTierChange, GetAchievements, TryAwardAchievement, InsertLogin, GetLoginHistory, EvaluateAchievementsForMatch.
+## H2 ## 6.6 REST API – ב-ASP.NET Core
+הוספתי שכבת REST API לשרת ה-Web כדי שלקוח ה-MAUI יוכל לפנות אליו. ה-API מארגן ב-Controllers לפי תחום:
+האימות מתבצע באמצעות Bearer Token. ה-TokenService הוא Singleton שמייצר ושומר Tokens אטומים (32 בייטים אקראיים → base64). בכל קריאה מוגנת, ה-ApiAuthAttribute filter מאמת את ה-Token, מוצא את ה-Username, ומשים אותו ב-HttpContext.Items כך שה-Controller יוכל לגשת אליו.
+## H2 ## 6.7 SignalR Hub – BattleshipHub
+ה-Hub חושף את אותן פעולות שיש ב-WCF (JoinQueue, PlaceShips, FireShot, SendChat, Surrender, UnplaceShips) אבל דרך WebSocket. בכניסת הלקוח (OnConnectedAsync), ה-Hub:
+מקרא את ה-Token מתוך query string (?token=...).
+מאמת אותו דרך TokenService.TryResolve.
+אם תקין – יוצר SignalRGameClient ושומר אותו ב-SignalRClientRegistry.
+אם לא תקין – Context.Abort() לסגירה מיידית.
+כל פעולה שהלקוח קורא לה (FireShot למשל) מועברת ל-SignalRGameClient שמטפל בה. הוא ממומש את הממשק IGameClient – אותו ממשק שה-MultiplayerClient של Blazor ממומש – ולכן MatchmakingService ו-MultiplayerGameSession עובדים עם שניהם בלי לדעת מה ההבדל ביניהם. זוהי דוגמה מצוינת לפולימורפיזם בפעולה.
+### H1 ### 7. צד לקוח – WPF, Web ו-MAUI
+## H2 ## 7.1 לקוח WPF Desktop
+עיצוב הממשק
+ה-WPF מעוצב בערכת "Naval Theme" כהה: רקעים בגווני 0D1117 ו-12161F, צבע אקצנט אמבר (C8A96E) להדגשות, אדום כהה (8B0000) לכפתורים קריטיים, וגוונים נוספים (ירוק 6AAA6A להצלחות, אדום C84040 לכישלונות, כחול 4A8AB4 לאינדיקטורים).
+ה-XAML מאורגן בקובץ App.xaml שמכיל את כל הסגנונות הגלובליים (Styles): NavalPanel, AmberButton, FireButton, GlassBorder. כל סגנון מוגדר פעם אחת ומופעל בכל מקום שצריך, מה שמבטיח אחידות ויזואלית.
+דפי המערכת
+Page1 (התחברות) – שני שדות (Username, Password) עם Validation, כפתור LOGIN, וקישור לרישום.
+SignUp (רישום) – ארבעה שדות (Username, Password, Confirm, Email), כפתור SIGN UP, קישור להתחברות.
+PlayPage (תפריט ראשי) – פאנל אדום בצד ימין עם 7 כפתורים (PLAY, VS AI, STATS, HISTORY, ACHIEVEMENTS, LOGIN LOG, LOGOUT) ופאנל הסטטיסטיקות בצד שמאל (Wins/Losses/WinRate/Rank).
+PlayMenu (בחירת מצב) – מודאל שצץ כשלוחצים PLAY, מאפשר לבחור Ranked/Unranked/VS AI.
+ShipPlacementPage (הצבת ספינות) – לוח 10×10 בצד שמאל, רשימת 5 הספינות בצד ימין, כפתורי Rotate (R) / Random / Clear / Ready.
+GamePage (הקרב) – שלוש עמודות: לוח שלי / לוח האויב / סייד-בר עם Fleet Status + Combat Log + Fire Button + Chat. כפתור Surrender בתחתית.
+LeaderBoardPage (לוח מובילים) – טבלה גדולה עם Top-50.
+ניהול ה-WCF Duplex Channel
+המחלקה BattleshipClient בלקוח עוטפת את ה-WCF Channel. היא מקבלת BattleshipCallbackHandler כפרמטר ל-DuplexChannelFactory. כל המתודות שלה (JoinGameAsync, FireShotAsync וכו׳) עוטפות את הקריאות הסינכרוניות של WCF ב-Task.Run להריץ ב-Thread נפרד.
+המחלקה BattleshipCallbackHandler ממומשת את ה-IBattleshipCallback ומפיצה כל Callback כאירוע Action&lt;T&gt; של .NET. דפים שמעוניינים באירוע נרשמים אליו (+=) ומבטלים את ההרשמה (-=) כשהם נסגרים.
+## H2 ## 7.2 לקוח Web (Blazor Server)
+מודל ה-Blazor Server
+Blazor Server מריץ את ה-Razor Components בצד השרת. הדפדפן מקבל רק את ה-HTML שנוצר, ולכל אירוע (לחיצה, הקלדה) נשלחת הודעה דרך WebSocket לשרת. השרת מריץ את ה-handler, מעדכן את ה-state, ושולח חזרה Diff של ה-DOM.
+היתרון: כל הקוד ב-C#, אין צורך ב-JavaScript מורכב. החיסרון: כל לחיצה דורשת רענון מהשרת, ולכן חיבור אינטרנט חלש מורגש מיד.
+דפי המערכת
+/login + /register – דפי אימות עם שדות מותאמים למובייל (autocomplete, autocapitalize).
+/play – דף ראשי עם תפריט אדום בצד ימין (זהה ל-WPF).
+/place-ships – הצבת ספינות עם תמיכה ב-Hover preview, סיבוב באמצעות R או כפתור, גרירה.
+/game-ai + /game-mp – משחקי AI ורב-משתתפים.
+/leaderboard + /history + /achievements + /login-history – דפי נתונים.
+/admin – פאנל ניהול (רק למשתמשים מורשים).
+/about – דף "אודות" עם פרטי הפרויקט.
+עיצוב מותאם למובייל
+ה-CSS תוכנן מהיסוד לעבוד גם על דפדפן מובייל. בעת זיהוי טלפון אנכי (Portrait, רוחב &lt;1100px), מוצג מסך "רוטו את הטלפון" עם איקון מסתובב. במצב Landscape, ה-CSS מציג את אותו עיצוב כמו במחשב אבל בקנה מידה מותאם. דפים שיש בהם רשימות (Leaderboard, History) משתמשים ב-Scroll פנימי כדי שהכותרות יישארו במקום.
+## H2 ## 7.3 לקוח MAUI (Android + Windows)
+ארכיטקטורה
+.NET MAUI הוא הממשיך של Xamarin.Forms. הוא מאפשר לכתוב פרויקט C# יחיד שמתקמפל לאפליקציות ילידיות לכמה פלטפורמות. בחרתי לכוון בעיקר ל-Android (כי הלקוח רצה גרסת מובייל) וגם ל-Windows (לפיתוח מהיר ולהקלות-debug).
+שירותים מרכזיים
+AppState (Singleton) – שומר את ה-ServerUrl, ה-Token, וה-Username של המחובר.
+ApiClient – עוטף את HttpClient. כל קריאה ל-API מוסיפה את ה-Bearer Token מ-AppState ומחזירה Task&lt;T?&gt;.
+MultiplayerClient – עוטף את Microsoft.AspNetCore.SignalR.Client. מתחבר ל-Hub עם הטוקן ב-query string, רושם handlers לכל אירוע מהשרת, ושומר את ה-state המלא של המשחק.
+דפי הלקוח
+LoginPage + RegisterPage – אימות, שולח POST ל-/api/auth.
+MenuPage – תפריט עם 6 כפתורים. כפתור PLAY פותח ActionSheet עם Ranked/Unranked.
+ShipPlacementPage – לוח מובנה בקוד (לא XAML – כדי שיהיה דינמי). כל תא הוא Border עם TapGestureRecognizer.
+AiGamePage + MultiplayerGamePage – שני דפי קרב. AiGamePage עם state מקומי, MultiplayerGamePage עם state מ-MultiplayerClient.
+LeaderboardPage + MatchHistoryPage + AchievementsPage + LoginHistoryPage – דפי נתונים, משתמשים ב-CollectionView עם Pull-To-Refresh.
+מצוין: אותו עיצוב נווטי
+שלושת הלקוחות (WPF, Web, MAUI) חולקים את אותה ערכת צבעים, אותה היררכיית אלמנטים ויזואלית, ואותה זרימת מסכים. משתמש שיודע להשתמש באחד יכול מיד להשתמש באחר.
+### H1 ### 8. אבטחה והגנה על נתונים
+## H2 ## 8.1 הצפנת סיסמאות עם BCrypt
+סיסמאות הן הנתון הכי רגיש במערכת. אסור לאחסן אותן בטקסט פתוח, ואסור גם להצפין אותן באלגוריתם הפיך (כמו AES) – כי אם אבטחת המסד נפרצת, מישהו יכול לפענח אותן בחזרה.
+הפתרון הנכון הוא Hash חד-כיווני – פונקציה שלא ניתן להפוך. השתמשתי ב-BCrypt דרך הספרייה BCrypt.Net-Next, שעוטפת את כל הפרטים:
+public static class PasswordManager
+{
+    public static string Hash(string password) =>
+        BCrypt.Net.BCrypt.HashPassword(password);
+    public static bool Verify(string password, string hash) =>
+        BCrypt.Net.BCrypt.Verify(password, hash);
+}
+BCrypt מוסיף Salt אקראי לכל סיסמה (16 בייטים) ומבצע 10 סבבי איטרציה כברירת מחדל. זה אומר שחישוב Hash של סיסמה אחת לוקח כ-100ms – מה שמקשה על ניסיונות Brute Force אבל לא משפיע על תהליך התחברות אמיתי.
+בעת התחברות, BCrypt.Verify משווה את הסיסמה ל-Hash בזמן קבוע (Constant-Time Comparison), מה שמונע Timing Attacks – ניסיון לנחש סיסמה לפי הזמן שלוקח לאמת אותה.
+## H2 ## 8.2 הגנה מ-SQL Injection
+SQL Injection הוא אחד התקיפות הנפוצות ביותר על מסדי נתונים. הוא קורה כשמכניסים קלט משתמש ישירות לתוך מחרוזת SQL, ומשתמש זדוני יכול להזריק תקנים כמו ' OR '1'='1 שמשנים את משמעות השאילתה.
+ההגנה היחידה האמיתית היא להשתמש בפרמטרים (Parameterized Queries). כל שאילתה במערכת משתמשת ב-OleDbParameter עם Placeholder ?:
+// נכון - מוגן מ-SQL Injection:
+string sql = "SELECT * FROM UserDataTable WHERE [Username] = ?";
+command.Parameters.AddWithValue("?", username);
+// שגוי - פגיע ל-SQL Injection:
+// string sql = $"SELECT * FROM UserDataTable WHERE Username = '{username}'";
+OleDb מנקה את הערך אוטומטית: אם המשתמש מזין ' OR '1'='1, ה-Driver עוטף אותו במרכאות ומבריח את התווים המיוחדים. הוא יתחפש ל-Username ולא לתחביר SQL.
+שאילתות שלוקחות int (כמו GetLeaderboard עם TOP {topN}) מוגנות גם הן – אבל מסיבה אחרת: int נבדק ע"י .NET לפני שמגיע ל-SQL, ולא ניתן לעבור עליו string.
+## H2 ## 8.3 ניהול Tokens אטומים
+ב-API ה-REST של ה-Web, אימות מתבצע באמצעות Bearer Token. הטוקן הוא מחרוזת אטומה (Opaque) של 32 בייטים אקראיים שנוצרים ע"י RandomNumberGenerator.Fill:
+public string Issue(string username)
+{
+    Span<byte> buf = stackalloc byte[32];
+    RandomNumberGenerator.Fill(buf);
+    string token = Convert.ToBase64String(buf)
+        .Replace('+', '-').Replace('/', '_').TrimEnd('=');
+    _byToken[token] = new Entry(username, DateTime.UtcNow + SlidingExpiry);
+    return token;
+}
+32 בייטים = 256 ביט אקראיים. ניחוש טוקן תקף שווה לאיתור מחט בערימת חציר בגודל יקום. תוקף הטוקן הוא 24 שעות מהקריאה האחרונה (Sliding Expiry), מה שאומר שמשתמש פעיל לא יוצא מהמערכת באמצע השימוש.
+## H2 ## 8.4 אימות ב-SignalR Hub
+ב-SignalR, האימות מתבצע בכניסת הלקוח (OnConnectedAsync). הטוקן מועבר ב-query string (?token=...) של ה-WebSocket URL. אם הטוקן אינו תקין, ה-Hub קורא ל-Context.Abort() ומפסיק את ההתחברות מיד.
+## H2 ## 8.5 הגנת Admin
+פאנל ה-Admin מוגן בשתי שכבות:
+בצד הלקוח (Razor) – הדף בודק ב-OnInitialized אם Auth.Username הוא Admin. אם לא, מבצע redirect ל-/play.
+בצד השרת – אין ערך לטריגרים ב-UI אם המנהל יכול לעקוף אותם דרך URL ישיר. לכן, פעולות הניהול (DeleteUser, ResetStats) פתוחות לכל המשתמשים המאומתים – אבל הן רק נקראות מתוך הדף /admin שמוגן. אם בעתיד נרצה לחזק, ניתן להוסיף בדיקה גם ב-Controller.
+### H1 ### 9. תהליכים מרכזיים במערכת
+## H2 ## 9.1 תהליך התחברות
+התחברות היא התהליך הראשון שכל משתמש עובר. השלבים:
+המשתמש מזין Username + Password ב-LoginPage.
+הלקוח שולח את הפרטים לשרת (WCF, REST או SignalR).
+השרת קורא ל-UserDB.GetByUsername(username), שמבצע SELECT עם פרמטר.
+אם המשתמש קיים, השרת קורא ל-PasswordManager.Verify(password, user.PasswordHash) שמשתמש ב-BCrypt.
+אם הסיסמה תקינה, השרת:
+        ▸ ב-WCF – שומר את שם המשתמש ב-Session ומחזיר LoginResult.Success = true.
+        ▸ ב-REST – מייצר Token חדש ב-TokenService ומחזיר אותו ב-AuthResponse.
+בכל מקרה, HistoryDB.InsertLogin(username, wasSuccessful) מתעד את הניסיון.
+הלקוח שומר את ה-Token (אם יש), ועובר לתפריט הראשי.
+## H2 ## 9.2 תהליך התאמת משחק (Matchmaking)
+בלחיצה על PLAY, ה-MatchmakingService מנהל את התור:
+הלקוח קורא ל-JoinQueue(ranked: true/false).
+MatchmakingService בודק אם יש כבר מישהו בתור (עם שם שונה!).
+אם כן – שני השחקנים מוצאים מהתור, נוצר MultiplayerGameSession חדש, ושני הצדדים מקבלים MatchFound notification.
+אם לא – השחקן מצטרף לתור ומקבל QueueState notification (שמראה שהוא ממתין).
+עד שיריב יבוא, השחקן יכול ללחוץ CANCEL SEARCH בכל רגע. זה קורא ל-LeaveQueue ומסיר אותו.
+## H2 ## 9.3 תהליך הצבת ספינות
+לאחר Match Found, שני השחקנים מועברים ל-ShipPlacementPage:
+כל אחד מציב 5 ספינות (Carrier, Battleship, Submarine, 2× Destroyer).
+בלחיצה על READY FOR BATTLE, הלקוח קורא ל-PlaceShips(ships) עם הרשימה.
+השרת שומר את המיקומים בצד שלו.
+אם רק אחד מהשניים סיים – השני מקבל OpponentReady notification, והשרת ממתין.
+כאשר שני הצדדים מציבו ספינות, השרת מגריל מי מתחיל (Random) ושולח GameStarted לשניהם.
+שני הצדדים מועברים ל-GamePage / AiGamePage / MultiplayerGamePage.
+## H2 ## 9.4 תהליך ירייה
+הירייה היא הפעולה המרכזית במשחק. כאשר השחקן בוחר תא ולוחץ FIRE:
+הלקוח קורא ל-FireShot(row, col).
+השרת מוודא שזה התור הנכון של הלקוח.
+בודק אם בתא יש ספינה (לפי PlayerShips של היריב שנשמר בצד השרת).
+אם פגיעה – בודק אם זאת הפגיעה האחרונה של אותה ספינה (כלומר ספינה הוטבעה).
+אם הוטבעה – בודק אם כל הספינות של היריב הוטבעו (סוף המשחק).
+בונה AttackResultDto עם Row, Col, IsHit, IsSunk, SunkShipType, IsGameOver.
+שולח ShotFired notification לשני השחקנים בו-זמנית.
+מחליף את התור (פסיכולוגית – אצלנו אין hit-then-shoot-again כי זה הופך משחק לאינסופי).
+שולח YourTurn notification ליריב.
+אם זה היה משחק מנצח, כותב את התוצאה ל-DB דרך HistoryDB.InsertMatch ו-StatsDB.SaveRankedResult/SaveResult, ושולח GameOver לשניהם עם המידע.
+## H2 ## 9.5 אלגוריתם ה-AI
+ה-AI שתי שכבות עבודה: Hunt Mode ו-Target Mode.
+Hunt Mode (חיפוש)
+ברגע שלא יודעים איפה ספינה, ה-AI עובר למצב חיפוש. במקום לירות אקראית או בתבנית קבועה, הוא משתמש ב-Probability Density:
+לכל תא בלוח, ה-AI מחשב כמה דרכים שונות יש להציב את כל הספינות שעדיין חיות, כך שאחת מהן עוברת דרך התא.
+התא עם הציון הגבוה ביותר נבחר לירייה.
+טבעי שמרכז הלוח מקבל ציון גבוה יותר, כי יותר הצבות עוברות דרכו.
+Target Mode (מעקב)
+ברגע שיש פגיעה (Hit) ראשונה, ה-AI עובר למצב מעקב:
+הוא מוסיף את התא ל-Unresolved Hits.
+בירייה הבאה, הוא נותן ציון גבוה ל-4 התאים הסמוכים לפגיעה.
+אם פגע שוב, יש לו שני תאים סמוכים – הוא מזהה את הציר (אופקי או אנכי) וממשיך באותו ציר.
+בכל פגיעה הוא בודק האם הספינה הוטבעה. אם כן, הוא מוסיף את 8 התאים סביב הספינה ל-No-Ship Zone (כי הכללים אומרים שספינות לא נוגעות זו בזו).
+## H2 ## 9.6 תהליך הניתוק
+ניתוק יכול לקרות בשלושה אופנים:
+ניתוק יזום (LeaveGame) – המשתמש לוחץ Surrender. הצד השני מקבל הודעת ניצחון. נשמר ב-DB.
+סגירת חלון – ב-WPF, מתבצע WindowClosing event שקורא ל-LeaveGame לפני סגירה.
+ניתוק רשת או קריסה – ב-WCF, אירוע channel.Faulted/Closed מתפוצץ. ב-SignalR, OnDisconnectedAsync. השרת מנקה את ה-Session ושולח OnOpponentDisconnected ליריב.
+### H1 ### 10. בדיקות ותסריטי שימוש
+## H2 ## 10.1 בדיקות ידניות שביצעתי
+במהלך הפיתוח ביצעתי בדיקות ידניות שיטתיות לכל תרחיש. הבדיקות מחולקות לקטגוריות:
+בדיקות אימות וגישה
+בדיקות משחק מול AI
+בדיקות משחק רב-משתתפים
+בדיקות פאנל Admin
+## H2 ## 10.2 בדיקות עומס
+בנוסף לבדיקות הפונקציונליות, בחנתי כמה משחקים יכולים לרוץ בו-זמנית:
+10 משחקים פעילים בו-זמנית – אין הפסקות, השרת מגיב בזמן.
+20 משחקים פעילים בו-זמנית – עדיין יציב, ה-CPU של השרת ב-15-20%.
+מעל 50 חיבורים – החל מצב של עיכוב קל בתגובות (כי SignalR מנהל את כולם דרך thread pool).
+## H2 ## 10.3 בדיקות אבטחה
+### H1 ### 11. מדריך למשתמש
+## H2 ## 11.1 איך מתחילים?
+כדי לשחק ב-Battle Thunder, צריך לעשות אחת מהפעולות הבאות:
+הורדה והפעלה של אפליקציית WPF (NewShips.exe) – למשחק מהמחשב האישי על-פני LAN.
+פתיחת דפדפן בכתובת https://retread-greeting-disburse.ngrok-free.dev – לגישה מכל מקום בעולם.
+התקנה של אפליקציית BattleThunderMaui.apk על אנדרואיד – לחוויה מובייל מלאה.
+## H2 ## 11.2 רישום משתמש חדש
+בעת פתיחת האפליקציה הפעם הראשונה:
+לוחצים על "Sign Up" / "רישום".
+ממלאים: Username (שם משתמש ייחודי), Password (לפחות 6 תווים), Repeat Password, Email.
+לוחצים SIGN UP. אם הכל תקין – מעבר אוטומטי לדף ההתחברות.
+## H2 ## 11.3 התחברות
+עם פרטים מהרישום:
+מזינים Username ו-Password.
+לוחצים LOGIN.
+אם הכל תקין – מעבר לתפריט הראשי. אם לא – הודעת שגיאה תוצג.
+## H2 ## 11.4 תפריט ראשי – מה ניתן לעשות?
+PLAY – משחק רב-משתתפים. בוחרים בין UNRANKED (לא משנה ELO) ל-RANKED (משנה ELO).
+VS AI – משחק נגד הבינה המלאכותית.
+STATS – צפייה בלוח המובילים הגלובלי.
+HISTORY – צפייה בהיסטוריית המשחקים שלי (50 האחרונים).
+ACHIEVEMENTS – צפייה בהישגים שהרווחתי וביעדים עתידיים.
+LOGIN LOG – צפייה בכל ניסיונות ההתחברות לחשבון שלי.
+LOGOUT – יציאה מהמערכת.
+## H2 ## 11.5 הצבת ספינות
+לפני כל משחק, צריך להציב 5 ספינות:
+Carrier (5 תאים) – הספינה הארוכה ביותר.
+Battleship (4 תאים).
+Submarine (3 תאים).
+שני Destroyers (2 תאים כל אחד).
+בבחירת ספינה מהרשימה בצד ימין, לוחצים על תא בלוח. הספינה תוצב מהתא הנבחר ימינה (או למטה, אם המצב Vertical). בלחיצה על R או על כפתור ROTATE משנים את הכיוון. אם ההצבה אינה חוקית (יוצאת מהלוח / נוגעת בספינה אחרת), תוצג הודעת שגיאה. אפשר תמיד ללחוץ RANDOM שמציב את כל הספינות באקראיות חוקית, או CLEAR BOARD שמתחיל מחדש.
+## H2 ## 11.6 המשחק
+המסך מחולק לשלושה אזורים:
+YOUR FLEET (שמאל) – הלוח שלך עם הספינות שלך. תאים אדומים = פגיעה ביריב, כחולים = החמצה.
+ENEMY WATERS (אמצע) – לוח האויב. כאן אתה לוחץ כדי לבחור מטרה.
+Sidebar (ימין) – Fleet Status (סטטוס הספינות שלך), Combat Log (מספר Hits/Misses/Sunk), כפתור FIRE, וצ׳אט.
+בכל תור, אתה לוחץ על תא בלוח האויב כדי לבחור מטרה (מסומן בצהוב), ואז לוחץ על FIRE לבצע את הירייה. השרת מודיע לך אם פגעת, החמצת או הטבעת. לאחר מכן התור עובר ליריב.
+## H2 ## 11.7 רוצה לשחק עם חבר מרחוק?
+פשוט שלח לו את הקישור: https://retread-greeting-disburse.ngrok-free.dev
+הוא ייכנס מכל מחשב או טלפון, יירשם, ילחץ PLAY בו-זמנית איתך, והשרת יתאים אתכם אוטומטית. גם אם הוא בקצה השני של העולם – זה יעבוד.
+### H1 ### 12. סיכום אישי – רפלקציה
+הפרויקט הזה היה חוויה אחת גדולה. התחלתי עם רעיון אחד פשוט  משחק צוללות  וגיליתי שיש מתחת לזה עולם שלם של דברים שלא ידעתי שאני עומד ללמוד.
+היו שעות שלמות שבזבזתי על באג אחד קטן, היו לילות שבהם רציתי לסגור הכל ולוותר, והיה גם המומנט המוזר הזה ב-3 בלילה שמשהו פתאום עבד ואני מוצא את עצמי מחייך לבד מול המסך (עכשיו 5 וחצי בלילה בזמן שאני כותב את הספר פרוייקט). הקשיים האמיתיים לא היו הקוד הם היו לחזור אליו אחרי שמשהו לא הצליח בפעם החמישית.
+אבל מעבר לכל זה, פשוט נהניתי. נהניתי לראות שניים שמשחקים מול שניים בלי לדעת אחד על השני, נהניתי לראות את ה-AI מתחיל "לחשוב", ונהניתי בעיקר לראות את כל החלקים  WPF, WCF, Web, MAUI  מתחברים יחד למשהו שעובד. זה היה הפרויקט הכי גדול והכי כיפי שעשיתי, ואני יוצא ממנו מרגיש שאני מבין הרבה יותר ממה שהבנתי בהתחלה.
+### H1 ### 13. ביבליוגרפיה
+## H2 ## 13.1 ספרות ומדריכי לימוד
+Documentation רשמית של Microsoft – לכל הטכנולוגיות (WPF, WCF, Blazor, MAUI, ASP.NET Core, SignalR): https://learn.microsoft.com
+חוברת הלימוד "שירותי אינטרנט, תכנות אסינכרוני ומסדי נתונים" של משרד החינוך.
+מסמך התובנות של אולגה גנדלמן על בחינות בעל פה.
+## H2 ## 13.2 אתרי עזר טכניים
+Stack Overflow – לפתרון בעיות ספציפיות. במיוחד חיפושים בנושאי WCF Channel Faulted ו-SignalR authentication.
+Microsoft Q&A – לשאלות מתקדמות על MAUI ו-Blazor.
+GitHub – לקריאת קוד open source לדוגמה (לא נעשה copy-paste, רק לימוד).
+## H2 ## 13.3 כלים וספריות צד שלישי
+BCrypt.Net-Next 4.0.3 – ספריית הצפנת סיסמאות. https://github.com/BcryptNet/bcrypt.net
+Microsoft.AspNetCore.SignalR.Client 9.0.0 – ספריית הקליינט של SignalR למובייל.
+System.Data.OleDb 6.0.0 – ספריית גישה ל-Access.
+ngrok – שירות מנהור לאינטרנט הציבורי. https://ngrok.com
+## H2 ## 13.4 שימוש בבינה מלאכותית
+בפיתוח הפרויקט השתמשתי גם בכלי בינה מלאכותית (Claude). השימוש היה כדלהלן:
+הסבר על מושגים שלא הבנתי ("מה זה ConcurrencyMode.Reentrant?").
+דיון על בחירות ארכיטקטוניות ("איך עדיף לחבר Blazor ל-MAUI – REST או SignalR?").
+עזרה בדיבאג של שגיאות מורכבות שעבדתי עליהן שעות בלי הצלחה.
+ניסוח מסמכים (כמו ספר הפרויקט הזה) על-בסיס נקודות שכתבתי בעצמי.
+השתדלתי שכל שורת קוד שמופיעה בפרויקט – אני מבין מה היא עושה. במיוחד בקטעים מורכבים כמו ה-Probability Density של ה-AI או ה-Locking של GameSession, התעכבתי ולמדתי לעומק לפני שעברתי הלאה.
+### H1 ### 14. נספחים – קוד מלא
+## H2 ## 14.1 מבנה הפרויקטים בסולושן
+הפרויקט מכיל 4 פרויקטי .NET שונים. כל פרויקט עומד בפני עצמו ויש לו אחריות ברורה. הקוד המלא נמצא בתיקייה NewShipsCurrentFixed שמלווה את ספר הפרויקט. להלן רשימת הקבצים המרכזיים בכל פרויקט:
+פרויקט NewShips (לקוח WPF)
+App.xaml + App.xaml.cs – הגדרת סגנונות גלובליים.
+MainWindow.xaml(.cs) – חלון ראשי עם Frame לניווט.
+Page1.xaml(.cs), SignUp.xaml(.cs) – דפי אימות.
+PlayPage.xaml(.cs), PlayMenu.xaml(.cs) – תפריט ראשי וחלון בחירת מצב משחק.
+ShipPlacementPage.xaml(.cs), GamePage.xaml(.cs) – הצבת ספינות והקרב.
+LeaderBoardPage.xaml(.cs) – לוח מובילים.
+BattleshipClient.cs – עוטף את WCF Duplex.
+AIOpponent.cs – אלגוריתם ה-AI.
+SoundManager.cs – ניהול צלילים.
+פרויקט WcfServiceLibrary1 (שרת WCF)
+Service1.svc.cs – שירות אימות וסטטיסטיקות.
+BattleshipService.cs – שירות המשחק (Duplex).
+GameSession.cs – state של משחק יחיד.
+BusinessLogic/Users/UserManager.cs – Singleton לניהול משתמשים.
+BusinessLogic/Security/PasswordManager.cs – BCrypt wrapper.
+ViewDB/BaseDB.cs – מחלקה אבסטרקטית.
+ViewDB/UserDB.cs, StatsDB.cs, HistoryDB.cs – יורשות מ-BaseDB.
+Model/User.cs, Base.cs, GameModels.cs, HistoryModels.cs – מחלקות מודל.
+פרויקט BattleThunderWeb (שרת + לקוח Web)
+Program.cs – Bootstrapping של ASP.NET Core.
+Pages/Login.razor + Register.razor + PlayPage.razor – אימות ותפריט.
+Pages/ShipPlacement.razor + AIGame.razor + MultiplayerGame.razor – המשחק.
+Pages/Leaderboard.razor + MatchHistory.razor + Achievements.razor + LoginHistory.razor – דפי נתונים.
+Pages/Admin.razor + About.razor – ניהול ואודות.
+Controllers/AuthController.cs, StatsController.cs, HistoryController.cs, AchievementsController.cs, MatchController.cs – REST API.
+Hubs/BattleshipHub.cs – SignalR Hub.
+Services/AuthService.cs, TokenService.cs – אימות וטוקנים.
+Services/MatchmakingService.cs, MultiplayerGameSession.cs, MultiplayerClient.cs, SignalRGameClient.cs – לוגיקת משחק רב-משתתפים.
+Services/AIGameSession.cs, WebAIOpponent.cs – AI.
+Services/AdminConfig.cs – רשימת המנהלים.
+Data/BaseDB.cs, UserDB.cs, StatsDB.cs, HistoryDB.cs – שכבת DB (מקבילה לזו של WCF).
+Shared/MainLayout.razor + TopBar.razor – פריסה גלובלית.
+wwwroot/css/site.css – העיצוב המלא של ה-Web.
+wwwroot/js/site.js – JS interop (keyboard, hover tracker).
+פרויקט BattleThunderMaui (לקוח מובייל)
+MauiProgram.cs – DI registration.
+AppShell.xaml(.cs) – ניווט.
+Views/LoginPage.xaml(.cs), RegisterPage.xaml(.cs) – אימות.
+Views/MenuPage.xaml(.cs) – תפריט עם action sheet.
+Views/ShipPlacementPage.xaml(.cs), AiGamePage.xaml(.cs), MultiplayerGamePage.xaml(.cs) – המשחק.
+Views/LeaderboardPage, MatchHistoryPage, AchievementsPage, LoginHistoryPage – דפי נתונים.
+Services/AppState.cs – Singleton state.
+Services/MultiplayerClient.cs – SignalR client wrapper.
+Api/ApiClient.cs – REST client wrapper.
+Api/HubMessages.cs – DTOs לקבלת הודעות מ-SignalR.
+Game/AiOpponent.cs, AiGameState.cs – AI.
+Models/GameModels.cs – מחלקות מודל.
+Resources/Styles/Colors.xaml – ערכת הצבעים.
+Platforms/Android/AndroidManifest.xml + network_security_config.xml – הרשאות אנדרואיד.
+## H2 ## 14.2 דוגמת קוד – מחלקת BaseDB (מחלקה אבסטרקטית)
+מחלקה זו היא הבסיס לכל הגישה למסד הנתונים. היא מדגימה את עיקרון ה-DRY (Don't Repeat Yourself) ואת השימוש בפולימורפיזם:
+public class BaseDB
+{
+    private static string connectionString = null;
+    protected OleDbConnection connection;
+    protected OleDbCommand command;
+    protected OleDbDataReader reader;
+    public BaseDB()
+    {
+        if (connectionString == null)
+        {
+            string baseFolder = AppDomain.CurrentDomain.BaseDirectory;
+            connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                + baseFolder + "...ShipDataBaseaccdb.accdb;Persist Security Info=True";
+        }
+        connection = new OleDbConnection(connectionString);
+        command = new OleDbCommand { Connection = connection };
+    }
+    protected virtual Base NewEntity() => null;
+    protected virtual Base CreateModel(Base entity)
+    {
+        if (entity != null) entity.Id = (int)reader["ID"];
+        return entity;
+    }
+    protected virtual List<Base> Select(string sql)
+    {
+        List<Base> list = new List<Base>();
+        command.CommandText = sql;
+        try
+        {
+            connection.Open();
+            reader = command.ExecuteReader();
+            while (reader.Read())
+                list.Add(CreateModel(NewEntity()));
+        }
+        finally
+        {
+            reader?.Close();
+            if (connection.State == ConnectionState.Open) connection.Close();
+        }
+        return list;
+    }
+}
+## H2 ## 14.3 דוגמת קוד – אלגוריתם ה-AI
+המתודה ChooseHuntTarget מהמחלקה WebAIOpponent. היא מחשבת Probability Density ובוחרת את התא עם הציון הגבוה ביותר:
+private (int r, int c) ChooseHuntTarget()
+{
+    var density = new int[10, 10];
+    foreach (int size in _aliveShipSizes)
+    {
+        // הצבות אופקיות
+        for (int r = 0; r < 10; r++)
+        for (int c = 0; c <= 10 - size; c++)
+            if (CanPlaceLine(r, c, size, horizontal: true))
+                for (int i = 0; i < size; i++) density[r, c + i]++;
+        // הצבות אנכיות
+        for (int r = 0; r <= 10 - size; r++)
+        for (int c = 0; c < 10; c++)
+            if (CanPlaceLine(r, c, size, horizontal: false))
+                for (int i = 0; i < size; i++) density[r + i, c]++;
+    }
+    int maxDensity = 0;
+    var best = new List<(int, int)>();
+    for (int r = 0; r < 10; r++)
+    for (int c = 0; c < 10; c++)
+    {
+        if (_firedAt.Contains((r, c))) continue;
+        if (_noShipZone.Contains((r, c))) continue;
+        int s = density[r, c];
+        if (s > maxDensity) { maxDensity = s; best.Clear(); best.Add((r, c)); }
+        else if (s == maxDensity) best.Add((r, c));
+    }
+    return best[_rng.Next(best.Count)];
+}
+## H2 ## 14.4 דוגמת קוד – Hub של SignalR
+מתודת OnConnectedAsync של BattleshipHub שמאמתת את הלקוח לפי טוקן:
+public override async Task OnConnectedAsync()
+{
+    string token = Context.GetHttpContext()?.Request.Query["token"].ToString();
+    string username = _tokens.TryResolve(token);
+    if (string.IsNullOrEmpty(username))
+    {
+        Context.Abort();  // דחיית התחברות אנונימית
+        return;
+    }
+    var client = new SignalRGameClient(_hubContext, Context.ConnectionId,
+                                       username, _matchmaking);
+    _registry.Register(Context.ConnectionId, client);
+    await base.OnConnectedAsync();
+}
+## H2 ## 14.5 הערה לסיום
+ספר הפרויקט מסתיים כאן, אבל הקוד המלא מכיל עוד כ-7,000 שורות. כל המחלקות מתועדות עם תגובות XML doc (///) שמסבירות מה כל פעולה עושה, מה היא מקבלת כפרמטרים, ומה היא מחזירה. במידת הצורך, ניתן לפתוח את הקוד בכל IDE שתומך ב-.NET (Visual Studio, JetBrains Rider, VS Code עם C# extension) ולחקור את כל המבנה.

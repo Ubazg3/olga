@@ -1,0 +1,166 @@
+        (7 body paras, 3 images)
+[1] תוכן עניינים
+        (17 body paras, 0 images)
+[1] 1. מבוא ורקע לפרויקט
+[2] 1.1 רקע והשראה לפרויקט
+        (3 body paras, 0 images)
+[2] 1.2 שם הפרויקט ותיאורו
+        (2 body paras, 0 images)
+[2] 1.3 קהל היעד
+        (5 body paras, 0 images)
+[2] 1.4 מטרות המערכת
+        (14 body paras, 0 images)
+[2] 1.5 תיאור כללי של המערכת
+        (10 body paras, 0 images)
+[2] 1.6 גבולות המערכת
+        (10 body paras, 0 images)
+[2] 1.7 סביבות פיתוח, שפות ושכבות
+        (7 body paras, 0 images)
+[2] 1.8 אתגרים מרכזיים בפרויקט
+        (7 body paras, 0 images)
+[2] 1.9 חידושים ומאפיינים מיוחדים
+        (9 body paras, 0 images)
+[2] 1.10 מדריך למשתמש
+[2] תרשים דפים:
+[2] 
+[2] 
+[2] שחקן מתחיל את כניסתו למשחק מכאן, אם יש לו כבר משתמש יכול להזין ישירות את פרטי המשתמש ולהיכנס ישר.
+[2] אם אין משתמש אז ייצור ואז יכניס את הפרטים של המשתמש וייכנס למשחק.
+[2] 
+[2] 
+[2] המסך הראשי של המשחק, עם הרבה מאוד אפשרויות לכפתורים וכל כפתור מוביל למשהו אחר.
+[2] שחקן יכול לשחק במשחק מדורג או לא מדורג נגד אנשים אמיתיים או לשחק נגד בוט.
+[2] ככה נראה תכנון של כל שחקן לפני שנכנסים למשחק, השחקן צריך להחליט היכן ישים את ספינותיו, יש באפשרותו לסובב ספינה ב 90 מעלו
+[2] למקרה והשחקן לא בטוח אם לוותר, יש חלון נוסף השואל אותו אם הוא באמת רוצה, על מנת למנוע טעויות לחיצה של השחקן.
+[2] חלון המראה STATS של השחקן בזמן המשחק, הנכלל גם בסוף ב STATS הראשי של השחקן.
+[2] טבלה גלובלית של כל השחקנים עם ה STATS שלהם.
+[2] match history שמראה את רשימת המשחקים של השחקן.
+[2] טבלת Achievements לשחקנים שיוכלו להיראות יותר מגניבים שהשיגו הישג שאחרים לא השיגו.
+[2] דף הגדרות למקרה והשחקן ירצה לשנות משהו.
+[2] 
+[2] כפתור יציאה למקרה והשחקן ירצה לצאת מהמשתמש.
+[1] 2. מענה למחוון על פי דרישות הבחינה
+        (1 body paras, 0 images)
+[2] 2.1 דרישות חובה (סעיפים 1–8)
+[2] 2.2 הרחבות לסעיף 9 (יכולות בסיס)
+[2] 2.3 הרחבות לסעיף 10 (יכולות מתקדמות)
+[2] 2.4 סיכום המענה למחוון
+        (2 body paras, 0 images)
+[1] 3. ניתוח המערכת
+[2] 3.1 מסמך ייזום
+        (11 body paras, 0 images)
+[2] 3.2 מצב קיים מול מצב עתידי
+[2] 3.3 בעלי תפקידים במערכת
+[2] 3.4 Use Cases
+        (0 body paras, 1 images)
+[2] 3.5 עץ תהליכים (Process Tree)
+        (9 body paras, 0 images)
+[2] 3.6 ERD – תרשים קשרי גומלין
+        (6 body paras, 1 images)
+[1] 4. בסיס הנתונים
+[2] 4.1 בחירת מסד הנתונים
+        (4 body paras, 0 images)
+[2] 4.2 פירוט הטבלאות (מילון נתונים)
+        (15 body paras, 7 images)
+[2] 4.3 קשרי הגומלין (ERD)
+        (7 body paras, 0 images)
+[2] 4.4 דוגמאות לשאילתות במערכת
+        (41 body paras, 0 images)
+[1] 5. ארכיטקטורת המערכת
+[2] 5.1 תרשים שכבות (Layered Architecture)
+        (10 body paras, 0 images)
+[2] 5.2 מבנה הסולושן (Solution Structure)
+        (59 body paras, 0 images)
+[2] 5.3 תרשים פריסה (Deployment Diagram)
+        (6 body paras, 0 images)
+[2] 5.4 זרימת הנתונים בין הרכיבים
+        (15 body paras, 0 images)
+[1] 6. צד שרת – שירותי WCF ו-Web
+[2] 6.1 שני שרתים – למה ולאיך
+        (4 body paras, 0 images)
+[2] 6.2 שירות WCF ראשי – IBattleshipService
+        (9 body paras, 0 images)
+[2] 6.3 לוגיקה עסקית – GameSession ו-MultiplayerGameSession
+        (7 body paras, 0 images)
+[2] 6.4 תכנות אסינכרוני (Asynchronous Programming)
+        (11 body paras, 0 images)
+[2] 6.5 שכבת גישת הנתונים (Data Access Layer)
+        (18 body paras, 0 images)
+[2] 6.6 REST API – ב-ASP.NET Core
+        (2 body paras, 0 images)
+[2] 6.7 SignalR Hub – BattleshipHub
+        (6 body paras, 0 images)
+[1] 7. צד לקוח – WPF, Web ו-MAUI
+[2] 7.1 לקוח WPF Desktop
+        (14 body paras, 0 images)
+[2] 7.2 לקוח Web (Blazor Server)
+        (13 body paras, 0 images)
+[2] 7.3 לקוח MAUI (Android + Windows)
+        (14 body paras, 0 images)
+[1] 8. אבטחה והגנה על נתונים
+[2] 8.1 הצפנת סיסמאות עם BCrypt
+        (11 body paras, 0 images)
+[2] 8.2 הגנה מ-SQL Injection
+        (9 body paras, 0 images)
+[2] 8.3 ניהול Tokens אטומים
+        (11 body paras, 0 images)
+[2] 8.4 אימות ב-SignalR Hub
+        (1 body paras, 0 images)
+[2] 8.5 הגנת Admin
+        (3 body paras, 0 images)
+[1] 9. תהליכים מרכזיים במערכת
+[2] 9.1 תהליך התחברות
+        (10 body paras, 0 images)
+[2] 9.2 תהליך התאמת משחק (Matchmaking)
+        (6 body paras, 0 images)
+[2] 9.3 תהליך הצבת ספינות
+        (7 body paras, 0 images)
+[2] 9.4 תהליך ירייה
+        (11 body paras, 0 images)
+[2] 9.5 אלגוריתם ה-AI
+        (12 body paras, 0 images)
+[2] 9.6 תהליך הניתוק
+        (4 body paras, 0 images)
+[1] 10. בדיקות ותסריטי שימוש
+[2] 10.1 בדיקות ידניות שביצעתי
+        (5 body paras, 0 images)
+[2] 10.2 בדיקות עומס
+        (4 body paras, 0 images)
+[2] 10.3 בדיקות אבטחה
+[1] 11. מדריך למשתמש
+[2] 11.1 איך מתחילים?
+        (4 body paras, 0 images)
+[2] 11.2 רישום משתמש חדש
+        (4 body paras, 0 images)
+[2] 11.3 התחברות
+        (4 body paras, 0 images)
+[2] 11.4 תפריט ראשי – מה ניתן לעשות?
+        (7 body paras, 0 images)
+[2] 11.5 הצבת ספינות
+        (6 body paras, 0 images)
+[2] 11.6 המשחק
+        (5 body paras, 0 images)
+[2] 11.7 רוצה לשחק עם חבר מרחוק?
+        (2 body paras, 0 images)
+[1] 12. סיכום אישי – רפלקציה
+        (3 body paras, 0 images)
+[1] 13. ביבליוגרפיה
+[2] 13.1 ספרות ומדריכי לימוד
+        (3 body paras, 0 images)
+[2] 13.2 אתרי עזר טכניים
+        (3 body paras, 0 images)
+[2] 13.3 כלים וספריות צד שלישי
+        (4 body paras, 0 images)
+[2] 13.4 שימוש בבינה מלאכותית
+        (6 body paras, 0 images)
+[1] 14. נספחים – קוד מלא
+[2] 14.1 מבנה הפרויקטים בסולושן
+        (51 body paras, 0 images)
+[2] 14.2 דוגמת קוד – מחלקת BaseDB (מחלקה אבסטרקטית)
+        (43 body paras, 0 images)
+[2] 14.3 דוגמת קוד – אלגוריתם ה-AI
+        (30 body paras, 0 images)
+[2] 14.4 דוגמת קוד – Hub של SignalR
+        (15 body paras, 0 images)
+[2] 14.5 הערה לסיום
+        (1 body paras, 0 images)

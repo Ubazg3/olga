@@ -1,0 +1,1539 @@
+[-|-|b=n|sz=56|f=David] בית ספר מקיף ז' הקריה אשדוד
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=Y|sz=160|f=Segoe UI Symbol] ♕
+[-|center|b=Y|sz=76|f=David] Online Checkers
+[-|center|b=Y|sz=48|f=David] תיק פרויקט בהנדסת תוכנה
+[-|-|b=n|sz=48,52,72|f=David] חלופה: תכנות אסינכרוני ומסדי נתונים
+[-|-|b=n|sz=48,52,72|f=David] התלמיד : עידן ברשישט
+[-|-|b=n|sz=48,52,72|f=David] ת.ז. : 332940972מנחה: אולגה גנדלמןתאריך: יוני 2026
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=48|f=David] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=24|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] תקציר
+[-|-|b=n|sz=-|f=David] המסמך הזה מתעד פרויקט גמר בהנדסת תוכנה: פיתוח של מערכת רב-משתתפים למשחקי דמקה (אנגלית, 8x8) עם שרת WCF מרכזי ושלושה לקוחות עצמאיים, אפליקציית WPF לדסקטופ, אתר ASP.NET לפאנל מנהל מהדפדפן, ואפליקציית MAUI למובייל. המערכת מאוכלסת ב-Microsoft Access דרך OleDb, מציעה מטצמייקינג אוטומטי, מנוע Elo לדירוג שחקנים, מצב משחק נגד בוט, פלייבק של משחקים שהסתיימו, ומנגנון איתור ניתוקים שמעניש שחקן שעוזב באמצע. כל חוקי הדמקה, חובת אכילה, שרשור אכילות, הכתרה, נאכפים אך ורק בצד השרת על-ידי המנוע CheckersEngine, באופן שלא ניתן לעקיפה מצד הלקוח.
+[-|-|b=n|sz=-|f=David] המסמך מתואר בחמישה חלקים: סקירה והקשר, ניתוח-נתונים-ארכיטקטורה, מימוש (שרת + שלושה לקוחות), אבטחה ובדיקות, ולסיכום: תיעוד, מדריכים, ורטרוספקטיבה. שלושה נספחים בסוף, מטריצת מענה למחוון, פירוט תהליכים מרכזיים, ודוגמאות קוד מורחבות.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] מילות מפתח
+[-|-|b=n|sz=-|f=David] WCF Service Library  ·  3-Tier Architecture  ·  MVVM  ·  Razor Pages  ·  .NET MAUI  ·  PBKDF2-SHA256  ·  DataContract  ·  Elo Rating System  ·  ConcurrentDictionary  ·  ValidationRule  ·  IValueConverter  ·  RoutedEvent.
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] תוכן עניינים
+[a|-|b=n|sz=-|f=David] תקציר
+[a|-|b=n|sz=-|f=David] חלק I, סקירה והקשר
+[a|-|b=n|sz=-|f=David] פרק 1 · סיפור הפרויקט והמטרה
+[a|-|b=n|sz=-|f=David] פרק 2 · מערך הטכנולוגיות וההחלטות
+[a|-|b=n|sz=-|f=David] חלק II, ניתוח, נתונים, ארכיטקטורה
+[a|-|b=n|sz=-|f=David] פרק 3 · דרישות פונקציונליות ותסריטי שימוש
+[a|-|b=n|sz=-|f=David] פרק 4 · מודל הנתונים
+[a|-|b=n|sz=-|f=David] פרק 5 · ארכיטקטורת תוכנה
+[a|-|b=n|sz=-|f=David] חלק III, שירות הרשת והלקוחות
+[a|-|b=n|sz=-|f=David] פרק 6 · שירות ה-WCF
+[a|-|b=n|sz=-|f=David] פרק 7 · לקוח דסקטופ ב-WPF
+[a|-|b=n|sz=-|f=David] פרק 8 · ממשק ניהול ברשת (Razor Pages)
+[a|-|b=n|sz=-|f=David] פרק 9 · אפליקציית מובייל (MAUI)
+[a|-|b=n|sz=-|f=David] חלק IV, אבטחה ובדיקות
+[a|-|b=n|sz=-|f=David] פרק 10 · אסטרטגיית האבטחה
+[a|-|b=n|sz=-|f=David] פרק 11 · בדיקות ותיקוף
+[a|-|b=n|sz=-|f=David] חלק V, תיעוד, סיכום, מקורות
+[a|-|b=n|sz=-|f=David] פרק 12 · הוראות הפעלה ומדריכים
+[a|-|b=n|sz=-|f=David] פרק 13 · רטרוספקטיבה אישית
+[a|-|b=n|sz=-|f=David] פרק 14 · רשימת מקורות
+[a|-|b=n|sz=-|f=David] נספח א, מטריצת מענה למחוון
+[a|-|b=n|sz=-|f=David] נספח ב, תהליכים מרכזיים בפירוט מלא
+[a|-|b=n|sz=-|f=David] נספח ג, דוגמאות קוד מורחבות
+[-|-|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=Y|sz=36|f=David] חלק I
+[-|center|b=Y|sz=60|f=David] סקירה והקשר
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 1 · סיפור הפרויקט והמטרה
+[2|-|b=Y|sz=-|f=David] 1.1  הניצוץ
+[-|-|b=n|sz=-|f=David] דמקה הוא משחק שכל ילד יודע לשחק, אך מערכת תוכנה ראויה שמחזיקה משחק דמקה בין שני אנשים זרים מרחוק היא לא טריוויאלית. כשיושבים ומפרקים את הדרישה, מתגלים מספר פיצ׳רים נסתרים: מי מתחיל ראשון, איך מסונכרן הלוח בין שני המסכים, מה קורה אם השחקן השני סוגר את האפליקציה באמצע, איך נמדד דירוג כדי שהמשחק יזרום אחיד בין רמות, ואיך מונעים שחקן בעייתי מלפגוע בקהילה. כל אלה הם שאלות ארכיטקטוניות אמיתיות שלא היו עולות במשחק שולחני.
+[2|-|b=Y|sz=-|f=David] 1.2  מהו Online Checkers
+[-|-|b=n|sz=-|f=David] הפרויקט הוא פלטפורמת שרת לקוח מלאה לדמקה רב-משתתפים: שני שחקנים שמכירים או לא מכירים זה את זה ניצבים מול הלוח בכל אחד מהמסכים שלהם, מבצעים תורות לסירוגין, והשרת אוכף את כללי המשחק. כל משחק שהסתיים נשמר במסד הנתונים על-פי כל מהלך פרטני, כך שניתן לחזור ולצפות בו במצב Replay. שחקנים נמדדים בדירוג Elo מתעדכן.
+[-|-|b=n|sz=-|f=David] המערכת נותנת מענה גם לאדמין: רשימת המשתמשים, יכולת חסימה (Ban), צפייה במשחקים האחרונים שהשרת ראה, וסטטיסטיקות אגרגטיביות של המערכת בזמן אמת.
+[2|-|b=Y|sz=-|f=David] 1.3  ערך לכל סוג משתמש
+[-|-|b=Y|sz=20|f=David] המשתמש
+[-|-|b=Y|sz=20|f=David] מה הוא מקבל
+[-|-|b=Y|sz=20|f=David] איפה זה זמין
+[-|-|b=n|sz=20|f=David] שחקן רגיל
+[-|-|b=n|sz=20|f=David] משחקים מול נקודה אקראית, נגד בוט אם אין יריב, פרופיל אישי, היסטוריה ולוח דירוג
+[-|-|b=n|sz=20|f=David] WPF (משחק חי) + MAUI (פרופיל / היסטוריה / לידרבורד)
+[-|-|b=n|sz=20|f=David] מנהל מערכת
+[-|-|b=n|sz=20|f=David] חסימת משתמשים בעייתיים, צפייה בכל המשחקים שנשמרו במערכת, סטטיסטיקות בריאות השרת
+[-|-|b=n|sz=20|f=David] WPF + Web /Admin/*
+[-|-|b=n|sz=20|f=David] צופה במשחק קודם
+[-|-|b=n|sz=20|f=David] ניווט מהלך-במהלך במשחקים שהסתיימו, ללא צורך לשחזר את הלוח ידנית
+[-|-|b=n|sz=20|f=David] WPF, ReplayView + Web /Admin/Games/{id}
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 1.4  מטרות מדידות
+[a|-|b=n|sz=-|f=David] תקשורת בין-תהליכית אמיתית: כל הלוגיקה (חוקי המשחק, מנהל המטצמייקינג, מנוע ההצפנה) חיה בשרת בלבד. הלקוחות הם תצוגה דקה.
+[a|-|b=n|sz=-|f=David] כיסוי שלוש פלטפורמות לקוח עם חוזה DataContract משותף, הוכחה שתשתית WCF סובלנית למחזור חיי המשתמש (.NET Framework 4.7.2 + .NET 8 + .NET 9).
+[a|-|b=n|sz=-|f=David] מסד נתונים מנורמל עם טבלת קישור משמעותית (Moves), שמתעדת כל מהלך פרטני, ולא רק את התוצאה הסופית של המשחק.
+[a|-|b=n|sz=-|f=David] ארבע פעולות CRUD מלאות לכל ישות מרכזית, נגישות ל-WCF Test Client לבדיקה ידנית.
+[a|-|b=n|sz=-|f=David] דירוג Elo עובד ומתעדכן עם K=20, רצפה של 100 כדי שלא נופל לאפס.
+[a|-|b=n|sz=-|f=David] אבטחה כשורה: סיסמאות מוצפנות PBKDF2-SHA256 (60,000 איטרציות), שאילתות פרמטריות נגד SQL Injection, אימות מבוסס Token שלא נפתח לפעולות בלי קריאת Login קודמת.
+[2|-|b=Y|sz=-|f=David] 1.5  מה לא נכלל בגרסה הזו
+[-|-|b=n|sz=-|f=David] במכוון לא נכללו במערכת בגרסה הראשונית של הפרויקט מספר פיצ׳רים. ההחלטה לא נבעה מקושי טכני אלא מהרצון להעמיק בליבה ולא להתפזר:
+[a|-|b=n|sz=-|f=David] צ׳אט בזמן אמת בין שני השחקנים, אין SignalR. השפה היחידה בלוח היא הכלים עצמם.
+[a|-|b=n|sz=-|f=David] Push Notifications, אין Firebase או APNs. הלקוחות בוחנים את השרת בקצב ידוע (polling) של 500 מ״ש במשחק חי, 5 שניות בלובי.
+[a|-|b=n|sz=-|f=David] מערכת חברים, הזמנות אישיות וטורנירים, מטצמייקינג אקראי בלבד.
+[a|-|b=n|sz=-|f=David] OAuth (Google / Apple Login), רק חשבונות מקומיים עם סיסמה ב-DB.
+[a|-|b=n|sz=-|f=David] מנוע AI מתקדם לבוט, הבוט בוחר אקראית מהמהלכים החוקיים, עם העדפה לאלה שמובילים להכתרה. אין minimax או חישוב עומק.
+[-|-|b=n|sz=-|f=-] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 2 · מערך הטכנולוגיות וההחלטות
+[2|-|b=Y|sz=-|f=David] 2.1  שלוש פלטפורמות לקוח, סטאק אחד
+[-|-|b=n|sz=-|f=David] הבחירה לפתח שלושה לקוחות שונים אינה נובעת מ׳נחמד שיהיה׳, אלא מכך שכל אחד מהם פותר בעיה אחרת:
+[-|-|b=Y|sz=20|f=David] פלטפורמה
+[-|-|b=Y|sz=20|f=David] סטאק
+[-|-|b=Y|sz=20|f=David] מה היא משרתת
+[-|-|b=Y|sz=20|f=David] למה דווקא היא
+[-|-|b=n|sz=20|f=David] WPF Desktop
+[-|-|b=n|sz=20|f=David] .NET Framework 4.7.2, XAML, MVVM
+[-|-|b=n|sz=20|f=David] משחק חי, עם לוח אינטראקטיבי, גרירת כלים והדגשת מהלכים חוקיים
+[-|-|b=n|sz=20|f=David] WPF מאפשר Binding מתקדם, ValidationRules מובנים, RoutedEvent ב-UserControl, ופאנל אדמין מלא
+[-|-|b=n|sz=20|f=David] Web (Razor Pages)
+[-|-|b=n|sz=20|f=David] ASP.NET Core 8, Cookie Auth, JS
+[-|-|b=n|sz=20|f=David] פאנל מנהל מהדפדפן ללא התקנה, רשימת משתמשים, חסימה, סטטיסטיקות
+[-|-|b=n|sz=20|f=David] חסר מצב, מאפשר גישה מכל מכשיר, ועם auto-refresh חכם שעוצר במהלך הקלדה
+[-|-|b=n|sz=20|f=David] MAUI Mobile
+[-|-|b=n|sz=20|f=David] net9.0-android + net9.0-windows10
+[-|-|b=n|sz=20|f=David] פרופיל אישי, היסטוריה, לידרבורד מהטלפון
+[-|-|b=n|sz=20|f=David] קוד אחד שרץ על אנדרואיד וגם על Windows, אסינכרוניות מובנית, BasicHttpBinding מספק תאימות לסטאק MAUI החדש
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 2.2  בחירת שכבות שרת
+[-|-|b=n|sz=-|f=David] השרת מחולק לארבע שכבות מנותקות. כל שכבה מתקשרת רק עם השכבה שמתחתיה דרך חוזה ברור.
+[-|-|b=Y|sz=20|f=David] שכבה
+[-|-|b=Y|sz=20|f=David] פרויקט
+[-|-|b=Y|sz=20|f=David] אחריות
+[-|-|b=n|sz=20|f=David] Service Layer
+[-|-|b=n|sz=20|f=David] server.csproj
+[-|-|b=n|sz=20|f=David] מימוש ICheckersService, מנקה token, מאמת הרשאה, מנתב לשכבה התת-שכבה. אין כאן לוגיקה עסקית.
+[-|-|b=n|sz=20|f=David] Business Logic
+[-|-|b=n|sz=20|f=David] BusinessLogic.csproj
+[-|-|b=n|sz=20|f=David] CheckersEngine, GameManager, GameSession, BotEngine, AuthService, PasswordHasher. כאן חיים החוקים.
+[-|-|b=n|sz=20|f=David] Data Access
+[-|-|b=n|sz=20|f=David] ViewDB.csproj
+[-|-|b=n|sz=20|f=David] BaseDB אבסטרקטית + UsersDB, GamesDB, MovesDB. כל גישה ל-Access עוברת דרך פה, עם פרמטרים בלבד.
+[-|-|b=n|sz=20|f=David] Domain Model
+[-|-|b=n|sz=20|f=David] Model.csproj
+[-|-|b=n|sz=20|f=David] Base, User, GameRecord, Move, Square, Board..., מסומנים ב-DataContract, נסחפים בין השרת לכל לקוח.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 2.3  עברית, קוד, פלטפורמות
+[-|-|b=n|sz=-|f=David] פירוט הסביבות והכלים בפרויקט:
+[-|-|b=Y|sz=20|f=David] רכיב
+[-|-|b=Y|sz=20|f=David] טכנולוגיה / סביבה
+[-|-|b=Y|sz=20|f=David] הערות
+[-|-|b=n|sz=20|f=David] שרת WCF
+[-|-|b=n|sz=20|f=David] C# 7.3, .NET Framework 4.7.2, VS 2022, WCF Service Library
+[-|-|b=n|sz=20|f=David] NetTcpBinding על 9100 + BasicHttpBinding על 8733 לטובת MAUI
+[-|-|b=n|sz=20|f=David] מסד נתונים
+[-|-|b=n|sz=20|f=David] Microsoft Access (ArchiveData3.accdb)
+[-|-|b=n|sz=20|f=David] Provider Microsoft.ACE.OLEDB.12.0; גישה אך ורק דרך OleDb עם פרמטרים
+[-|-|b=n|sz=20|f=David] לקוח Desktop
+[-|-|b=n|sz=20|f=David] WPF (XAML), .NET 4.7.2, MVVM
+[-|-|b=n|sz=20|f=David] ViewModelBase + RelayCommand, 8 מסכים, 3 UserControls
+[-|-|b=n|sz=20|f=David] לקוח Web
+[-|-|b=n|sz=20|f=David] ASP.NET Core 8 Razor Pages
+[-|-|b=n|sz=20|f=David] Cookie Auth + ClaimsIdentity עם WcfToken; JS auto-refresh
+[-|-|b=n|sz=20|f=David] לקוח Mobile
+[-|-|b=n|sz=20|f=David] .NET MAUI 9 (Android + Windows)
+[-|-|b=n|sz=20|f=David] System.ServiceModel.Http, Reference.cs בכתב יד
+[-|-|b=n|sz=20|f=David] שפות
+[-|-|b=n|sz=20|f=David] C#, XAML, HTML/Razor, SQL, JavaScript, XML
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=20|f=David] הצפנה
+[-|-|b=n|sz=20|f=David] PBKDF2-SHA256, 60,000 איטרציות, salt 16B, hash 32B
+[-|-|b=n|sz=20|f=David] פורמט אחסון: iter.salt.hash בייסבעים
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 2.4  חידושים והרחבות מעבר לדרישות הבסיס
+[a|-|b=n|sz=-|f=David] מנוע Elo מלא ומעודכן אחרי כל משחק. אין שום ספרייה חיצונית, הנוסחה ממומשת ידנית בכ-15 שורות.
+[a|-|b=n|sz=-|f=David] Replay מלא: כל מהלך נשמר עם BoardAfter (תמונת הלוח אחריו), כך שצפייה בכל שלב לוקחת O(1) ולא O(N) של חישוב.
+[a|-|b=n|sz=-|f=David] PathSerialized, מהלך שהוא רצף קפיצות מרובות נשמר כשורה אחת ב-DB, לא כמספר שורות. שומר 1:1 עם המשפט הסיבובי במשחק.
+[a|-|b=n|sz=-|f=David] TouchLastSeen + StaleSweep, זיהוי ניתוקים בלי שהשחקן צריך להגיד דבר. מבוצע בשרת על-ידי System.Timers.Timer ב-30 שניות.
+[a|-|b=n|sz=-|f=David] ריענון אוטומטי חכם באתר, JS שמרענן רק כשאין אינטראקציה, לא קוטע הקלדה בשדה חיפוש.
+[a|-|b=n|sz=-|f=David] PasswordBoxWithToggle, UserControl עצמאי שמציג סיסמה גלויה/חבויה בלחיצה על אייקון עין, עם RoutedEvent.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=Y|sz=36|f=David] חלק II
+[-|center|b=Y|sz=60|f=David] ניתוח, נתונים, ארכיטקטורה
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 3 · דרישות פונקציונליות ותסריטי שימוש
+[2|-|b=Y|sz=-|f=David] 3.1  בעלי תפקיד
+[-|-|b=n|sz=-|f=David] המערכת מכירה בשני סוגי משתמשים אנושיים בלבד, ובסוג שלישי שאינו אנושי אלא זרוע של השרת:
+[-|-|b=Y|sz=20|f=David] בעל תפקיד
+[-|-|b=Y|sz=20|f=David] מה הוא יכול
+[-|-|b=Y|sz=20|f=David] איפה הוא חי
+[-|-|b=n|sz=20|f=David] שחקן (Player)
+[-|-|b=n|sz=20|f=David] הצטרפות לתור, ביצוע מהלכים, התפטרות, הצעת תיקו, צפייה בפרופיל וההיסטוריה, שינוי אימייל וסיסמה
+[-|-|b=n|sz=20|f=David] WPF + MAUI
+[-|-|b=n|sz=20|f=David] מנהל (Admin)
+[-|-|b=n|sz=20|f=David] כל מה ששחקן יכול + Ban/Unban משתמשים, צפייה במשחקים שהשרת תיעד, סטטיסטיקות בריאות
+[-|-|b=n|sz=20|f=David] WPF (AdminView) + Web (/Admin/*)
+[-|-|b=n|sz=20|f=David] בוט (BotPlayer)
+[-|-|b=n|sz=20|f=David] חשבון פנימי של השרת. נוצר אוטומטית בעת הצורך הראשון. אינו מתחבר, BotEngine מחליט מהלכים בתוך תהליך השרת.
+[-|-|b=n|sz=20|f=David] שרת בלבד
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 3.2  שמונה תסריטי שימוש מרכזיים
+[-|-|b=n|sz=-|f=David] כל תסריט מציג את הזרימה ברגע שהמשתמש מתחיל אותו עד הרגע שהוא רואה תוצאה במסך:
+[3|-|b=Y|sz=26|f=David] UC1 · הרשמת שחקן
+[-|-|b=n|sz=-|f=David] אורח לוחץ על Sign up, ממלא username + password, ובאופציונלי email/birthDate/country. ולידציה רצה בזמן אמת. בלחיצה על Create, הסיסמה מוצפנת בשרת, רשומה חדשה נכנסת לטבלת Users, וטוקן מונפק. השחקן ננחת בלובי.
+[3|-|b=Y|sz=26|f=David] UC2 · התחברות
+[-|-|b=n|sz=-|f=Arial,David] משתמש קיים מזין שם וסיסמה. השרת קורא ל-PasswordHasher.Verify, ובמקרה של התאמה מנפיק Guid token חדש שנשמר במילון תהליכי. ניתוב לפי Role: Player → לובי, Admin → אותו לובי אך עם כפתור Admin panel חשוף.
+[3|-|b=Y|sz=26|f=David] UC3 · חיפוש משחק במטצמייקינג
+[-|-|b=n|sz=-|f=David] שחקן בלובי לוחץ Find a game. במקרה שיש שחקן ממתין בתור FIFO, שניהם מצומדים מיידית למשחק חדש. אחרת, השחקן נכנס לתור והלובי מתחיל לבחון את השרת ב-800 מ״ש. ברגע ש-GetCurrentGame מחזיר GameStateDto עם Status=InProgress, ה-WPF עובר ל-GameView.
+[3|-|b=Y|sz=26|f=David] UC4 · משחק נגד בוט
+[-|-|b=n|sz=-|f=David] שחקן לוחץ Play vs bot. השרת מבטיח שקיים BotPlayer (יוצר אם אין), פותח GameSession עם IsBotGame=true. כשהתור עובר לבוט, BotEngine.PickMove מחזיר מהלך אקראי מבין החוקיים, עם העדפה למהלכים שמובילים להכתרה. השחקן מבחין בכך שאין לו לחכות לתגובה.
+[3|-|b=Y|sz=26|f=David] UC5 · ביצוע מהלך
+[-|-|b=n|sz=-|f=David] במשחק חי, שחקן לוחץ על כלי שלו. הלקוח קורא ל-GetLegalMovesForSquare, מסמן את היעדים החוקיים בנקודות זוהרות. שחקן לוחץ על יעד, המסלול נשלח ל-MakeMove. השרת מבצע אימות מלא ב-CheckersEngine, מעדכן Board ב-Session, שומר את ה-Move ב-DB, ובמידת הצורך מסיים את המשחק.
+[3|-|b=Y|sz=26|f=David] UC6 · הצעת תיקו וקבלתה / דחייתה
+[-|-|b=n|sz=-|f=David] במשחק חי, שחקן יכול ללחוץ Offer draw. השרת רושם PendingDrawFromUserId על Session. היריב רואה כפתור Accept / Decline. בקבלה, המשחק נסגר עם Status=Draw, EndReason=DrawAgreement. בדחייה, המשחק ממשיך כרגיל.
+[3|-|b=Y|sz=26|f=David] UC7 · התפטרות
+[-|-|b=n|sz=-|f=David] במשחק חי, שחקן יכול ללחוץ Resign. השרת מסיים מיידית עם WinnerId של היריב, ומריץ FinalizeGameAsync שמעדכן Elo. אין קנס מיוחד כאן, הקנס נשמור לניתוקים בלבד.
+[3|-|b=Y|sz=26|f=David] UC8 · ניהול משתמשים על-ידי אדמין
+[-|-|b=n|sz=-|f=David] אדמין נכנס לפאנל (WPF AdminView או Web /Admin/Users), הרשימה מתרעננת אוטומטית כל 5 שניות. ליד כל שורה כפתור Ban/Unban. בלחיצה, UPDATE Users SET IsBanned=true. השחקן המחובר יקבל FaultException Account is banned בקריאה הבאה ויועף ל-Login.
+[2|-|b=Y|sz=-|f=David] 3.3  תרשים זרימת מידע (DFD-0)
+[-|-|b=n|sz=18|f=Consolas] מי מתחיל                    איך זה זורם                       לאן זה מגיע
+[-|-|b=n|sz=18|f=Consolas] ----------------------------------------------------------------------------------
+[-|-|b=n|sz=18|f=Consolas] [שחקן (WPF/MAUI/Web)]   --(SOAP/Net.Tcp + DataContract)-->   [WCF Proxy]
+[-|-|b=n|sz=18|f=Consolas] |
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] [ICheckersService]
+[-|-|b=n|sz=18|f=Consolas] |
+[-|-|b=n|sz=18|f=Consolas] (RequireAuthAsync, RequireAdminAsync, ...)
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] AuthService | GameManager | GameSession | CheckersEngine | BotEngine
+[-|-|b=n|sz=18|f=Consolas] |
+[-|-|b=n|sz=18|f=Consolas] (LoginResult / Move /
+[-|-|b=n|sz=18|f=Consolas] GameStateDto / List<User>)
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] [ViewDB → UsersDB / GamesDB / MovesDB]
+[-|-|b=n|sz=18|f=Consolas] |
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] [ArchiveData3.accdb (OleDb, parameterised)]
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 4 · מודל הנתונים
+[2|-|b=Y|sz=-|f=David] 4.1  הצגה כללית
+[-|-|b=n|sz=-|f=David] מסד הנתונים בנוי משלוש טבלאות בלבד, מנורמלות, עם טבלת קישור משמעותית: Moves שמקשרת בין Games (אחד) ל-Users (שניים, לבן ושחור) דרך השדה MoverColor. אין הצדקה לפיזור הוסטוריה למספר טבלאות, דמקה אינה דורשת זאת. הטבלה היא הצומת הראשי וגם זו שמקבלת את העומס הגבוה ביותר בשימוש.
+[2|-|b=Y|sz=-|f=David] 4.2  שלוש הטבלאות
+[3|-|b=Y|sz=26|f=David] טבלת Users
+[-|-|b=Y|sz=20|f=David] שדה
+[-|-|b=Y|sz=20|f=David] סוג Access
+[-|-|b=Y|sz=20|f=David] מטרה
+[-|-|b=n|sz=20|f=David] Id
+[-|-|b=n|sz=20|f=David] AutoNumber (PK)
+[-|-|b=n|sz=20|f=David] מזהה ייחודי
+[-|-|b=n|sz=20|f=David] Username
+[-|-|b=n|sz=20|f=David] Text(50), Unique
+[-|-|b=n|sz=20|f=David] שם משתמש לכניסה
+[-|-|b=n|sz=20|f=David] PasswordHash
+[-|-|b=n|sz=20|f=David] Text(255)
+[-|-|b=n|sz=20|f=David] סיסמה מוצפנת PBKDF2 בפורמט iter.salt.hash
+[-|-|b=n|sz=20|f=David] Email
+[-|-|b=n|sz=20|f=David] Text(100)
+[-|-|b=n|sz=20|f=David] אופציונלי
+[-|-|b=n|sz=20|f=David] Role
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] UserRole, 0=Player, 1=Admin
+[-|-|b=n|sz=20|f=David] Wins / Losses / Draws
+[-|-|b=n|sz=20|f=David] Integer × 3
+[-|-|b=n|sz=20|f=David] סטטיסטיקות
+[-|-|b=n|sz=20|f=David] Rating
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] Elo נוכחי, התחלה 1200, רצפה 100
+[-|-|b=n|sz=20|f=David] CreatedAt
+[-|-|b=n|sz=20|f=David] DateTime
+[-|-|b=n|sz=20|f=David] חותמת זמן הרשמה
+[-|-|b=n|sz=20|f=David] IsBanned
+[-|-|b=n|sz=20|f=David] Yes/No
+[-|-|b=n|sz=20|f=David] חסימה, קריאה תזרוק FaultException
+[-|-|b=n|sz=20|f=David] ProfilePicture
+[-|-|b=n|sz=20|f=David] OLE Object
+[-|-|b=n|sz=20|f=David] JPEG מוקטן עד 1.5MB
+[-|-|b=n|sz=20|f=David] BirthDate
+[-|-|b=n|sz=20|f=David] DateTime?
+[-|-|b=n|sz=20|f=David] אופציונלי
+[-|-|b=n|sz=20|f=David] Country
+[-|-|b=n|sz=20|f=David] Text(50)
+[-|-|b=n|sz=20|f=David] אופציונלי
+[-|-|b=n|sz=-|f=-] (empty)
+[3|-|b=Y|sz=26|f=David] טבלת Games
+[-|-|b=Y|sz=20|f=David] שדה
+[-|-|b=Y|sz=20|f=David] סוג Access
+[-|-|b=Y|sz=20|f=David] מטרה
+[-|-|b=n|sz=20|f=David] Id
+[-|-|b=n|sz=20|f=David] AutoNumber (PK)
+[-|-|b=n|sz=20|f=David] מזהה משחק
+[-|-|b=n|sz=20|f=David] WhitePlayerId / BlackPlayerId
+[-|-|b=n|sz=20|f=Arial,David] Integer × 2 (FK→Users.Id)
+[-|-|b=n|sz=20|f=David] שני השחקנים
+[-|-|b=n|sz=20|f=David] StartedAt
+[-|-|b=n|sz=20|f=David] DateTime
+[-|-|b=n|sz=20|f=David] התחלה
+[-|-|b=n|sz=20|f=David] EndedAt
+[-|-|b=n|sz=20|f=David] DateTime?
+[-|-|b=n|sz=20|f=David] סיום (NULL כל עוד פעיל)
+[-|-|b=n|sz=20|f=David] Status
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] 1=InProgress, 2=WhiteWins, 3=BlackWins, 4=Draw, 5=Aborted
+[-|-|b=n|sz=20|f=David] EndReason
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] NoPieces, NoLegalMoves, Resignation, DrawAgreement, Disconnection
+[-|-|b=n|sz=20|f=David] WinnerId
+[-|-|b=n|sz=20|f=David] Integer? (FK)
+[-|-|b=n|sz=20|f=David] המנצח, NULL בתיקו
+[-|-|b=n|sz=20|f=David] FinalBoard
+[-|-|b=n|sz=20|f=David] Memo
+[-|-|b=n|sz=20|f=David] Board.Serialize של המצב הסופי
+[-|-|b=n|sz=20|f=David] MoveCount
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] מספר המהלכים שבוצעו
+[-|-|b=n|sz=-|f=-] (empty)
+[3|-|b=Y|sz=26|f=David] טבלת Moves, טבלת קישור
+[-|-|b=Y|sz=20|f=David] שדה
+[-|-|b=Y|sz=20|f=David] סוג Access
+[-|-|b=Y|sz=20|f=David] מטרה
+[-|-|b=n|sz=20|f=David] Id
+[-|-|b=n|sz=20|f=David] AutoNumber (PK)
+[-|-|b=n|sz=20|f=David] מזהה מהלך
+[-|-|b=n|sz=20|f=David] GameId
+[-|-|b=n|sz=20|f=Arial,David] Integer (FK→Games.Id)
+[-|-|b=n|sz=20|f=David] המשחק שאליו שייך המהלך
+[-|-|b=n|sz=20|f=David] MoveNumber
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] מספר רץ של המהלך במשחק
+[-|-|b=n|sz=20|f=David] MoverColor
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] 0=White, 1=Black
+[-|-|b=n|sz=20|f=David] FromFile / FromRank
+[-|-|b=n|sz=20|f=David] Integer × 2
+[-|-|b=n|sz=20|f=David] ריבוע התחלה
+[-|-|b=n|sz=20|f=David] ToFile / ToRank
+[-|-|b=n|sz=20|f=David] Integer × 2
+[-|-|b=n|sz=20|f=David] ריבוע סיום (אחרי כל הקפיצות)
+[-|-|b=n|sz=20|f=David] PathSerialized
+[-|-|b=n|sz=20|f=David] Text(255)
+[-|-|b=n|sz=20|f=David] ריבועי הביניים בקפיצה מרובה: ׳file,rank;...׳
+[-|-|b=n|sz=20|f=David] Piece
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] Man=1, King=2
+[-|-|b=n|sz=20|f=David] IsCapture
+[-|-|b=n|sz=20|f=David] Yes/No
+[-|-|b=n|sz=20|f=David] האם המהלך כלל אכילה
+[-|-|b=n|sz=20|f=David] CapturedCount
+[-|-|b=n|sz=20|f=David] Integer
+[-|-|b=n|sz=20|f=David] מספר הכלים שנאכלו
+[-|-|b=n|sz=20|f=David] BecameKing
+[-|-|b=n|sz=20|f=David] Yes/No
+[-|-|b=n|sz=20|f=David] האם הכלי הוכתר
+[-|-|b=n|sz=20|f=David] Notation
+[-|-|b=n|sz=20|f=David] Text(50)
+[-|-|b=n|sz=20|f=David] ייצוג טקסטואלי, למשל a3-b4 או a3xc5xe7
+[-|-|b=n|sz=20|f=David] BoardAfter
+[-|-|b=n|sz=20|f=David] Memo
+[-|-|b=n|sz=20|f=David] Board.Serialize של מצב הלוח אחרי המהלך
+[-|-|b=n|sz=20|f=David] PlayedAt
+[-|-|b=n|sz=20|f=David] DateTime
+[-|-|b=n|sz=20|f=David] חותמת זמן
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 4.3  שאילתות מהותיות
+[-|-|b=n|sz=-|f=David] כמה דוגמאות מהקוד שמראות אילו שאילתות קיימות במערכת. כל שאילתה מועברת לפעולת QueryAsync או NonQueryAsync של BaseDB, עם הפרמטרים מופרדים מהטקסט:
+[-|-|b=n|sz=20|f=David] » GamesDB.GetByPlayerAsync
+[-|-|b=n|sz=18|f=Consolas] -- היסטוריית משחקי שחקן (סינון + מיון)
+[-|-|b=n|sz=18|f=Consolas] SELECT * FROM Games
+[-|-|b=n|sz=18|f=Consolas] WHERE  WhitePlayerId = ? OR BlackPlayerId = ?
+[-|-|b=n|sz=18|f=Consolas] ORDER  BY StartedAt DESC;
+[-|-|b=n|sz=20|f=David] » UsersDB.GetTopByRatingAsync
+[-|-|b=n|sz=18|f=Consolas] -- לידרבורד: 10 השחקנים בעלי הדירוג הגבוה ביותר שאינם חסומים
+[-|-|b=n|sz=18|f=Consolas] SELECT TOP 10 *
+[-|-|b=n|sz=18|f=Consolas] FROM   Users
+[-|-|b=n|sz=18|f=Consolas] WHERE  IsBanned = FALSE
+[-|-|b=n|sz=18|f=Consolas] ORDER  BY Rating DESC;
+[-|-|b=n|sz=20|f=David] » GamesDB.CountSinceAsync
+[-|-|b=n|sz=18|f=Consolas] -- אגרגציה: כמה משחקים נפתחו היום
+[-|-|b=n|sz=18|f=Consolas] SELECT COUNT(*) AS GamesToday
+[-|-|b=n|sz=18|f=Consolas] FROM   Games
+[-|-|b=n|sz=18|f=Consolas] WHERE  StartedAt >= ? AND StartedAt < ?;
+[-|-|b=n|sz=20|f=David] » MovesDB.GetByGameAsync
+[-|-|b=n|sz=18|f=Consolas] -- כל המהלכים של משחק לטובת פלייבק
+[-|-|b=n|sz=18|f=Consolas] SELECT * FROM Moves
+[-|-|b=n|sz=18|f=Consolas] WHERE  GameId = ?
+[-|-|b=n|sz=18|f=Consolas] ORDER  BY MoveNumber ASC;
+[2|-|b=Y|sz=-|f=David] 4.4  ERD, תרשים קשרי הגומלין
+[-|-|b=n|sz=18|f=Consolas] +----------------+         +----------------+         +----------------+
+[-|-|b=n|sz=18|f=Consolas] |     Users      |  1 : M  |     Games      |  M : 1  |     Users      |
+[-|-|b=n|sz=18|f=Consolas] | (Id PK)        |---------|  (Id PK)       |---------| (Id PK)        |
+[-|-|b=n|sz=18|f=Consolas] |  Username      |  White  |  StartedAt     |  Black  |  Rating        |
+[-|-|b=n|sz=18|f=Consolas] |  PasswordHash  |         |  Status        |         |  Wins/Losses   |
+[-|-|b=n|sz=18|f=Consolas] |  Rating, Role  |         |  WinnerId      |         |  IsBanned      |
+[-|-|b=n|sz=18|f=Consolas] +----------------+         |  MoveCount     |         +----------------+
+[-|-|b=n|sz=18|f=Consolas] |  FinalBoard    |
+[-|-|b=n|sz=18|f=Consolas] +----------------+
+[-|-|b=n|sz=18|f=Consolas] | 1
+[-|-|b=n|sz=18|f=Consolas] | M  (כל מהלך שייך למשחק)
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] +----------------+
+[-|-|b=n|sz=18|f=Consolas] |     Moves      |  טבלת קישור
+[-|-|b=n|sz=18|f=Consolas] |  (Id PK)       |  Game ↔ Users  דרך MoverColor
+[-|-|b=n|sz=18|f=Consolas] |  GameId  FK    |
+[-|-|b=n|sz=18|f=Consolas] |  MoveNumber    |
+[-|-|b=n|sz=18|f=Consolas] |  MoverColor    |
+[-|-|b=n|sz=18|f=Consolas] |  From/To       |
+[-|-|b=n|sz=18|f=Consolas] |  PathSerialized|
+[-|-|b=n|sz=18|f=Consolas] |  BoardAfter    |
+[-|-|b=n|sz=18|f=Consolas] +----------------+
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 5 · ארכיטקטורת תוכנה
+[2|-|b=Y|sz=-|f=David] 5.1  פירוט שכבות
+[-|-|b=n|sz=18|f=Consolas] Client Layer:
+[-|-|b=n|sz=18|f=Consolas] WPF Desktop (8 Views)  |  ASP.NET Razor 8 (Admin)  |  .NET MAUI 9 (6 Pages)
+[-|-|b=n|sz=18|f=Consolas] |                              |                              |
+[-|-|b=n|sz=18|f=Consolas] | net.tcp://...:9100           | basicHttp 8733                | basicHttp 8733
+[-|-|b=n|sz=18|f=Consolas] |     (DataContract)           |  (DataContract)               |  (DataContract)
+[-|-|b=n|sz=18|f=Consolas] v                              v                              v
+[-|-|b=n|sz=18|f=Consolas] WCF Service Layer:
+[-|-|b=n|sz=18|f=Consolas] ICheckersService (24 OperationContract)  →  CheckersService.cs
+[-|-|b=n|sz=18|f=Consolas] |
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] Business Logic Layer:
+[-|-|b=n|sz=18|f=Consolas] AuthService | PasswordHasher | GameManager | GameSession
+[-|-|b=n|sz=18|f=Consolas] CheckersEngine | BotEngine
+[-|-|b=n|sz=18|f=Consolas] |
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] Data Access Layer:
+[-|-|b=n|sz=18|f=Consolas] BaseDB (abstract)  →  UsersDB | GamesDB | MovesDB
+[-|-|b=n|sz=18|f=Consolas] + DatabaseInitializer (זרע ראשוני: אדמין a/a)
+[-|-|b=n|sz=18|f=Consolas] |  OleDbConnection
+[-|-|b=n|sz=18|f=Consolas] v
+[-|-|b=n|sz=18|f=Consolas] Microsoft Access (ArchiveData3.accdb):  Users  |  Games  |  Moves
+[2|-|b=Y|sz=-|f=David] 5.2  חוזה DataContract
+[-|-|b=n|sz=-|f=David] כל מחלקת מודל שמועברת בין השרת ללקוח מסומנת ב-[DataContract] עם שדות [DataMember]. המחלקה Base אבסטרקטית, ויורשות ממנה כל המחלקות הפולימורפיות (User, GameRecord, Move). הצהרת [KnownType] על Base חיונית כדי ש-DataContractSerializer יזהה אותן.
+[-|-|b=n|sz=20|f=David] » Base.cs
+[-|-|b=n|sz=18|f=Consolas] [DataContract]
+[-|-|b=n|sz=18|f=Consolas] [KnownType(typeof(User))]
+[-|-|b=n|sz=18|f=Consolas] [KnownType(typeof(GameRecord))]
+[-|-|b=n|sz=18|f=Consolas] [KnownType(typeof(Move))]
+[-|-|b=n|sz=18|f=Consolas] public class Base
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] [DataMember]
+[-|-|b=n|sz=18|f=Consolas] public int Id { get; set; }
+[-|-|b=n|sz=18|f=Consolas] public Base() { Id = -1; }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=David] ב-MAUI, שכבת Reference.cs נכתבה בכתב יד (במקום svcutil), היא מחזיקה את אותם שמות סוגים ובאותו DataContract Namespace, כך שתאימות מחזור המידע נשמרת על אף שהסטאקים שונים (.NET 4.7.2 בשרת, .NET 9 בלקוח).
+[2|-|b=Y|sz=-|f=David] 5.3  דוגמת זרימה, ביצוע מהלך מקצה לקצה
+[-|-|b=n|sz=-|f=David] 1. שחקן לוחץ על ריבוע מקור ב-CheckersBoardControl. אירוע SquareClicked קם.
+[-|-|b=n|sz=-|f=David] 2. GameView.xaml.cs מעביר את הקואורדינטות ל-GameViewModel.HandleSquareClick.
+[-|-|b=n|sz=-|f=David] 3. ה-VM קורא ל-CheckersClient.GetLegalMovesForSquareAsync שמחזיר רשימת מסלולים אפשריים, הם מסומנים בלוח.
+[-|-|b=n|sz=-|f=David] 4. שחקן לוחץ על יעד. ה-path הסופי נשלח ל-CheckersClient.MakeMoveAsync.
+[-|-|b=n|sz=-|f=David] 5. ה-Channel מבצע Serialize של (token, path) דרך DataContractSerializer, ושולח ב-net.tcp.
+[-|-|b=n|sz=-|f=David] 6. השרת מקבל את הבקשה ב-CheckersService.MakeMoveAsync. RequireAuthAsync מאמת את ה-token ושולף User מ-DB.
+[-|-|b=n|sz=-|f=David] 7. GameManager.SubmitMoveAsync מאתר את ה-GameSession של השחקן ומעביר ל-CheckersEngine.
+[-|-|b=n|sz=-|f=David] 8. CheckersEngine.GenerateLegalMoves נקרא, ובדיקה האם ה-path שהתקבל נמצא ברשימה.
+[-|-|b=n|sz=-|f=David] 9. אם תקין: ApplyMove מעדכן את ה-Board ב-Session, MovesDB.InsertAsync שומר ב-DB.
+[-|-|b=n|sz=-|f=David] 10. אם המשחק הסתיים, FinalizeGameAsync מעדכן את שני המשתמשים ב-DB עם דירוג Elo חדש ו-Wins/Losses.
+[-|-|b=n|sz=-|f=David] 11. MoveResult מוחזר ללקוח. הלקוח מצייר את הלוח החדש דרך BoardModel.OnPropertyChanged.
+[-|-|b=n|sz=-|f=David] 12. במקביל, הלקוח של היריב פולל GetCurrentGame ב-500 מ״ש; הוא יראה את המהלך החדש בקריאה הבאה.
+[2|-|b=Y|sz=-|f=David] 5.4  מבנה הסולושן
+[-|-|b=Y|sz=20|f=David] תיקייה
+[-|-|b=Y|sz=20|f=David] תוכן עיקרי
+[-|-|b=n|sz=20|f=David] server/Model
+[-|-|b=n|sz=20|f=David] Base, User, GameRecord, Move, Square, Board, Piece, GameStateDto, LoginResult, MoveResult, UserProfileDto, ServerStatsDto, Enums
+[-|-|b=n|sz=20|f=David] server/ViewDB
+[-|-|b=n|sz=20|f=David] BaseDB אבסטרקטית + UsersDB, GamesDB, MovesDB, DatabaseInitializer + ArchiveData3.accdb
+[-|-|b=n|sz=20|f=David] server/BusinessLogic
+[-|-|b=n|sz=20|f=David] AuthService, PasswordHasher, CheckersEngine, GameManager, GameSession, BotEngine
+[-|-|b=n|sz=20|f=David] server/
+[-|-|b=n|sz=20|f=David] ICheckersService, CheckersService, Bootstrap, Program, App.config
+[-|-|b=n|sz=20|f=David] client/
+[-|-|b=n|sz=20|f=David] WPF: Views/, ViewModels/, UserControls/, Converters/, Validation/, Themes/, Services/
+[-|-|b=n|sz=20|f=David] WebApplication1/
+[-|-|b=n|sz=20|f=David] ASP.NET Core 8: Pages/Admin/*, Pages/Login.cshtml, Services/CheckersBackend.cs
+[-|-|b=n|sz=20|f=David] mobile/CheckersMaui/
+[-|-|b=n|sz=20|f=David] MAUI: Pages/, Services/, Connected Services/CheckersServer/Reference.cs, Resources/, Platforms/
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=Y|sz=36|f=David] חלק III
+[-|center|b=Y|sz=60|f=David] שירות הרשת והלקוחות
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 6 · שירות ה-WCF
+[2|-|b=Y|sz=-|f=David] 6.1  הגדרות הרשת ב-App.config
+[-|-|b=n|sz=-|f=David] השירות חי ב-server.csproj כ-WCF Service Library. כתובות הבסיס וההגדרות נמצאות בקובץ App.config שמלווה את הספרייה. השרת מאזין על שני נקודות קצה:
+[a|-|b=n|sz=-|f=David] net.tcp://localhost:9100/CheckersService/, נקודת הקצה הראשית, משמשת את לקוח ה-WPF. המעבר ל-net.tcp נבע מהצורך להתחמק מ-URL-ACL של HTTP.SYS.
+[a|-|b=n|sz=-|f=David] http://localhost:8733/Design_Time_Addresses/CheckersService/, נקודת קצה משנית עבור MAUI. ה-prefix Design_Time_Addresses זוכה ל-URL Reservation אוטומטית של VS, כך שהשרת יכול לפתוח אותה ללא הרשאת מנהל.
+[-|-|b=n|sz=20|f=David] » App.config (קטע מרכזי)
+[-|-|b=n|sz=18|f=Consolas] <system.serviceModel>
+[-|-|b=n|sz=18|f=Consolas] <bindings>
+[-|-|b=n|sz=18|f=Consolas] <netTcpBinding>
+[-|-|b=n|sz=18|f=Consolas] <binding name="CheckersTcp" maxReceivedMessageSize="2097152">
+[-|-|b=n|sz=18|f=Consolas] <security mode="None" />
+[-|-|b=n|sz=18|f=Consolas] </binding>
+[-|-|b=n|sz=18|f=Consolas] </netTcpBinding>
+[-|-|b=n|sz=18|f=Consolas] <basicHttpBinding>
+[-|-|b=n|sz=18|f=Consolas] <binding name="CheckersHttp" maxReceivedMessageSize="2097152">
+[-|-|b=n|sz=18|f=Consolas] <security mode="None" />
+[-|-|b=n|sz=18|f=Consolas] </binding>
+[-|-|b=n|sz=18|f=Consolas] </basicHttpBinding>
+[-|-|b=n|sz=18|f=Consolas] </bindings>
+[-|-|b=n|sz=18|f=Consolas] <services>
+[-|-|b=n|sz=18|f=Consolas] <service name="CheckersServer.CheckersService">
+[-|-|b=n|sz=18|f=Consolas] <host>
+[-|-|b=n|sz=18|f=Consolas] <baseAddresses>
+[-|-|b=n|sz=18|f=Consolas] <add baseAddress="net.tcp://localhost:9100/CheckersService/" />
+[-|-|b=n|sz=18|f=Consolas] <add baseAddress="http://localhost:8733/Design_Time_Addresses/CheckersService/" />
+[-|-|b=n|sz=18|f=Consolas] </baseAddresses>
+[-|-|b=n|sz=18|f=Consolas] </host>
+[-|-|b=n|sz=18|f=Consolas] <endpoint binding="netTcpBinding"     bindingConfiguration="CheckersTcp"  contract="CheckersServer.ICheckersService" />
+[-|-|b=n|sz=18|f=Consolas] <endpoint binding="basicHttpBinding"  bindingConfiguration="CheckersHttp" contract="CheckersServer.ICheckersService" />
+[-|-|b=n|sz=18|f=Consolas] <endpoint address="mex" binding="mexTcpBinding"  contract="IMetadataExchange" />
+[-|-|b=n|sz=18|f=Consolas] <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+[-|-|b=n|sz=18|f=Consolas] </service>
+[-|-|b=n|sz=18|f=Consolas] </services>
+[-|-|b=n|sz=18|f=Consolas] <behaviors>
+[-|-|b=n|sz=18|f=Consolas] <serviceBehaviors><behavior>
+[-|-|b=n|sz=18|f=Consolas] <serviceMetadata httpGetEnabled="true" />
+[-|-|b=n|sz=18|f=Consolas] <serviceDebug   includeExceptionDetailInFaults="true" />
+[-|-|b=n|sz=18|f=Consolas] </behavior></serviceBehaviors>
+[-|-|b=n|sz=18|f=Consolas] </behaviors>
+[-|-|b=n|sz=18|f=Consolas] </system.serviceModel>
+[2|-|b=Y|sz=-|f=David] 6.2  חוזה ICheckersService
+[-|-|b=n|sz=-|f=David] החוזה מציע 24 OperationContract, שבע קטגוריות לוגיות. בכל אחת מהן ניתן לבחור פעולת קריאה, פעולת כתיבה, ופעולת ניהול. הלקוח קובע מראש איזה גרסה (סינכרונית או אסינכרונית) להשתמש, svcutil מייצר את הזוג Async אוטומטית.
+[-|-|b=n|sz=20|f=David] » ICheckersService.cs
+[-|-|b=n|sz=18|f=Consolas] [ServiceContract]
+[-|-|b=n|sz=18|f=Consolas] public interface ICheckersService
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] // Auth
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] LoginResult Login(string username, string password);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] LoginResult Register(string username, string password,
+[-|-|b=n|sz=18|f=Consolas] string email, DateTime? birthDate, string country);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] void        Logout(Guid token);
+[-|-|b=n|sz=18|f=Consolas] // Matchmaking
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] string JoinQueue(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] void   LeaveQueue(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] string JoinBotGame(Guid token);
+[-|-|b=n|sz=18|f=Consolas] // Live state (clients poll every ~500 ms)
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] GameStateDto       GetCurrentGame(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<List<Square>> GetLegalMovesForSquare(Guid token, int file, int rank);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<Move>         GetMoveHistory(int gameId);
+[-|-|b=n|sz=18|f=Consolas] // Actions
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] MoveResult MakeMove(Guid token, List<Square> path);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] MoveResult Resign(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] void       OfferDraw(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] MoveResult RespondToDraw(Guid token, bool accept);
+[-|-|b=n|sz=18|f=Consolas] // Profile
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] UserProfileDto GetUserProfile(int userId);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] void           UpdateMyEmail(Guid token, string email);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] void           ChangeMyPassword(Guid token, string current, string nw);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] void           UpdateMyProfilePicture(Guid token, byte[] image);
+[-|-|b=n|sz=18|f=Consolas] // Read-only
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<User>       GetTopPlayers(int count);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<GameRecord> GetMyGameHistory(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<User>       GetOnlinePlayers();
+[-|-|b=n|sz=18|f=Consolas] // Admin
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<User>       AdminGetAllUsers(Guid token);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] bool             AdminBanUser(Guid token, int userId, bool banned);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] List<GameRecord> AdminGetRecentGames(Guid token, int count);
+[-|-|b=n|sz=18|f=Consolas] [OperationContract] ServerStatsDto   AdminGetServerStats(Guid token);
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] 6.3  דוגמאות מימוש
+[3|-|b=Y|sz=26|f=David] Login, הוצאת token
+[-|-|b=n|sz=20|f=David] » CheckersService.LoginAsync
+[-|-|b=n|sz=18|f=Consolas] public async Task<LoginResult> LoginAsync(string username, string password)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] AuthResult res = await _auth.LoginAsync(username, password);
+[-|-|b=n|sz=18|f=Consolas] if (!res.Success) return LoginResult.Fail(res.Error);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] Guid token = Guid.NewGuid();
+[-|-|b=n|sz=18|f=Consolas] _tokens[token] = res.User.Id;
+[-|-|b=n|sz=18|f=Consolas] Manager.RegisterOnline(res.User);
+[-|-|b=n|sz=18|f=Consolas] return LoginResult.Ok(token, SafeUser(res.User));
+[-|-|b=n|sz=18|f=Consolas] }
+[3|-|b=Y|sz=26|f=David] MakeMove, בדיקה ראשונית + ניתוב
+[-|-|b=n|sz=20|f=David] » CheckersService.MakeMoveAsync
+[-|-|b=n|sz=18|f=Consolas] public async Task<MoveResult> MakeMoveAsync(Guid token, List<Square> path)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] User u = await RequireAuthAsync(token);
+[-|-|b=n|sz=18|f=Consolas] if (path == null || path.Count < 2)
+[-|-|b=n|sz=18|f=Consolas] return MoveResult.Fail("Move path must contain at least a start and an end.");
+[-|-|b=n|sz=18|f=Consolas] return await Manager.SubmitMoveAsync(u.Id, path);
+[-|-|b=n|sz=18|f=Consolas] }
+[3|-|b=Y|sz=26|f=David] RequireAuthAsync, השומר המרכזי
+[-|-|b=n|sz=20|f=David] » השומר שמשמש כל פעולה אחרת
+[-|-|b=n|sz=18|f=Consolas] private async Task<User> RequireAuthAsync(Guid token)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (token == Guid.Empty || !_tokens.TryGetValue(token, out int userId))
+[-|-|b=n|sz=18|f=Consolas] throw new FaultException("Not authenticated. Call Login first.");
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] User u = await _users.GetByIdAsync(userId);
+[-|-|b=n|sz=18|f=Consolas] if (u == null)  throw new FaultException("User no longer exists.");
+[-|-|b=n|sz=18|f=Consolas] if (u.IsBanned) throw new FaultException("Account is banned.");
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] Manager.TouchLastSeen(u.Id);   // לעדכן הפעילות לפני ה-StaleSweep
+[-|-|b=n|sz=18|f=Consolas] return u;
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] 6.4  שכבת ViewDB
+[-|-|b=n|sz=-|f=David] כל מחלקה ב-ViewDB יורשת מ-BaseDB אבסטרקטית. BaseDB מספקת שלוש מתודות בלבד, QueryAsync, NonQueryAsync, ScalarAsync, שכולן מקבלות את הפרמטרים בנפרד מטקסט ה-SQL. זה מבטל לחלוטין את האפשרות ל-SQL Injection, ובו זמנית מסיר את הצורך להחזיק חיבור מתמשך.
+[-|-|b=n|sz=20|f=David] » BaseDB, שלד מאובטח
+[-|-|b=n|sz=18|f=Consolas] public abstract class BaseDB
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] private static string _connectionString;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] protected static string ConnectionString => _connectionString
+[-|-|b=n|sz=18|f=Consolas] ??= "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" +
+[-|-|b=n|sz=18|f=Consolas] LocateDefaultDatabase() + ";Persist Security Info=False";
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] protected abstract Base NewEntity();
+[-|-|b=n|sz=18|f=Consolas] protected abstract void CreateModel(Base entity, OleDbDataReader reader);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] protected async Task<List<Base>> QueryAsync(string sql, params OleDbParameter[] ps)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var list = new List<Base>();
+[-|-|b=n|sz=18|f=Consolas] using (var conn = new OleDbConnection(ConnectionString))
+[-|-|b=n|sz=18|f=Consolas] using (var cmd  = new OleDbCommand(sql, conn))
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] await conn.OpenAsync();
+[-|-|b=n|sz=18|f=Consolas] if (ps != null) cmd.Parameters.AddRange(ps);
+[-|-|b=n|sz=18|f=Consolas] using (var rdr = await cmd.ExecuteReaderAsync())
+[-|-|b=n|sz=18|f=Consolas] while (await rdr.ReadAsync())
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] Base e = NewEntity();
+[-|-|b=n|sz=18|f=Consolas] CreateModel(e, (OleDbDataReader)rdr);
+[-|-|b=n|sz=18|f=Consolas] list.Add(e);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] return list;
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[3|-|b=Y|sz=26|f=David] תרשים ירושה
+[-|-|b=n|sz=18|f=Consolas] BaseDB (abstract)
+[-|-|b=n|sz=18|f=Consolas] +-- UsersDB             ניהול משתמשים: GetById, GetByUsername, Insert,
+[-|-|b=n|sz=18|f=Consolas] |                         UpdateProfilePicture, UpdateEmail, UpdatePassword,
+[-|-|b=n|sz=18|f=Consolas] |                         SetBanned, GetTopByRating, GetAll, ספירות אגגרגטיביות
+[-|-|b=n|sz=18|f=Consolas] +-- GamesDB             ניהול משחקים: Insert, UpdateOutcome, GetByPlayer, GetRecent
+[-|-|b=n|sz=18|f=Consolas] +-- MovesDB             ניהול מהלכים: Insert, GetByGame
+[-|-|b=n|sz=18|f=Consolas] +-- DatabaseInitializer יצירת קובץ accdb בהפעלה ראשונה + הוספת אדמין a/a
+[2|-|b=Y|sz=-|f=David] 6.5  שכבת BusinessLogic
+[-|-|b=Y|sz=20|f=David] מחלקה
+[-|-|b=Y|sz=20|f=David] תפקיד
+[-|-|b=n|sz=20|f=David] AuthService
+[-|-|b=n|sz=20|f=David] הרשמה והתחברות. בודק כפילות, מצפין סיסמה, מחזיר User אם הצליח.
+[-|-|b=n|sz=20|f=David] PasswordHasher
+[-|-|b=n|sz=20|f=David] הצפנת PBKDF2-SHA256, Hash, Verify, ConstantTimeEquals.
+[-|-|b=n|sz=20|f=David] CheckersEngine
+[-|-|b=n|sz=20|f=David] הנפקת רשימת המהלכים החוקיים מ-Board, ויישום מהלך תקף על Board חדש. אכיפה של חובת אכילה ושרשור.
+[-|-|b=n|sz=20|f=David] GameSession
+[-|-|b=n|sz=20|f=David] מצב יחיד של משחק חי, הצדדים, ה-Board, רשימת המהלכים, EndReason, IsBotGame, draw-offer state.
+[-|-|b=n|sz=20|f=David] GameManager
+[-|-|b=n|sz=20|f=David] תזמורת, תור מטצמייקינג, יצירת Session, ניתוב SubmitMove, סיום משחק (FinalizeGameAsync), עדכון Elo, StaleSweep לזיהוי ניתוקים.
+[-|-|b=n|sz=20|f=David] BotEngine
+[-|-|b=n|sz=20|f=David] שחקן AI פשוט, בוחר מהלך אקראי מבין החוקיים, עם העדפה למהלכי הכתרה.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 7 · לקוח דסקטופ ב-WPF
+[2|-|b=Y|sz=-|f=David] 7.1  רשימת המסכים
+[-|-|b=n|sz=-|f=David] הלקוח הדסקטופ הוא הגרסה העשירה ביותר. הוא היחיד שמאפשר משחק חי על לוח אינטראקטיבי. בנוי לפי תבנית MVVM קלאסית עם ViewModelBase + RelayCommand.
+[-|-|b=Y|sz=20|f=David] מסך
+[-|-|b=Y|sz=20|f=David] תפקיד
+[-|-|b=Y|sz=20|f=David] למי מיועד
+[-|-|b=n|sz=20|f=David] MainWindow
+[-|-|b=n|sz=20|f=David] שלד החלון הראשי, מחזיק ContentControl שמתחלף לפי AppViewModel.CurrentView
+[-|-|b=n|sz=20|f=David] כל
+[-|-|b=n|sz=20|f=David] LoginView
+[-|-|b=n|sz=20|f=David] התחברות + הרשמה. ValidationRules, PasswordBoxWithToggle
+[-|-|b=n|sz=20|f=David] אורח
+[-|-|b=n|sz=20|f=David] LobbyView
+[-|-|b=n|sz=20|f=David] פרופיל, top players, online now, Recent games, Find a game, Play vs bot
+[-|-|b=n|sz=20|f=David] שחקן מחובר
+[-|-|b=n|sz=20|f=David] GameView
+[-|-|b=n|sz=20|f=David] לוח חי, רשימת מהלכים, Resign / Offer draw, polling 500 מ״ש
+[-|-|b=n|sz=20|f=David] שחקן במשחק
+[-|-|b=n|sz=20|f=David] GameOverView
+[-|-|b=n|sz=20|f=David] תוצאה, Elo delta, Back to lobby
+[-|-|b=n|sz=20|f=David] אחרי משחק
+[-|-|b=n|sz=20|f=David] ProfileView
+[-|-|b=n|sz=20|f=David] פרופיל אישי / של אחרים, עריכת email / picture / password
+[-|-|b=n|sz=20|f=David] שחקן
+[-|-|b=n|sz=20|f=David] ReplayView
+[-|-|b=n|sz=20|f=Cambria Math,David,Segoe UI Symbol] פלייבק משחק שהסתיים, ניווט ⏮ ◀ ▶ ⏭
+[-|-|b=n|sz=20|f=David] שחקן
+[-|-|b=n|sz=20|f=David] AdminView
+[-|-|b=n|sz=20|f=David] ניהול משתמשים + Recent games + auto-poll 5 שניות
+[-|-|b=n|sz=20|f=David] אדמין
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] סך הכול 8 מסכי XAML, ובנוסף 3 UserControls עצמאיים: CheckersBoardControl, PlayerCardControl, PasswordBoxWithToggle.
+[2|-|b=Y|sz=-|f=David] 7.2  ValidationRules ו-IValueConverter
+[-|-|b=n|sz=-|f=David] ה-WPF מאפשר קישור פקדים למקור נתונים עם בדיקת תקינות בזמן אמת דרך Binding.ValidationRules. בפרויקט נכתבו 6 מחלקות ValidationRule:
+[-|-|b=Y|sz=20|f=David] מחלקה
+[-|-|b=Y|sz=20|f=David] בודקת
+[-|-|b=Y|sz=20|f=David] הודעה במקרה של כשל
+[-|-|b=n|sz=20|f=David] NotEmptyRule
+[-|-|b=n|sz=20|f=David] שדה לא ריק
+[-|-|b=n|sz=20|f=David] Field cannot be empty.
+[-|-|b=n|sz=20|f=David] LoginNotEmptyRule
+[-|-|b=n|sz=20|f=David] הקלה ללוגין, לא ריק
+[-|-|b=n|sz=20|f=David] Username/Password required.
+[-|-|b=n|sz=20|f=David] UsernameRule
+[-|-|b=n|sz=20|f=David] אותיות+ספרות+_ בין 3-30 תווים
+[-|-|b=n|sz=20|f=David] Username must be 3-30 chars.
+[-|-|b=n|sz=20|f=David] PasswordRule
+[-|-|b=n|sz=20|f=David] 6 תווים מינימום
+[-|-|b=n|sz=20|f=David] Password must be at least 6 characters.
+[-|-|b=n|sz=20|f=David] EmailRule
+[-|-|b=n|sz=20|f=David] Regex (אופציונלי)
+[-|-|b=n|sz=20|f=David] Email must look like name@domain.com.
+[-|-|b=n|sz=20|f=David] InputValidator
+[-|-|b=n|sz=20|f=David] אגרגטור, מריץ את כל הבדיקות לפני submit
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=20|f=David] » EmailRule.cs
+[-|-|b=n|sz=18|f=Consolas] public class EmailRule : ValidationRule
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] private static readonly Regex _re = new Regex(
+[-|-|b=n|sz=18|f=Consolas] @"^[\w\.\-]+@[\w\-]+(\.\w{2,})+$", RegexOptions.Compiled);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public override ValidationResult Validate(object value, CultureInfo cul)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] string email = (value as string ?? "").Trim();
+[-|-|b=n|sz=18|f=Consolas] if (email.Length == 0) return ValidationResult.ValidResult; // אופציונלי
+[-|-|b=n|sz=18|f=Consolas] return _re.IsMatch(email)
+[-|-|b=n|sz=18|f=Consolas] ? ValidationResult.ValidResult
+[-|-|b=n|sz=18|f=Consolas] : new ValidationResult(false, "Email must look like name@domain.com.");
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=David] 11 מחלקות IValueConverter קיימות בתיקייה Converters/, הן ממירות בין סוגים נפרדים בלוח. דוגמה: PieceCodeToBrushConverter ממירה תו (' ', 'w', 'W', 'b', 'B') ל-SolidColorBrush המתאים.
+[-|-|b=n|sz=20|f=David] » PieceCodeToBrushConverter.cs
+[-|-|b=n|sz=18|f=Consolas] public class PieceCodeToBrushConverter : IValueConverter
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] public object Convert(object value, Type t, object p, CultureInfo c)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] char code = value is char ch ? ch : ' ';
+[-|-|b=n|sz=18|f=Consolas] switch (code)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] case 'w': case 'W': return new SolidColorBrush(Color.FromRgb(245,235,210));
+[-|-|b=n|sz=18|f=Consolas] case 'b': case 'B': return new SolidColorBrush(Color.FromRgb( 30, 30, 30));
+[-|-|b=n|sz=18|f=Consolas] default: return Brushes.Transparent;
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] public object ConvertBack(object v, Type t, object p, CultureInfo c)
+[-|-|b=n|sz=18|f=Consolas] => throw new NotImplementedException();
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] 7.3  UserControls עם RoutedEvent
+[-|-|b=n|sz=-|f=David] ה-CheckersBoardControl הוא ה-UserControl הראשי במשחק. הוא מצייר 8x8 ריבועים (לוח דמקה, ריבועים כהים בלבד פעילים), מסמן כלים, מסמן מהלכים חוקיים בנקודות זוהרות, וחושף RoutedEvent בשם SquareClicked. ה-View ב-GameView.xaml.cs רושם handler ומעביר את הקליק ל-ViewModel:
+[-|-|b=n|sz=20|f=David] » GameView.xaml.cs
+[-|-|b=n|sz=18|f=Consolas] private void OnBoardSquareClicked(object sender, SquareEventArgs e)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var vm = (GameViewModel)DataContext;
+[-|-|b=n|sz=18|f=Consolas] vm.HandleSquareClick(e.File, e.Rank);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=David] PasswordBoxWithToggle הוא UserControl נוסף שנכתב במהלך הפרויקט. הוא עוטף PasswordBox, ומציג בצדו אייקון של עין ש לחיצה עליו מחליפה את הסיסמה לטקסט גלוי וחזרה. ה-RoutedEvent של ה-Click נופל למחזור החיים של ה-Binding ב-LoginView.
+[2|-|b=Y|sz=-|f=David] 7.4  MVVM פנימי
+[-|-|b=n|sz=-|f=David] הסטרוקטורה של ה-VM היא קלאסית, ViewModelBase מממש INotifyPropertyChanged, חושף SetProperty<T>(ref _field, value) שמעדכן ושולח PropertyChanged בו זמנית. RelayCommand מממש ICommand עם CanExecute ו-Execute שמתבססים על delegates. ב-LobbyViewModel למשל:
+[-|-|b=n|sz=20|f=David] » LobbyViewModel, RelayCommand בשימוש
+[-|-|b=n|sz=18|f=Consolas] FindGameCommand = new RelayCommand(
+[-|-|b=n|sz=18|f=Consolas] async _ => await ToggleQueueAsync(),
+[-|-|b=n|sz=18|f=Consolas] _ => !IsBusy);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] PlayBotCommand  = new RelayCommand(
+[-|-|b=n|sz=18|f=Consolas] async _ => await PlayBotAsync(),
+[-|-|b=n|sz=18|f=Consolas] _ => !IsBusy && !IsInQueue);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] OpenAdminCommand = new RelayCommand(
+[-|-|b=n|sz=18|f=Consolas] _ => _app.GoToAdmin(),
+[-|-|b=n|sz=18|f=Consolas] _ => CurrentUser != null && CurrentUser.Role == UserRole.Admin);
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 8 · ממשק ניהול ברשת (Razor Pages)
+[2|-|b=Y|sz=-|f=David] 8.1  דפי האתר
+[-|-|b=n|sz=-|f=David] האתר משמש את האדמין מהדפדפן בלבד. הוא לא נועד למשחק. אורח שאינו מחובר רואה את עמוד ה-Login, וכל שאר העמודים תחת /Admin/* גזורים בעוגית של Cookie Authentication.
+[-|-|b=Y|sz=20|f=David] דף
+[-|-|b=Y|sz=20|f=David] תפקיד
+[-|-|b=n|sz=20|f=David] Index
+[-|-|b=n|sz=20|f=David] דף נחיתה, קישור ל-Login
+[-|-|b=n|sz=20|f=David] Login
+[-|-|b=n|sz=20|f=David] התחברות. בהצלחה: שמירת WcfToken בעוגיה כ-Claim.
+[-|-|b=n|sz=20|f=David] Logout
+[-|-|b=n|sz=20|f=David] SignOut וחזרה ל-Index
+[-|-|b=n|sz=20|f=David] Privacy
+[-|-|b=n|sz=20|f=David] מדיניות פרטיות, סטנדרט
+[-|-|b=n|sz=20|f=David] Error
+[-|-|b=n|sz=20|f=David] טיפול בשגיאות, סטנדרט
+[-|-|b=n|sz=20|f=David] Admin/Dashboard
+[-|-|b=n|sz=20|f=David] סטטיסטיקות שרת, Total Users, Online, Active Games, Today
+[-|-|b=n|sz=20|f=David] Admin/Users
+[-|-|b=n|sz=20|f=David] רשימת משתמשים + Search + Ban/Unban
+[-|-|b=n|sz=20|f=David] Admin/Games
+[-|-|b=n|sz=20|f=David] רשימת משחקים אחרונים + Replay מהדפדפן עם canvas
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 8.2  PageModel + Cookie Authentication
+[-|-|b=n|sz=-|f=David] כל דף Razor מורכב משני קבצים, .cshtml (HTML+Razor) ו-.cshtml.cs (PageModel). דוגמת הזרימה ב-Login:
+[-|-|b=n|sz=20|f=David] » Login.cshtml.cs
+[-|-|b=n|sz=18|f=Consolas] public class LoginModel : PageModel
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] [BindProperty] public string Username { get; set; } = "";
+[-|-|b=n|sz=18|f=Consolas] [BindProperty] public string Password { get; set; } = "";
+[-|-|b=n|sz=18|f=Consolas] public string? Error { get; private set; }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public async Task<IActionResult> OnPostAsync()
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var lr = await _backend.LoginAsync(Username, Password);
+[-|-|b=n|sz=18|f=Consolas] if (!lr.Success || lr.User?.Role != UserRole.Admin)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] Error = lr.Success ? "Admin role required." : (lr.Error ?? "Login failed.");
+[-|-|b=n|sz=18|f=Consolas] return Page();
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] var claims = new[]
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] new Claim(ClaimTypes.Name, lr.User.Username),
+[-|-|b=n|sz=18|f=Consolas] new Claim("WcfToken", lr.Token.ToString()),
+[-|-|b=n|sz=18|f=Consolas] };
+[-|-|b=n|sz=18|f=Consolas] var id = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+[-|-|b=n|sz=18|f=Consolas] await HttpContext.SignInAsync(new ClaimsPrincipal(id));
+[-|-|b=n|sz=18|f=Consolas] return RedirectToPage("/Admin/Dashboard");
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] 8.3  ריענון אוטומטי חכם
+[-|-|b=n|sz=-|f=David] בכל דף תחת /Admin נטען wwwroot/js/auto-refresh.js שמרענן אוטומטית כל 15 שניות. הוא מתעלם מטעינה כש-(א) משתמש מקליד בתוך input/textarea/select; (ב) הטאב לא בפוקוס; (ג) הדף סימן window.__noAutoRefresh = true (לדוגמה דף Replay שלא רוצה לאבד את המיקום הנוכחי במשחק).
+[-|-|b=n|sz=20|f=David] » wwwroot/js/auto-refresh.js
+[-|-|b=n|sz=18|f=Consolas] (function () {
+[-|-|b=n|sz=18|f=Consolas] const INTERVAL_MS = 15000;
+[-|-|b=n|sz=18|f=Consolas] function isTyping(el) {
+[-|-|b=n|sz=18|f=Consolas] const tag = (el?.tagName || '').toUpperCase();
+[-|-|b=n|sz=18|f=Consolas] return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT'
+[-|-|b=n|sz=18|f=Consolas] || el?.isContentEditable;
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] function tick() {
+[-|-|b=n|sz=18|f=Consolas] if (window.__noAutoRefresh) return;
+[-|-|b=n|sz=18|f=Consolas] if (document.hidden) return;
+[-|-|b=n|sz=18|f=Consolas] if (isTyping(document.activeElement)) return;
+[-|-|b=n|sz=18|f=Consolas] window.location.reload();
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] setInterval(tick, INTERVAL_MS);
+[-|-|b=n|sz=18|f=Consolas] })();
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 9 · אפליקציית מובייל (MAUI)
+[2|-|b=Y|sz=-|f=David] 9.1  רשימת הדפים
+[-|-|b=n|sz=-|f=David] האפליקציה ב-MAUI מספקת כיסוי בסיסי של תכונות הסטטיסטיקה והפרופיל. היא לא תומכת במשחק חי, לוח אינטראקטיבי הוא חוויה דסקטופ. עם זאת, היא מאפשרת לשחקן לבדוק מה קורה אצלו בהיסטוריה, ברייטינג, ובלידרבורד מכל מקום.
+[-|-|b=Y|sz=20|f=David] דף
+[-|-|b=Y|sz=20|f=David] תפקיד
+[-|-|b=n|sz=20|f=David] LoginPage
+[-|-|b=n|sz=20|f=David] התחברות בסיסית עם שגיאה ברורה אם השרת לא מגיב.
+[-|-|b=n|sz=20|f=David] SignUpPage
+[-|-|b=n|sz=20|f=David] הרשמה, username/password חובה, email/birthDate/country אופציונליים.
+[-|-|b=n|sz=20|f=David] HomePage
+[-|-|b=n|sz=20|f=David] Welcome banner + Rating + W/L/D + רשימת online + ניווט לפרופיל / היסטוריה / לידרבורד.
+[-|-|b=n|sz=20|f=David] ProfilePage
+[-|-|b=n|sz=20|f=David] סטטיסטיקות מורחבות + עדכון email + שינוי סיסמה.
+[-|-|b=n|sz=20|f=David] GameHistoryPage
+[-|-|b=n|sz=20|f=David] היסטוריית משחקי, chip תוצאה לכל שורה (WIN / LOSS / DRAW / LIVE).
+[-|-|b=n|sz=20|f=David] LeaderboardPage
+[-|-|b=n|sz=20|f=David] Top 20 שחקנים. שלושה הראשונים מקבלים מסגרת זהב/כסף/ארד.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] סך הכול 6 ContentPages.
+[2|-|b=Y|sz=-|f=David] 9.2  ServiceHelper ו-AppState
+[-|-|b=n|sz=-|f=David] ServiceHelper הוא wrapper סטטי לקריאות WCF. הוא בונה ChannelFactory חדש לכל קריאה, וסוגר אותו אחרי השימוש. שימוש זהה לכל הקריאות, אין צורך ב-Open/Close ידני בכל מסך.
+[-|-|b=n|sz=20|f=David] » Services/ServiceHelper.cs
+[-|-|b=n|sz=18|f=Consolas] public static class ServiceHelper
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] public const string ServiceHost = "10.0.2.2";  // AVD loopback alias
+[-|-|b=n|sz=18|f=Consolas] public const string ServiceUrl  =
+[-|-|b=n|sz=18|f=Consolas] "http://" + ServiceHost + ":8733/Design_Time_Addresses/CheckersService/";
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static CheckersServiceClient GetClient()
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] MaxReceivedMessageSize = 5_000_000,
+[-|-|b=n|sz=18|f=Consolas] OpenTimeout    = TimeSpan.FromSeconds(15),
+[-|-|b=n|sz=18|f=Consolas] SendTimeout    = TimeSpan.FromSeconds(30),
+[-|-|b=n|sz=18|f=Consolas] ReceiveTimeout = TimeSpan.FromSeconds(30),
+[-|-|b=n|sz=18|f=Consolas] };
+[-|-|b=n|sz=18|f=Consolas] return new CheckersServiceClient(binding, new EndpointAddress(ServiceUrl));
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static async Task<T> CallAsync<T>(Func<CheckersServiceClient, Task<T>> action)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var c = GetClient();
+[-|-|b=n|sz=18|f=Consolas] try { return await action(c); }
+[-|-|b=n|sz=18|f=Consolas] finally { try { await c.CloseAsync(); } catch { c.Abort(); } }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=David] AppState הוא מחלקה סטטית קטנה שמחזיקה את ה-Token + User אחרי התחברות. רוב המסכים בודקים AppState.IsLoggedIn ב-OnAppearing, ואם false מנתבים ל-Login.
+[2|-|b=Y|sz=-|f=David] 9.3  פלטפורמות המטרה
+[-|-|b=Y|sz=20|f=David] Target
+[-|-|b=Y|sz=20|f=David] Build
+[-|-|b=Y|sz=20|f=David] שימוש
+[-|-|b=n|sz=20|f=David] net9.0-windows10.0.19041.0
+[-|-|b=n|sz=20|f=David] עובר נקי
+[-|-|b=n|sz=20|f=David] דיבוג מהיר ב-Windows ללא אמולטור Android
+[-|-|b=n|sz=20|f=David] net9.0-android (API 21+)
+[-|-|b=n|sz=20|f=David] דורש Android SDK
+[-|-|b=n|sz=20|f=David] ריצה ב-AVD או על מכשיר אמיתי
+[-|-|b=n|sz=20|f=David] network_security_config.xml
+[-|-|b=n|sz=20|f=David] cleartextTrafficPermitted=true
+[-|-|b=n|sz=20|f=David] דרוש כדי שאנדרואיד ירשה HTTP בפיתוח
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=Y|sz=36|f=David] חלק IV
+[-|center|b=Y|sz=60|f=David] אבטחה ובדיקות
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 10 · אסטרטגיית האבטחה
+[-|-|b=n|sz=-|f=David] אבטחה אינה תוסף, היא תכונה רוחבית שמלווה כל קריאה במערכת. בפרויקט הזה ארבע שכבות הגנה משולבות: הצפנת סיסמאות חזקה, שאילתות פרמטריות, אימות מבוסס Token עם בדיקת ban, וגבולות גודל קלט.
+[2|-|b=Y|sz=-|f=David] 10.1  הצפנת סיסמאות (PBKDF2-SHA256)
+[-|-|b=n|sz=-|f=David] סיסמאות אף פעם לא נשמרות גלויות. השיטה הנבחרת: PBKDF2 עם פרימיטיב SHA-256, 60,000 איטרציות, salt 128 ביט, hash 256 ביט. הפורמט המאוחסן הוא ׳iter.salt.hash׳, שלושה חלקים מופרדים בנקודה, כשכל אחד מהם בייסבעים. הפורמט הזה עצמאי לחלוטין, כלומר ניתן בעתיד להעלות את ה-Iterations עבור משתמשים חדשים בלי לשבור משתמשים קיימים.
+[-|-|b=n|sz=20|f=David] » PasswordHasher.Hash
+[-|-|b=n|sz=18|f=Consolas] public static string Hash(string password)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (password == null) throw new ArgumentNullException(nameof(password));
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] byte[] salt = new byte[SaltBytes];   // SaltBytes = 16
+[-|-|b=n|sz=18|f=Consolas] using (var rng = RandomNumberGenerator.Create())
+[-|-|b=n|sz=18|f=Consolas] rng.GetBytes(salt);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] byte[] hash = Pbkdf2(password, salt, Iterations, HashBytes);
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] return Iterations.ToString() + "." +
+[-|-|b=n|sz=18|f=Consolas] Convert.ToBase64String(salt)  + "." +
+[-|-|b=n|sz=18|f=Consolas] Convert.ToBase64String(hash);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=20|f=David] » PasswordHasher.Verify
+[-|-|b=n|sz=18|f=Consolas] public static bool Verify(string password, string stored)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (string.IsNullOrEmpty(stored)) return false;
+[-|-|b=n|sz=18|f=Consolas] string[] parts = stored.Split('.');
+[-|-|b=n|sz=18|f=Consolas] if (parts.Length != 3) return false;
+[-|-|b=n|sz=18|f=Consolas] if (!int.TryParse(parts[0], out int iter)) return false;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] byte[] salt, expected;
+[-|-|b=n|sz=18|f=Consolas] try
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] salt     = Convert.FromBase64String(parts[1]);
+[-|-|b=n|sz=18|f=Consolas] expected = Convert.FromBase64String(parts[2]);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] catch { return false; }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] byte[] actual = Pbkdf2(password, salt, iter, expected.Length);
+[-|-|b=n|sz=18|f=Consolas] return ConstantTimeEquals(actual, expected);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=David] ה-ConstantTimeEquals חיוני: השוואה רגילה (==) של byte[] תיצא מוקדם בבייט הראשון שלא תואם, מה שמחשף את אורך התקיפה הנכונה ל-Timing Attack. במקום זאת, אנחנו מצברים XOR על כל הבייטים, וכל אורך הפעולה אחיד:
+[-|-|b=n|sz=20|f=David] » ConstantTimeEquals
+[-|-|b=n|sz=18|f=Consolas] private static bool ConstantTimeEquals(byte[] a, byte[] b)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (a.Length != b.Length) return false;
+[-|-|b=n|sz=18|f=Consolas] int diff = 0;
+[-|-|b=n|sz=18|f=Consolas] for (int i = 0; i < a.Length; i++) diff |= a[i] ^ b[i];
+[-|-|b=n|sz=18|f=Consolas] return diff == 0;
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] 10.2  שאילתות פרמטריות נגד SQL Injection
+[-|-|b=n|sz=-|f=David] כל שאילתה במערכת מועברת עם הפרמטרים מופרדים מהטקסט. דוגמה לקוד פגיע (לא קיים בפרויקט) לעומת קוד מאובטח (האופן היחיד שאני כותב):
+[-|-|b=n|sz=20|f=David] » אסור
+[-|-|b=n|sz=18|f=Consolas] // פגיע, אין סיכוי שיופיע במערכת:
+[-|-|b=n|sz=18|f=Consolas] string sql = "SELECT * FROM Users WHERE Username = '" + name + "'";
+[-|-|b=n|sz=20|f=David] » מותר ובלעדי
+[-|-|b=n|sz=18|f=Consolas] // בטוח, הצורה היחידה שמותרת:
+[-|-|b=n|sz=18|f=Consolas] string sql = "SELECT * FROM Users WHERE Username = ?";
+[-|-|b=n|sz=18|f=Consolas] var p = new OleDbParameter("@u", OleDbType.VarWChar, 50)
+[-|-|b=n|sz=18|f=Consolas] { Value = name };
+[-|-|b=n|sz=18|f=Consolas] List<Base> rows = await QueryAsync(sql, p);
+[-|-|b=n|sz=-|f=David] כל מחלקה ב-ViewDB מקבלת helper סטטי קצר שיוצר OleDbParameter עם סוג מפורש. סוג מפורש חשוב כדי למנוע type-mismatch של Access (למשל ערך bool שנכפה כ-Yes/No):
+[-|-|b=n|sz=20|f=David] » BaseDB.P
+[-|-|b=n|sz=18|f=Consolas] protected static OleDbParameter P(string name, OleDbType type, object value)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var p = new OleDbParameter(name, type);
+[-|-|b=n|sz=18|f=Consolas] p.Value = value ?? DBNull.Value;
+[-|-|b=n|sz=18|f=Consolas] return p;
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] 10.3  אימות מבוסס Token (stateless)
+[-|-|b=n|sz=-|f=David] השרת לא מנהל WCF Sessions. כל קריאה נושאת Guid token שהוקצה ב-Login. השרת מחזיק ConcurrentDictionary<Guid,int>, מילון תהליכי שמתרגם token ל-userId. RequireAuthAsync הוא הרעלן (gatekeeper) שכל פעולה רצינית עוברת דרכו:
+[a|-|b=n|sz=-|f=David] אם הtoken ריק או לא קיים במילון, FaultException Not authenticated.
+[a|-|b=n|sz=-|f=David] אם המשתמש לא קיים יותר ב-DB (נמחק על-ידי אדמין), FaultException User no longer exists.
+[a|-|b=n|sz=-|f=David] אם המשתמש סומן IsBanned=true, FaultException Account is banned. הלקוח מקבל את ההודעה ומעיף לדף Login.
+[a|-|b=n|sz=-|f=David] TouchLastSeen מעדכן את חותמת הזמן של הפעילות, חיוני ל-StaleSweep שיזהה ניתוק תוך 30 שניות.
+[-|-|b=n|sz=-|f=David] הtoken עצמו הוא Guid, 128 ביט מתוך מקור הצפנה של המערכת. ניחוש עיוור הוא בלתי-אפשרי בפועל.
+[2|-|b=Y|sz=-|f=David] 10.4  הגנות נוספות
+[a|-|b=n|sz=-|f=David] MaxReceivedMessageSize של 2MB ב-binding ה-net.tcp ו-5MB ב-basicHttp, מניעת DoS דרך הודעות ענק.
+[a|-|b=n|sz=-|f=David] Timeouts מפורשים: Open 15 שניות, Send/Receive 30 שניות. חיבורים תקועים מתבטלים אוטומטית.
+[a|-|b=n|sz=-|f=Cambria Math,David] Cap על תמונת פרופיל, UpdateMyProfilePictureAsync בודק אורך byte[] ≤ 1.5MB. אם המשתמש שולח יותר, FaultException Image too large.
+[a|-|b=n|sz=-|f=David] Service throttling: maxConcurrentCalls=200 ו-maxConcurrentSessions=200. מגן מפני הצפת בקשות.
+[a|-|b=n|sz=-|f=David] DataContract Namespace קבוע ועקבי. סוגים שלא מוכרים נדחים אוטומטית, שכבת הגנה נוספת מפני type-confusion.
+[-|-|b=n|sz=-|f=-] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 11 · בדיקות ותיקוף
+[-|-|b=n|sz=-|f=David] במהלך הפיתוח הורצו 6 קבוצות בדיקות שמכסות את הליבה הפונקציונלית של המערכת ואת השכבה האבטחתית. כל בדיקה תועדה עם הקלט המצופה והתוצאה בפועל.
+[2|-|b=Y|sz=-|f=David] 11.1  ValidationRules בלקוח WPF
+[-|-|b=Y|sz=20|f=David] שדה
+[-|-|b=Y|sz=20|f=David] קלט
+[-|-|b=Y|sz=20|f=David] תוצאה מצופה
+[-|-|b=Y|sz=20|f=David] בפועל
+[-|-|b=n|sz=20|f=David] שם משתמש
+[-|-|b=n|sz=20|f=David] ab (2 תווים)
+[-|-|b=n|sz=20|f=David] שגיאה: 3-30 chars
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] שם משתמש
+[-|-|b=n|sz=20|f=David] alice
+[-|-|b=n|sz=20|f=David] אישור
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] סיסמה
+[-|-|b=n|sz=20|f=David] abc12 (5 תווים)
+[-|-|b=n|sz=20|f=David] שגיאה: at least 6 characters
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] סיסמה
+[-|-|b=n|sz=20|f=David] abc123
+[-|-|b=n|sz=20|f=David] אישור
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] אימייל
+[-|-|b=n|sz=20|f=David] test (חסר @)
+[-|-|b=n|sz=20|f=David] שגיאה: name@domain.com
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] אימייל
+[-|-|b=n|sz=20|f=David] test@gmail.com
+[-|-|b=n|sz=20|f=David] אישור
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] אימייל
+[-|-|b=n|sz=20|f=David] ריק
+[-|-|b=n|sz=20|f=David] אישור (אופציונלי)
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 11.2  CRUD על Games + Moves
+[-|-|b=Y|sz=20|f=David] פעולה
+[-|-|b=Y|sz=20|f=David] תוצאה מצופה
+[-|-|b=Y|sz=20|f=David] בפועל
+[-|-|b=n|sz=20|f=David] GamesDB.InsertAsync
+[-|-|b=n|sz=20|f=David] INSERT עם Status=InProgress + Id חדש
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] GamesDB.GetByPlayerAsync
+[-|-|b=n|sz=20|f=David] רשימת משחקים שהשחקן מופיע בהם
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] MovesDB.InsertAsync
+[-|-|b=n|sz=20|f=David] INSERT עם BoardAfter ו-Notation
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] MovesDB.GetByGameAsync
+[-|-|b=n|sz=20|f=David] מהלכים מסודרים לפי MoveNumber
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] GamesDB.UpdateOutcomeAsync
+[-|-|b=n|sz=20|f=David] UPDATE על Status, EndReason, WinnerId, EndedAt
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=20|f=David] UsersDB.SetBannedAsync
+[-|-|b=n|sz=20|f=David] UPDATE Users SET IsBanned=true; משתמש לא יכול להתחבר
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] עובר ✓
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 11.3  מחזור חיי סיסמה
+[-|-|b=Y|sz=20|f=David] שלב
+[-|-|b=Y|sz=20|f=David] פעולה
+[-|-|b=Y|sz=20|f=David] תוצאה
+[-|-|b=n|sz=20|f=David] 1
+[-|-|b=n|sz=20|f=David] Register alice / Pass123!
+[-|-|b=n|sz=20|f=David] ב-DB: 60000.salt.hash
+[-|-|b=n|sz=20|f=David] 2
+[-|-|b=n|sz=20|f=David] Login alice / Pass123!
+[-|-|b=n|sz=20|f=David] Verify מחזיר true; טוקן מונפק
+[-|-|b=n|sz=20|f=David] 3
+[-|-|b=n|sz=20|f=David] Login alice / WRONG
+[-|-|b=n|sz=20|f=David] Verify מחזיר false
+[-|-|b=n|sz=20|f=David] 4
+[-|-|b=n|sz=20|f=David] Register bob / Pass123! (אותה סיסמה)
+[-|-|b=n|sz=20|f=David] Hash שונה, Salt אקראי
+[-|-|b=n|sz=20|f=David] 5
+[-|-|b=n|sz=20|f=David] Login alice / Pass123! פעם נוספת
+[-|-|b=n|sz=20|f=David] Verify true, דטרמיניסטי בהינתן אותו salt+iter
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 11.4  ניסיונות SQL Injection
+[-|-|b=Y|sz=20|f=David] קלט תוקף
+[-|-|b=Y|sz=20|f=David] תוצאה מצופה
+[-|-|b=Y|sz=20|f=David] בפועל
+[-|-|b=n|sz=20|f=David] Username = admin' OR '1'='1
+[-|-|b=n|sz=20|f=David] הקלט מועבר כפרמטר; חיפוש משתמש בשם הזה לא ימצא דבר
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] חסום ✓
+[-|-|b=n|sz=20|f=David] Username = bob;DROP TABLE Users;
+[-|-|b=n|sz=20|f=David] הקלט מועבר כפרמטר; ההזרקה לא מתבצעת
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] חסום ✓
+[-|-|b=n|sz=20|f=David] ProfilePicture של 5MB
+[-|-|b=n|sz=20|f=David] FaultException Image too large
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] חסום ✓
+[-|-|b=n|sz=20|f=David] Token = Guid.Empty
+[-|-|b=n|sz=20|f=David] FaultException Not authenticated
+[-|-|b=n|sz=20|f=David,Segoe UI Symbol] חסום ✓
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 11.5  תאימות פלטפורמות (build status)
+[-|-|b=Y|sz=20|f=David] פלטפורמה
+[-|-|b=Y|sz=20|f=David] סביבת build
+[-|-|b=Y|sz=20|f=David] תוצאה
+[-|-|b=n|sz=20|f=David] Server WCF
+[-|-|b=n|sz=20|f=David] VS 2022, .NET Framework 4.7.2
+[-|-|b=n|sz=20|f=David] Build Succeeded
+[-|-|b=n|sz=20|f=David] WPF Desktop
+[-|-|b=n|sz=20|f=David] Windows 10/11
+[-|-|b=n|sz=20|f=David] Build Succeeded
+[-|-|b=n|sz=20|f=David] ASP.NET Core 8
+[-|-|b=n|sz=20|f=David] net8.0
+[-|-|b=n|sz=20|f=David] Build Succeeded, 0 שגיאות
+[-|-|b=n|sz=20|f=David] MAUI Windows
+[-|-|b=n|sz=20|f=David] net9.0-windows10.0.19041.0
+[-|-|b=n|sz=20|f=David] Build Succeeded
+[-|-|b=n|sz=20|f=David] MAUI Android
+[-|-|b=n|sz=20|f=David] net9.0-android (API 21+)
+[-|-|b=n|sz=20|f=David] Build Succeeded, דורש Android SDK
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 11.6  בדיקת End-to-End
+[-|-|b=n|sz=-|f=David] שני שחקנים, alice ו-bob. תרחיש מלא:
+[-|-|b=n|sz=-|f=Arial,David] 1. WPF #1: Register alice / Pass123! → לובי.
+[-|-|b=n|sz=-|f=Arial,David] 2. WPF #2: Register bob / Pass123! → לובי.
+[-|-|b=n|sz=-|f=Arial,David] 3. WPF #1: Find a game → התור מקבל את alice (FIFO).
+[-|-|b=n|sz=-|f=Arial,David] 4. WPF #2: Find a game → התאמה אוטומטית. שני הלקוחות עוברים ל-GameView.
+[-|-|b=n|sz=-|f=Arial,David] 5. WPF #1 (לבן): מבצע מהלך a3 → b4.
+[-|-|b=n|sz=-|f=David] 6. WPF #2 (שחור): פולל GetCurrentGame כל 500 מ״ש, רואה את המהלך, מבצע מהלך משלו.
+[-|-|b=n|sz=-|f=David] 7. כעבור מספר מהלכים, WPF #2 לוחץ Resign.
+[-|-|b=n|sz=-|f=David] 8. Status=WhiteWins, EndReason=Resignation, WinnerId=alice.Id.
+[-|-|b=n|sz=-|f=David] 9. ב-DB: alice.Wins +=1, alice.Rating +=Δ; bob.Losses +=1, bob.Rating -=Δ.
+[-|-|b=n|sz=-|f=David] 10. שני הלקוחות נוחתים ב-GameOverView, alice רואה ניצחון, bob רואה הפסד.
+[-|-|b=n|sz=-|f=David] התרחיש הושלם בהצלחה. בדיקה דומה הורצה גם עם משחק שהסתיים בניתוק (סגירת חלון מהשחקן), לאחר 30 שניות, השרת זיהה את הניתוק, סיים את המשחק עם EndReason=Disconnection, היריב קיבל ניצחון, והמתנתק קיבל קנס -20 LP על דירוגו (עם רצפה של 100 כדי שלא יגיע ל-0).
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=n|sz=-|f=-] (empty)
+[-|center|b=Y|sz=36|f=David] חלק V
+[-|center|b=Y|sz=60|f=David] תיעוד, סיכום, מקורות
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 12 · הוראות הפעלה ומדריכים
+[2|-|b=Y|sz=-|f=David] 12.1  דרישות מערכת
+[a|-|b=n|sz=-|f=David] שרת WCF, מחשב Windows עם Visual Studio 2022 (או WcfSvcHost עצמאי).
+[a|-|b=n|sz=-|f=David] מסד נתונים, Microsoft Access Database Engine (ACE OLEDB 12.0, x64). חינם להורדה מהאתר של מיקרוסופט.
+[a|-|b=n|sz=-|f=David] לקוח WPF, כל מחשב Windows 10/11 עם .NET Framework 4.7.2 מותקן.
+[a|-|b=n|sz=-|f=David] אתר Web, כל דפדפן מודרני (Chrome, Edge, Firefox, Safari).
+[a|-|b=n|sz=-|f=David] MAUI, אנדרואיד 5+ או Windows 10.0.17763+.
+[a|-|b=n|sz=-|f=David] רשת, השרת והלקוח באותה רשת מקומית כדי שמובייל יוכל להגיע ל-IP פנימי.
+[2|-|b=Y|sz=-|f=David] 12.2  הפעלת השרת והלקוחות
+[-|-|b=n|sz=-|f=David] 1. פתיחת server/server.sln ב-Visual Studio.
+[-|-|b=n|sz=-|f=David] 2. סימון server כ-StartUp Project ולחיצה F5, נפתח WcfSvcHost ועם WcfTestClient.
+[-|-|b=n|sz=-|f=David] 3. וידוא שהשרת חי: פתיחת דפדפן ב-http://localhost:8733/Design_Time_Addresses/CheckersService/?wsdl, צריך להופיע WSDL.
+[-|-|b=n|sz=-|f=David] 4. הפעלת WPF: פתיחה client/client.sln, F5.
+[-|-|b=n|sz=-|f=David] 5. הפעלת Web: פתיחה WebApplication1/WebApplication1.sln, F5, דפדפן נפתח על https://localhost:5xxx.
+[-|-|b=n|sz=-|f=David] 6. הפעלת MAUI: פתיחה mobile/CheckersMaui/CheckersMaui.csproj, בחירת מטרה (Windows / Android Emulator), F5.
+[2|-|b=Y|sz=-|f=David] 12.3  מדריך לשחקן
+[3|-|b=Y|sz=26|f=David] הרשמה והתחברות
+[a|-|b=n|sz=-|f=David] פתיחת האפליקציה (WPF, Web או Mobile).
+[a|-|b=n|sz=-|f=David] לחיצה על Sign up. מילוי שם משתמש (3-30 תווים) + סיסמה (6+ תווים).
+[a|-|b=n|sz=-|f=David] Email, BirthDate, Country אופציונליים, ניתן לדלג עליהם.
+[a|-|b=n|sz=-|f=David] בלחיצה Create, המערכת יוצרת חשבון, מחברת אוטומטית, ומוצאת אותך בלובי.
+[3|-|b=Y|sz=26|f=David] חיפוש משחק
+[a|-|b=n|sz=-|f=David] בלובי לוחצים Find a game. אם יש שחקן בתור, המשחק מתחיל מיד.
+[a|-|b=n|sz=-|f=David] אחרת, מסך Searching… עד שמישהו יצטרף.
+[a|-|b=n|sz=-|f=David] בכל רגע ניתן ללחוץ Cancel search ולבחור Play vs bot להמשיך באופן עצמאי.
+[3|-|b=Y|sz=26|f=David] ביצוע מהלכים
+[a|-|b=n|sz=-|f=David] לוחצים על כלי שלך, היעדים החוקיים מסומנים בנקודות זוהרות.
+[a|-|b=n|sz=-|f=David] לוחצים על יעד, המהלך מתבצע.
+[a|-|b=n|sz=-|f=David] אם יש אכילה ניתן לבצע, חובה. אם אחרי האכילה ניתן להמשיך לאכול, חובה.
+[a|-|b=n|sz=-|f=David] בכל רגע: Resign להתפטרות, Offer draw להצעת תיקו.
+[3|-|b=Y|sz=26|f=David] צפייה במשחק קודם (Replay)
+[a|-|b=n|sz=-|f=David] בפרופיל, לוחצים על שורה ברשימת המשחקים האחרונים.
+[a|-|b=n|sz=-|f=David] נפתח מסך Replay. לוח במצב התחלה.
+[a|-|b=n|sz=-|f=Cambria Math,David,Segoe UI Symbol] כפתורים: ⏮ First / ◀ Prev / ▶ Next / ⏭ Last / ▶ Play.
+[a|-|b=n|sz=-|f=David] ניתן ללחוץ על מהלך ספציפי ברשימה כדי לקפוץ אליו ישירות.
+[2|-|b=Y|sz=-|f=David] 12.4  מדריך למנהל
+[-|-|b=n|sz=-|f=David] 1. התחברות עם חשבון אדמין (ברירת מחדל: a / a).
+[-|-|b=n|sz=-|f=David] 2. בלובי, מופיע כפתור Admin panel למעלה. לחיצה עליו פותחת AdminView.
+[-|-|b=n|sz=-|f=David] 3. הפאנל מציג רשימת משתמשים + Recent games. רענון אוטומטי כל 5 שניות.
+[-|-|b=n|sz=-|f=David] 4. ליד כל משתמש: כפתור Ban (או Unban אם הוא כבר חסום).
+[-|-|b=n|sz=-|f=David] 5. לחלופין: פותחים את אתר ה-Web (https://localhost:5xxx), מתחברים עם a/a, ומקבלים דשבורד מלא יותר עם סטטיסטיקות שרת.
+[2|-|b=Y|sz=-|f=David] 12.5  הודעות שגיאה נפוצות
+[-|-|b=Y|sz=20|f=David] הודעה
+[-|-|b=Y|sz=20|f=David] פתרון
+[-|-|b=n|sz=20|f=David] Invalid credentials
+[-|-|b=n|sz=20|f=David] שם / סיסמה לא נכונים. ודא שאין רווחים ושה-CapsLock כבוי.
+[-|-|b=n|sz=20|f=David] Account is banned.
+[-|-|b=n|sz=20|f=David] החשבון נחסם על-ידי מנהל. פנה אליו.
+[-|-|b=n|sz=20|f=David] Username must be 3-30 chars.
+[-|-|b=n|sz=20|f=David] שם המשתמש 3 עד 30 תווים, אותיות / ספרות / _.
+[-|-|b=n|sz=20|f=David] Password must be at least 6 characters.
+[-|-|b=n|sz=20|f=David] 6 תווים מינימום.
+[-|-|b=n|sz=20|f=David] Could not reach the server
+[-|-|b=n|sz=20|f=David] WCF Service Host לא רץ, או שיש בעיית רשת. ודא שה-F5 בוצע.
+[-|-|b=n|sz=20|f=David] Image too large
+[-|-|b=n|sz=20|f=David] הקטן את התמונה, 1.5MB מקסימום.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 13 · רטרוספקטיבה אישית
+[2|-|b=Y|sz=-|f=David] 13.1  איך זה התחיל
+[-|-|b=n|sz=-|f=David] הפרויקט נולד מתוך החלטה לקחת על עצמי משהו שדורש ארכיטקטורה אמיתית, לא רק תוכנית-לימודים. דמקה היא בחירה לא ברורה במבט ראשון, היא נראית פשוטה, אבל ברגע שמתחילים לחשוב על ׳שני שחקנים, כל אחד במחשב שלו׳, הופכים פתאום לעוסקים בשרת מצב, מנוע חוקיות, מסד נתונים, ופרוטוקול תקשורת. הבחירה הזו הוכחה כמתאימה: היא הציבה אותי בפני שאלות שלא הייתי מצליח להעלות בפרויקט יחיד-משתמש.
+[2|-|b=Y|sz=-|f=David] 13.2  הצלחות
+[a|-|b=n|sz=-|f=David] מנוע משחק (CheckersEngine) שאוכף 100% מחוקי הדמקה אך ורק בצד השרת. שום לקוח לא יכול לרמות.
+[a|-|b=n|sz=-|f=David] אותו חוזה WCF שעובד על שלושה sticks שונים, .NET Framework 4.7.2 (שרת + WPF), .NET 8 (Web), .NET 9 (MAUI). תאימות נשמרה דרך הקפדה על DataContract Namespace זהה.
+[a|-|b=n|sz=-|f=David] מעבר נקי מ-HTTP ל-net.tcp עקב URL-ACL, ולחזור ל-HTTP במקביל בשביל המובייל.
+[a|-|b=n|sz=-|f=David] Replay מלא של משחק עם BoardAfter שמאוחסן בכל Move. ניווט מהלך-במהלך בלי חישובים מחדש.
+[a|-|b=n|sz=-|f=David] עיצוב ערכת נושא כהה עקבית בשני הלקוחות (WPF + MAUI), כולל DatePicker עם templates משלי.
+[a|-|b=n|sz=-|f=David] זיהוי ניתוקים אוטומטי + פנלטי Elo דרך Timer בשרת. הפיצ׳ר היחיד שלא ידעתי איך לבנות כשהתחלתי.
+[a|-|b=n|sz=-|f=David] אוטו-ריענון חכם באתר שלא קוטע הקלדה.
+[2|-|b=Y|sz=-|f=David] 13.3  קשיים ופתרונות
+[-|-|b=Y|sz=20|f=David] מה היה הקושי
+[-|-|b=Y|sz=20|f=David] איך פתרתי
+[-|-|b=n|sz=20|f=David] URL-ACL ב-HTTP.SYS, שרת לא מצליח לפתוח endpoint
+[-|-|b=n|sz=20|f=David] מעבר ל-NetTcpBinding שלא עובר HTTP.SYS, ושמירת HTTP על ה-prefix Design_Time_Addresses שיש לו URL Reservation אוטומטית של VS
+[-|-|b=n|sz=20|f=David] WCF Test Client לא הסתדר עם async OperationContracts כפולים
+[-|-|b=n|sz=20|f=David] הסרת Async מהאינטרפייס; svcutil מייצר אותם בלקוח אוטומטית
+[-|-|b=n|sz=20|f=David] DatePicker מובנה לא מתעדכן יפה לערכת נושא כהה
+[-|-|b=n|sz=20|f=David] כתיבת ControlTemplate מלא ל-CalendarItem, CalendarDayButton, CalendarButton
+[-|-|b=n|sz=20|f=David] רשימות פולימורפיות ב-DataContract לא הסתרגו
+[-|-|b=n|sz=20|f=David] הוספת [KnownType] על Base לכל מחלקה יורשת
+[-|-|b=n|sz=20|f=David] Concurrency במטצמייקינג, חשש שאדם יקבל שני יריבים
+[-|-|b=n|sz=20|f=David] Lock פנימי ב-GameManager.JoinMatchmakingAsync שמתבצע באטומיות
+[-|-|b=n|sz=20|f=David] Hebrew RTL בסקריפט הזה, Word זרק שגיאות בכל פעם
+[-|-|b=n|sz=20|f=David] שימוש בקבועים מספריים של WdReadingOrder ו-WdBuiltInStyle במקום שמות באנגלית
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] 13.4  מה למדתי
+[-|-|b=n|sz=-|f=David] מעבר לחומר הטכנולוגי, הפרויקט עיצב את הגישה שלי לכמה דברים:
+[a|-|b=n|sz=-|f=David] PBKDF2-SHA256 וההבדל בינו לבין hash פשוט. למה איטרציות חוזרות עוצרות Brute Force, ולמה salt חיוני נגד Rainbow Tables.
+[a|-|b=n|sz=-|f=David] .NET MAUI, מחליף Xamarin Forms; איך לבנות multi-target csproj אחד שעובר Android, Windows, ו-iOS.
+[a|-|b=n|sz=-|f=David] ASP.NET Core 8 Razor Pages עם Cookie Authentication ו-Claims.
+[a|-|b=n|sz=-|f=David] ValidationRule ב-WPF, איך לכתוב בדיקת שדה שעובדת בזמן אמת ב-Binding.
+[a|-|b=n|sz=-|f=David] IValueConverter, המרה דינמית בין סוגים בתוך XAML.
+[a|-|b=n|sz=-|f=David] RoutedEvent ב-UserControl, איך לחשוף event מ-UserControl פנימי החוצה למסך מארח.
+[a|-|b=n|sz=-|f=David] מנוע Elo, חישוב הציפייה הסטטיסטית של ניצחון, וההפעלה של K-factor.
+[2|-|b=Y|sz=-|f=David] 13.5  לו היה לי עוד זמן
+[a|-|b=n|sz=-|f=David] SignalR למחזור מצב המשחק בזמן אמת במקום polling של 500 מ״ש.
+[a|-|b=n|sz=-|f=David] מנוע AI חזק יותר לבוט, minimax עם alpha-beta pruning.
+[a|-|b=n|sz=-|f=David] SQL Server / SQLite במקום Microsoft Access לביצועים טובים יותר.
+[a|-|b=n|sz=-|f=David] טורנירים, סדרת משחקים, גמר ונצחון.
+[a|-|b=n|sz=-|f=David] תמיכה ב-OAuth (Google / Apple Login).
+[a|-|b=n|sz=-|f=David] Push Notifications אמיתיות (Firebase) על מובייל.
+[a|-|b=n|sz=-|f=David] מערכת חברים והזמנות אישיות.
+[a|-|b=n|sz=-|f=David] צ׳אט בזמן אמת בין שני השחקנים.
+[2|-|b=Y|sz=-|f=David] 13.6  שלוש תובנות עיקריות
+[-|-|b=n|sz=-|f=David] ראשית, ארכיטקטורה נכונה מראש חוסכת המון זמן בהמשך. ההחלטה לבנות Base ו-BaseDB אבסטרקטיים בתחילת הפרויקט שילמה את עצמה כשהוספתי את הטבלה השלישית (Moves): לקח לי כחצי שעה במקום יום עבודה.
+[-|-|b=n|sz=-|f=David] שנית, הפרדה בין שכבות התבטאה במצב שבו הוספתי endpoint HTTP ל-MAUI: לא נדרשו שינויים ב-BusinessLogic או ב-ViewDB, רק ב-App.config. זאת ההוכחה ש׳הארכיטקטורה השכבתית עבדה׳.
+[-|-|b=n|sz=-|f=David] שלישית, פרויקט תוכנה אמיתי הוא 30% תכנות ו-70% ניתוח, עיצוב, בדיקות, וטיפול במקרי קצה. המקרים הקיצוניים שתפסו לי הכי הרבה זמן (URL-ACL, ניתוקים, סנכרון תור, פולימורפיזם ב-DataContract) לא היו על ראש סדר העדיפויות בהתחלה. כשהבנתי את זה, הגישה שלי השתנתה מהיסוד.
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] פרק 14 · רשימת מקורות
+[2|-|b=Y|sz=-|f=David] 14.1  מקורות מיקרוסופט (Microsoft Learn)
+[a|-|b=n|sz=-|f=David] Windows Communication Foundation (WCF). https://learn.microsoft.com/en-us/dotnet/framework/wcf/
+[a|-|b=n|sz=-|f=David] .NET Multi-platform App UI (.NET MAUI). https://learn.microsoft.com/en-us/dotnet/maui/
+[a|-|b=n|sz=-|f=David] ASP.NET Core Razor Pages. https://learn.microsoft.com/en-us/aspnet/core/razor-pages/
+[a|-|b=n|sz=-|f=David] Windows Presentation Foundation (WPF). https://learn.microsoft.com/en-us/dotnet/desktop/wpf/
+[a|-|b=n|sz=-|f=David] DataContractSerializer Class. https://learn.microsoft.com/en-us/dotnet/api/system.runtime.serialization.datacontractserializer
+[a|-|b=n|sz=-|f=David] Rfc2898DeriveBytes Class (PBKDF2). https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.rfc2898derivebytes
+[a|-|b=n|sz=-|f=David] OleDbParameter Class. https://learn.microsoft.com/en-us/dotnet/api/system.data.oledb.oledbparameter
+[a|-|b=n|sz=-|f=David] System.Windows.Controls.ValidationRule. https://learn.microsoft.com/en-us/dotnet/api/system.windows.controls.validationrule
+[a|-|b=n|sz=-|f=David] IValueConverter Interface. https://learn.microsoft.com/en-us/dotnet/api/system.windows.data.ivalueconverter
+[2|-|b=Y|sz=-|f=David] 14.2  הצפנה ואבטחה (NIST + OWASP)
+[a|-|b=n|sz=-|f=David] NIST. (2017). Recommendation for Password-Based Key Derivation: Part 1: Storage Applications. NIST SP 800-132.
+[a|-|b=n|sz=-|f=David] OWASP. (2023). SQL Injection Prevention Cheat Sheet. https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html
+[a|-|b=n|sz=-|f=David] OWASP. (2023). Password Storage Cheat Sheet. https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
+[2|-|b=Y|sz=-|f=David] 14.3  משחק ודירוג
+[a|-|b=n|sz=-|f=David] Wikipedia. Elo rating system. https://en.wikipedia.org/wiki/Elo_rating_system
+[a|-|b=n|sz=-|f=David] Wikipedia. English draughts (American checkers). https://en.wikipedia.org/wiki/English_draughts
+[2|-|b=Y|sz=-|f=David] 14.4  הקשר לימודי
+[a|-|b=n|sz=-|f=David] משרד החינוך. (2024). הנחיות לכתיבת תיק פרויקט בחלופה: שירותי אינטרנט, תכנות אסינכרוני ומסדי נתונים. אגף טכנולוגיה.
+[a|-|b=n|sz=-|f=David] משרד החינוך. (2024). מחוון להערכת פרויקט בהנדסת תוכנה ברמת 5 יחידות לימוד. אגף מגמות מדעיות-הנדסיות.
+[-|-|b=n|sz=-|f=-] (empty)
+[1|-|b=Y|sz=44|f=David] נספח א · מטריצת מענה למחוון
+[-|-|b=n|sz=-|f=David] המטריצה הבאה מציגה את התאמה הישירה בין כל סעיף במחוון של חלופת ׳שירותי אינטרנט, תכנות אסינכרוני ומסדי נתונים׳ לבין הפרק והסעיף שבו הדרישה מטופלת בפרויקט. הסידור מאפשר בדיקה מהירה.
+[2|-|b=Y|sz=-|f=David] א.1  סעיפי החובה (1-8)
+[-|-|b=Y|sz=20|f=David] מס׳
+[-|-|b=Y|sz=20|f=David] דרישה
+[-|-|b=Y|sz=20|f=David] היכן בפרויקט
+[-|-|b=n|sz=20|f=David] 1
+[-|-|b=n|sz=20|f=David] ממשק למערכת מידע: שליפה, הוספה, עדכון, מחיקה ממספר טבלאות
+[-|-|b=n|sz=20|f=David] פרק 4 (DB) + פרק 6 (WCF). 24 OperationContracts מול 3 טבלאות עם CRUD מלא.
+[-|-|b=n|sz=20|f=David] 2
+[-|-|b=n|sz=20|f=David] שימוש בנתונים ממסד נתונים, כולל פקדים
+[-|-|b=n|sz=20|f=David] פרק 4 (Access ArchiveData3.accdb) + פרק 7 (DataGrid, ItemsControl, ListBox ב-WPF; CollectionView ב-MAUI).
+[-|-|b=n|sz=20|f=David] 3
+[-|-|b=n|sz=20|f=David] DB מנורמל עם לפחות טבלת קישור
+[-|-|b=n|sz=20|f=Arial,David] פרק 4. 3 טבלאות, Moves היא טבלת הקישור Game ↔ Users דרך MoverColor.
+[-|-|b=n|sz=20|f=David] 4
+[-|-|b=n|sz=20|f=David] ממשק נח בסביבות שונות
+[-|-|b=n|sz=20|f=David] פרק 7 (WPF, 8 מסכים), פרק 8 (Razor Pages), פרק 9 (MAUI, 6 דפים).
+[-|-|b=n|sz=20|f=David] 5
+[-|-|b=n|sz=20|f=David] ניהול נתונים חכם, שאילתות, חיתוך, עדכון
+[-|-|b=n|sz=20|f=David] פרק 4.3, JOIN + COUNT + ORDER BY. פרק 6.4, ScalarAsync לאגגרגציות.
+[-|-|b=n|sz=20|f=David] 6
+[-|-|b=n|sz=20|f=David] OOP כולל ירושות
+[-|-|b=n|sz=20|f=Arial,David] פרק 5 + פרק 6.4, Base→User/GameRecord/Move; BaseDB→UsersDB/GamesDB/MovesDB. WPF: ViewModelBase + RelayCommand.
+[-|-|b=n|sz=20|f=David] 7
+[-|-|b=n|sz=20|f=David] רמות הרשאה (לפחות 2)
+[-|-|b=n|sz=20|f=David] פרק 7.4, UserRole.Player vs UserRole.Admin. כפתור Admin panel רק כש-Role==Admin.
+[-|-|b=n|sz=20|f=David] 8
+[-|-|b=n|sz=20|f=David] שירות אינטרנט
+[-|-|b=n|sz=20|f=David] פרק 6 כולו, WCF Service Library, ICheckersService עם 24 OperationContracts.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] א.2  הרחבות סעיף 9
+[-|-|b=Y|sz=20|f=David] סעיף
+[-|-|b=Y|sz=20|f=David] דרישה
+[-|-|b=Y|sz=20|f=David] היכן בפרויקט
+[-|-|b=n|sz=20|f=David] 9.4
+[-|-|b=n|sz=20|f=David] UserControl עם נציגים
+[-|-|b=n|sz=20|f=David] פרק 7.3, CheckersBoardControl, PlayerCardControl, PasswordBoxWithToggle. כל אחד חושף RoutedEvent.
+[-|-|b=n|sz=20|f=David] 9.5
+[-|-|b=n|sz=20|f=David] ירושות ממחלקות שלי
+[-|-|b=n|sz=20|f=David] פרק 5 + 6.4, Base, BaseDB, ViewModelBase, RelayCommand.
+[-|-|b=n|sz=20|f=David] 9.6
+[-|-|b=n|sz=20|f=David] תכנות מונחה אירועים מתקדם
+[-|-|b=n|sz=20|f=David] פרק 7.3, RoutedEvent ב-UserControls. WCF גם מייצר אוטומטית BeginXxx/EndXxx delegates.
+[-|-|b=n|sz=20|f=David] 9.9
+[-|-|b=n|sz=20|f=David] הצפנה לנתונים רגישים
+[-|-|b=n|sz=20|f=David] פרק 10.1, PBKDF2-SHA256 ב-PasswordHasher.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] א.3  הרחבות סעיף 10
+[-|-|b=Y|sz=20|f=David] סעיף
+[-|-|b=Y|sz=20|f=David] דרישה
+[-|-|b=Y|sz=20|f=David] היכן בפרויקט
+[-|-|b=n|sz=20|f=David] 10.1
+[-|-|b=n|sz=20|f=David] Value Converters
+[-|-|b=n|sz=20|f=David] פרק 7.2, 11 מחלקות IValueConverter בתיקייה Converters/.
+[-|-|b=n|sz=20|f=David] 10.2
+[-|-|b=n|sz=20|f=David] Validation Rules
+[-|-|b=n|sz=20|f=David] פרק 7.2, 6 מחלקות שיורשות מ-System.Windows.Controls.ValidationRule.
+[-|-|b=n|sz=20|f=David] 10.4
+[-|-|b=n|sz=20|f=David] Async / Threads
+[-|-|b=n|sz=20|f=David] כל הפרויקט. ServiceHelper ב-MAUI, async/await בכל ViewModel ב-WPF, OnGetAsync ב-Razor.
+[-|-|b=n|sz=20|f=David] 10.7
+[-|-|b=n|sz=20|f=David] הגנה מפני SQL Injection
+[-|-|b=n|sz=20|f=David] פרק 10.2, שאילתות פרמטריות בלעדיות דרך BaseDB.
+[-|-|b=n|sz=20|f=David] 10.8
+[-|-|b=n|sz=20|f=David] קוד אסינכרוני / טיימרים
+[-|-|b=n|sz=20|f=David] DispatcherTimer במשחק (500 מ״ש) ובלובי (5 שנ׳). System.Timers.Timer לזיהוי ניתוקים. setInterval באתר.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=Y|sz=-|f=David] א.4  סיכום אגגרגטיבי
+[a|-|b=n|sz=-|f=David] 8 / 8 סעיפי חובה.
+[a|-|b=n|sz=-|f=David] 4 הרחבות בסעיף 9 (UserControl, ירושה, אירועים, הצפנה).
+[a|-|b=n|sz=-|f=David] 5 הרחבות בסעיף 10 (Value Converter, Validation, Async, SQL Injection, טיימרים).
+[-|-|b=n|sz=-|f=-] (empty)
+[1|-|b=Y|sz=44|f=David] נספח ב · תהליכים מרכזיים בפירוט מלא
+[2|-|b=Y|sz=-|f=David] ב.1  הרשמת שחקן (חוצה את כל השכבות)
+[-|-|b=n|sz=-|f=David] 1. אורח לוחץ על Sign up במסך LoginView. משתמש ב-TabControl לפיצול בין Sign in ל-Sign up.
+[-|-|b=n|sz=-|f=David] 2. ממלא username + password (חובה), ובאופציונלי email/birthDate/country. ולידציה רצה בזמן אמת על ה-Bindings.
+[-|-|b=n|sz=-|f=David] 3. לחיצה על Create account: code-behind דוחף את הסיסמה ל-VM, מריץ RegisterCommand.
+[-|-|b=n|sz=-|f=David] 4. RegisterCommand קורא ל-CheckersClient.RegisterAsync, wrapper של ChannelFactory + Channel.Register.
+[-|-|b=n|sz=-|f=David] 5. הקריאה עוברת ב-net.tcp לשרת. CheckersService.RegisterAsync מנתב ל-AuthService.
+[-|-|b=n|sz=-|f=David] 6. AuthService בודק UsersDB.GetByUsernameAsync, אם השם תפוס, מחזיר AuthResult.Fail.
+[-|-|b=n|sz=-|f=David] 7. אחרת: PasswordHasher.Hash מצפין; UsersDB.InsertAsync שומר את המשתמש החדש.
+[-|-|b=n|sz=-|f=David] 8. CheckersService מנפיק Guid token, רושם RegisterOnline ב-GameManager, ומחזיר LoginResult.Ok.
+[-|-|b=n|sz=-|f=David] 9. הלקוח מקבל את התשובה. AppViewModel.GoToLobby, LobbyView מוצג.
+[-|-|b=n|sz=-|f=David] 10. DispatcherTimer בלובי מתחיל לבחון את השרת (5 שניות) על top players, online, history.
+[2|-|b=Y|sz=-|f=David] ב.2  ביצוע מהלך + עדכון Elo
+[-|-|b=n|sz=-|f=David] 1. שחקן לוחץ על כלי ב-CheckersBoardControl. SquareClicked event קם.
+[-|-|b=n|sz=-|f=David] 2. GameViewModel.HandleSquareClick: אם זה ריבוע ראשון, קורא ל-GetLegalMovesForSquareAsync; אם זה ריבוע יעד, בונה List<Square> path.
+[-|-|b=n|sz=-|f=David] 3. MakeMoveAsync שולח ל-WCF.
+[-|-|b=n|sz=-|f=Arial,David] 4. השרת: RequireAuthAsync → GameManager.SubmitMoveAsync → CheckersEngine.GenerateLegalMoves → אימות שה-path נמצא ברשימה.
+[-|-|b=n|sz=-|f=David] 5. ApplyMove מעדכן את ה-Board. MovesDB.InsertAsync שומר את המהלך עם Notation, BoardAfter ו-Path Serialized.
+[-|-|b=n|sz=-|f=David] 6. אם משחק נגד בוט, BotEngine.PickMove מבצע מהלך משלו אוטומטית.
+[-|-|b=n|sz=-|f=David] 7. בדיקת תוצאה: NoPieces או NoLegalMoves => המשחק הסתיים.
+[-|-|b=n|sz=-|f=David] 8. FinalizeGameAsync: חישוב Elo. K=20. Expected = 1 / (1 + 10^((Rb-Ra)/400)). מנצח: Ra += K*(1-Ea); מפסיד: Rb += K*(0-Eb); תיקו: שניהם 0.5.
+[-|-|b=n|sz=-|f=David] 9. GamesDB.UpdateOutcomeAsync: Status, EndReason, WinnerId, EndedAt, FinalBoard, MoveCount.
+[-|-|b=n|sz=-|f=David] 10. UsersDB: מתעדכנים Wins/Losses/Draws/Rating לשני השחקנים.
+[-|-|b=n|sz=-|f=David] 11. MoveResult מוחזר ללקוח. הוא מצייר את הלוח החדש.
+[-|-|b=n|sz=-|f=David] 12. בקריאה הבאה ל-GetCurrentGame, Status שונה מ-InProgress, הלקוח עובר ל-GameOverView.
+[2|-|b=Y|sz=-|f=David] ב.3  זיהוי ניתוק וקנס Elo
+[-|-|b=n|sz=-|f=David] 1. שחקן סוגר את החלון באמצע משחק, לא הספיק לקרוא ל-Resign.
+[-|-|b=n|sz=-|f=David] 2. בשרת: System.Timers.Timer בשם _staleSweepTimer רץ כל 5 שניות.
+[-|-|b=n|sz=-|f=David] 3. כל קריאה מאומתת מעדכנת _lastSeen[userId] = DateTime.UtcNow דרך TouchLastSeen.
+[-|-|b=n|sz=-|f=David] 4. ה-Sweep סורק את כל המשחקים הפעילים. שחקני בוט מדולגים. מחושב diff = now - _lastSeen[userId].
+[-|-|b=n|sz=-|f=David] 5. אם diff > 30 שניות, userId נאסף לרשימת disconnected (תחת lock).
+[-|-|b=n|sz=-|f=David] 6. מחוץ ל-lock: לכל disconnected מבוצע HandleDisconnectAsync.
+[-|-|b=n|sz=-|f=David] 7. HandleDisconnectAsync מסמן את המשחק EndReason=Disconnection, מעניק ניצחון ליריב, וקורא ל-FinalizeGameAsync.
+[-|-|b=n|sz=-|f=David] 8. ב-FinalizeGameAsync, המבדק על EndReason==Disconnection פועל: המנצח מקבל Elo רגיל; המנותק מקבל פנלטי נוסף של 20 נקודות (newRating -= 20), עם רצפה של 100.
+[2|-|b=Y|sz=-|f=David] ב.4  Replay של משחק שהסתיים
+[-|-|b=n|sz=-|f=David] 1. שחקן לוחץ על שורה בהיסטוריית המשחקים בפרופיל.
+[-|-|b=n|sz=-|f=David] 2. AppViewModel.GoToReplay(gameId) טוען ReplayViewModel.
+[-|-|b=n|sz=-|f=David] 3. ReplayViewModel.LoadAsync קורא ל-GetMoveHistoryAsync(gameId), מחזיר List<Move> ממוין לפי MoveNumber.
+[-|-|b=n|sz=-|f=David] 4. כל Move מומר ל-MoveRow (index 1..N) ומופיע ברשימה בצד.
+[-|-|b=n|sz=-|f=David] 5. JumpTo(0) מציג את מצב הלוח ההתחלתי (Board.StartingPosition).
+[-|-|b=n|sz=-|f=David] 6. JumpTo(i) דוחף את BoardAfter של ה-Move ה-i למודל הלוח. CheckersBoardControl מצייר אותו אוטומטית.
+[-|-|b=n|sz=-|f=David] 7. כפתורי First / Prev / Play / Next / Last נווטים. מצב Play מפעיל DispatcherTimer ב-700 מ״ש שמתקדם אוטומטית.
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=Y|sz=44|f=David] נספח ג · דוגמאות קוד מורחבות
+[2|-|b=Y|sz=-|f=David] ג.1  Model: Base.cs
+[-|-|b=n|sz=18|f=Consolas] using System.Runtime.Serialization;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] namespace Model
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] [DataContract]
+[-|-|b=n|sz=18|f=Consolas] [KnownType(typeof(User))]
+[-|-|b=n|sz=18|f=Consolas] [KnownType(typeof(GameRecord))]
+[-|-|b=n|sz=18|f=Consolas] [KnownType(typeof(Move))]
+[-|-|b=n|sz=18|f=Consolas] public class Base
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] [DataMember]
+[-|-|b=n|sz=18|f=Consolas] public int Id { get; set; }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public Base() { Id = -1; }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] ג.2  Model: User.cs
+[-|-|b=n|sz=18|f=Consolas] [DataContract]
+[-|-|b=n|sz=18|f=Consolas] public class User : Base
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public string   Username       { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public string   PasswordHash   { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public string   Email          { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public UserRole Role           { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public int      Wins           { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public int      Losses         { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public int      Draws          { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public int      Rating         { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public DateTime CreatedAt      { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public bool     IsBanned       { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public byte[]   ProfilePicture { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public DateTime? BirthDate     { get; set; }
+[-|-|b=n|sz=18|f=Consolas] [DataMember] public string   Country        { get; set; }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public int? Age
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] get
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (!BirthDate.HasValue) return null;
+[-|-|b=n|sz=18|f=Consolas] DateTime today = DateTime.Today;
+[-|-|b=n|sz=18|f=Consolas] int years = today.Year - BirthDate.Value.Year;
+[-|-|b=n|sz=18|f=Consolas] if (BirthDate.Value.Date > today.AddYears(-years)) years--;
+[-|-|b=n|sz=18|f=Consolas] return years;
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public int GamesPlayed => Wins + Losses + Draws;
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] ג.3  BusinessLogic: PasswordHasher.cs (מלא)
+[-|-|b=n|sz=18|f=Consolas] public static class PasswordHasher
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] private const int SaltBytes  = 16;
+[-|-|b=n|sz=18|f=Consolas] private const int HashBytes  = 32;
+[-|-|b=n|sz=18|f=Consolas] private const int Iterations = 60_000;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static string Hash(string password)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (password == null) throw new ArgumentNullException(nameof(password));
+[-|-|b=n|sz=18|f=Consolas] byte[] salt = new byte[SaltBytes];
+[-|-|b=n|sz=18|f=Consolas] using (var rng = RandomNumberGenerator.Create())
+[-|-|b=n|sz=18|f=Consolas] rng.GetBytes(salt);
+[-|-|b=n|sz=18|f=Consolas] byte[] hash = Pbkdf2(password, salt, Iterations, HashBytes);
+[-|-|b=n|sz=18|f=Consolas] return Iterations.ToString() + "." +
+[-|-|b=n|sz=18|f=Consolas] Convert.ToBase64String(salt)  + "." +
+[-|-|b=n|sz=18|f=Consolas] Convert.ToBase64String(hash);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static bool Verify(string password, string stored)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (string.IsNullOrEmpty(stored)) return false;
+[-|-|b=n|sz=18|f=Consolas] string[] parts = stored.Split('.');
+[-|-|b=n|sz=18|f=Consolas] if (parts.Length != 3) return false;
+[-|-|b=n|sz=18|f=Consolas] if (!int.TryParse(parts[0], out int iter)) return false;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] byte[] salt, expected;
+[-|-|b=n|sz=18|f=Consolas] try
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] salt     = Convert.FromBase64String(parts[1]);
+[-|-|b=n|sz=18|f=Consolas] expected = Convert.FromBase64String(parts[2]);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] catch { return false; }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] byte[] actual = Pbkdf2(password, salt, iter, expected.Length);
+[-|-|b=n|sz=18|f=Consolas] return ConstantTimeEquals(actual, expected);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] private static byte[] Pbkdf2(string password, byte[] salt, int iterations, int outputBytes)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] using (var kdf = new Rfc2898DeriveBytes(password, salt, iterations,
+[-|-|b=n|sz=18|f=Consolas] HashAlgorithmName.SHA256))
+[-|-|b=n|sz=18|f=Consolas] return kdf.GetBytes(outputBytes);
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] private static bool ConstantTimeEquals(byte[] a, byte[] b)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] if (a.Length != b.Length) return false;
+[-|-|b=n|sz=18|f=Consolas] int diff = 0;
+[-|-|b=n|sz=18|f=Consolas] for (int i = 0; i < a.Length; i++) diff |= a[i] ^ b[i];
+[-|-|b=n|sz=18|f=Consolas] return diff == 0;
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] ג.4  CheckersEngine, קטע מ-GenerateLegalMoves
+[-|-|b=n|sz=18|f=Consolas] // אכיפה של חובת אכילה: אם יש לפחות אכילה אחת, slides נדחים.
+[-|-|b=n|sz=18|f=Consolas] public static List<Move> GenerateLegalMoves(Board b)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var captures = new List<Move>();
+[-|-|b=n|sz=18|f=Consolas] var slides   = new List<Move>();
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] for (int f = 0; f < 8; f++)
+[-|-|b=n|sz=18|f=Consolas] for (int r = 0; r < 8; r++)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var p = b[f, r];
+[-|-|b=n|sz=18|f=Consolas] if (p == null || p.Color != b.SideToMove) continue;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] // חיפוש שרשורי אכילות (DFS)
+[-|-|b=n|sz=18|f=Consolas] var caps = FindCaptures(b, new Square(f, r), p);
+[-|-|b=n|sz=18|f=Consolas] if (caps.Count > 0) { captures.AddRange(caps); continue; }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] // אם אין captures לאף אחד אחר עד עתה, אפשר slide רגיל
+[-|-|b=n|sz=18|f=Consolas] if (captures.Count == 0)
+[-|-|b=n|sz=18|f=Consolas] slides.AddRange(FindSlides(b, new Square(f, r), p));
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] return captures.Count > 0 ? captures : slides;
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] ג.5  MAUI: ServiceHelper.cs (מלא)
+[-|-|b=n|sz=18|f=Consolas] using System.ServiceModel;
+[-|-|b=n|sz=18|f=Consolas] using CheckersMaui.Services.CheckersServer;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] namespace CheckersMaui.Services;
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static class ServiceHelper
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] public const string ServiceHost = "10.0.2.2";
+[-|-|b=n|sz=18|f=Consolas] public const string ServiceUrl  =
+[-|-|b=n|sz=18|f=Consolas] "http://" + ServiceHost + ":8733/Design_Time_Addresses/CheckersService/";
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static CheckersServiceClient GetClient()
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var binding = new BasicHttpBinding(BasicHttpSecurityMode.None)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] MaxReceivedMessageSize = 5_000_000,
+[-|-|b=n|sz=18|f=Consolas] OpenTimeout    = TimeSpan.FromSeconds(15),
+[-|-|b=n|sz=18|f=Consolas] SendTimeout    = TimeSpan.FromSeconds(30),
+[-|-|b=n|sz=18|f=Consolas] ReceiveTimeout = TimeSpan.FromSeconds(30),
+[-|-|b=n|sz=18|f=Consolas] };
+[-|-|b=n|sz=18|f=Consolas] return new CheckersServiceClient(binding, new EndpointAddress(ServiceUrl));
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static async Task<T> CallAsync<T>(Func<CheckersServiceClient, Task<T>> action)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var c = GetClient();
+[-|-|b=n|sz=18|f=Consolas] try { return await action(c); }
+[-|-|b=n|sz=18|f=Consolas] finally { try { await c.CloseAsync(); } catch { c.Abort(); } }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=18|f=Consolas] public static async Task CallAsync(Func<CheckersServiceClient, Task> action)
+[-|-|b=n|sz=18|f=Consolas] {
+[-|-|b=n|sz=18|f=Consolas] var c = GetClient();
+[-|-|b=n|sz=18|f=Consolas] try { await action(c); }
+[-|-|b=n|sz=18|f=Consolas] finally { try { await c.CloseAsync(); } catch { c.Abort(); } }
+[-|-|b=n|sz=18|f=Consolas] }
+[-|-|b=n|sz=18|f=Consolas] }
+[2|-|b=Y|sz=-|f=David] ג.6  Connection String של Access
+[-|-|b=n|sz=18|f=Consolas] Provider=Microsoft.ACE.OLEDB.12.0;
+[-|-|b=n|sz=18|f=Consolas] Data Source=<exe-folder>\..\..\..\ViewDB\ArchiveData3.accdb;
+[-|-|b=n|sz=18|f=Consolas] Persist Security Info=False
+[-|-|b=n|sz=-|f=-] (empty)

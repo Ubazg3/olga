@@ -1,0 +1,98 @@
+<UserControl x:Class="CheckersClient.UserControls.CheckersBoardControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:helpers="clr-namespace:CheckersClient.Helpers"
+             d:DataContext="{d:DesignInstance Type=helpers:BoardModel, IsDesignTimeCreatable=False}"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <!-- One DataTemplate for every cell. The Border captures the
+             click; the inner overlays show selection / legal-move /
+             last-move state. -->
+        <DataTemplate x:Key="CellTemplate" DataType="{x:Type helpers:BoardCell}">
+            <Border MouseLeftButtonDown="OnCellClick"
+                    BorderThickness="0"
+                    SnapsToDevicePixels="True">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background"
+                                Value="{StaticResource DarkSquareBrush}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsPlayable}" Value="False">
+                                <Setter Property="Background"
+                                        Value="{StaticResource LightSquareBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <Grid>
+                    <!-- Soft highlight on the source / destination of
+                         the most recent move. -->
+                    <Border Background="#55F4D060"
+                            Visibility="{Binding IsLastMove,
+                                         Converter={StaticResource BoolToVis}}" />
+
+                    <!-- Strong highlight when the user has clicked
+                         their piece. -->
+                    <Border BorderBrush="{StaticResource SelectedRingBrush}"
+                            BorderThickness="3"
+                            Visibility="{Binding IsSelected,
+                                         Converter={StaticResource BoolToVis}}" />
+
+                    <!-- The piece itself. -->
+                    <Grid Margin="6"
+                          Visibility="{Binding PieceCode,
+                                       Converter={StaticResource PieceToVis}}">
+                        <!-- Outer disc shadow -->
+                        <Ellipse Margin="2,4,-2,-4" Fill="#80000000" />
+                        <!-- Disc -->
+                        <Ellipse Fill="{Binding PieceCode,
+                                        Converter={StaticResource PieceToBrush}}"
+                                 Stroke="#22000000"
+                                 StrokeThickness="1" />
+                        <!-- Inner ring -->
+                        <Ellipse Margin="6"
+                                 Stroke="#33FFFFFF"
+                                 StrokeThickness="1.4"
+                                 Fill="Transparent" />
+                        <!-- King crown -->
+                        <TextBlock Text="♛"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="22"
+                                   Foreground="#F4D060"
+                                   Visibility="{Binding PieceCode,
+                                                Converter={StaticResource PieceToKing}}" />
+                    </Grid>
+
+                    <!-- Legal-target dot. -->
+                    <Ellipse Width="22" Height="22"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Fill="#9966EE66"
+                             Stroke="#FF66EE66"
+                             StrokeThickness="2"
+                             IsHitTestVisible="False"
+                             Visibility="{Binding IsLegalTarget,
+                                          Converter={StaticResource BoolToVis}}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Border BorderBrush="{StaticResource BoardFrameBrush}"
+            BorderThickness="6"
+            CornerRadius="4">
+        <ItemsControl ItemsSource="{Binding Cells}"
+                      ItemTemplate="{StaticResource CellTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="8" Columns="8" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </Border>
+</UserControl>

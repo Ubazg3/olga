@@ -1,0 +1,106 @@
+<Window x:Class="CheckersClient.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About Checkers"
+        Width="520" Height="640"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Background="{StaticResource WindowBackgroundBrush}">
+    <Grid Margin="32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"   />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Logo + name -->
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <Border Width="90" Height="90"
+                    Background="{StaticResource AccentBrush}"
+                    CornerRadius="45"
+                    HorizontalAlignment="Center">
+                <TextBlock Text="♛"
+                           FontSize="56"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{StaticResource AccentTextBrush}" />
+            </Border>
+            <TextBlock Text="Checkers"
+                       Style="{StaticResource H1Text}"
+                       HorizontalAlignment="Center"
+                       Margin="0,12,0,0" />
+            <TextBlock Text="Online multi-player board game"
+                       Style="{StaticResource MutedText}"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <Border Grid.Row="1" Height="1"
+                Background="{StaticResource DividerBrush}"
+                Margin="0,24" />
+
+        <!-- Project info table -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource MutedText}" Text="Version" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource BodyText}" Text="1.0.0" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource MutedText}" Text="Year" Margin="0,6,0,0" />
+            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource BodyText}" Text="2026" Margin="0,6,0,0" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource MutedText}" Text="Built with" Margin="0,6,0,0" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource BodyText}"
+                       Text="WPF · WCF · C# · Microsoft Access" Margin="0,6,0,0" />
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource MutedText}" Text="Architecture" Margin="0,6,0,0" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource BodyText}"
+                       Text="Three-tier server: Model + ViewDB + BusinessLogic"
+                       Margin="0,6,0,0" TextWrapping="Wrap" />
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource MutedText}" Text="Author" Margin="0,6,0,0" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource BodyText}"
+                       Text="—  fill in your name in AboutWindow.xaml  —"
+                       Margin="0,6,0,0" TextWrapping="Wrap" />
+        </Grid>
+
+        <!-- Description -->
+        <Border Grid.Row="3" Style="{StaticResource Card}" Margin="0,20,0,0" Padding="16">
+            <StackPanel>
+                <TextBlock Style="{StaticResource H3Text}" Text="ABOUT" Margin="0,0,0,8" />
+                <TextBlock Style="{StaticResource BodyText}" TextWrapping="Wrap">
+                    A real-time, multi-player checkers game written for the Software
+                    Engineering final project. The server hosts a stateless WCF service
+                    over BasicHttpBinding, persists every game and move to a normalised
+                    Microsoft Access database, and the WPF client connects through an
+                    auto-generated proxy under "Connected Services".
+                    <LineBreak /><LineBreak />
+                    Highlights: PBKDF2 password hashing, parameterised SQL (no
+                    injection), async DB I/O, two permission levels (Player and
+                    Admin), value converters, validation rules, custom UserControls
+                    with delegate events, and an Elo rating system.
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+        <Button Grid.Row="4"
+                Style="{StaticResource PrimaryButton}"
+                Content="Close"
+                Click="OnCloseClick"
+                HorizontalAlignment="Right"
+                Margin="0,16,0,0"
+                Padding="32,10" />
+    </Grid>
+</Window>

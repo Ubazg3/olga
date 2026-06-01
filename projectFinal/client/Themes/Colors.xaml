@@ -1,0 +1,31 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Application chrome -->
+    <SolidColorBrush x:Key="WindowBackgroundBrush"   Color="#1A1F2A" />
+    <SolidColorBrush x:Key="PanelBackgroundBrush"    Color="#26303F" />
+    <SolidColorBrush x:Key="CardBackgroundBrush"     Color="#2F3A4D" />
+    <SolidColorBrush x:Key="DividerBrush"            Color="#3D4860" />
+
+    <!-- Text -->
+    <SolidColorBrush x:Key="PrimaryTextBrush"        Color="#F2F4F7" />
+    <SolidColorBrush x:Key="SecondaryTextBrush"      Color="#A6B0C0" />
+    <SolidColorBrush x:Key="MutedTextBrush"          Color="#6B7488" />
+
+    <!-- Accent (used for buttons, ratings, headlines) -->
+    <SolidColorBrush x:Key="AccentBrush"             Color="#F4D060" />
+    <SolidColorBrush x:Key="AccentHoverBrush"        Color="#FFE38A" />
+    <SolidColorBrush x:Key="AccentTextBrush"         Color="#1A1F2A" />
+
+    <!-- States -->
+    <SolidColorBrush x:Key="SuccessBrush"            Color="#6FC276" />
+    <SolidColorBrush x:Key="DangerBrush"             Color="#E57373" />
+    <SolidColorBrush x:Key="WarningBrush"            Color="#F0A04E" />
+    <SolidColorBrush x:Key="InfoBrush"               Color="#6699E5" />
+
+    <!-- Board -->
+    <SolidColorBrush x:Key="DarkSquareBrush"         Color="#7C5B3F" />
+    <SolidColorBrush x:Key="LightSquareBrush"        Color="#E5C898" />
+    <SolidColorBrush x:Key="BoardFrameBrush"         Color="#3A2818" />
+    <SolidColorBrush x:Key="SelectedRingBrush"       Color="#F4D060" />
+</ResourceDictionary>

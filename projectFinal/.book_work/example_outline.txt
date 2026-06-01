@@ -1,0 +1,632 @@
+[a9|-|b=n|sz=28,36,72|f=David] ‏5/5/2026‏5/5/2026‏5/5/2026‏5/5/2026ספר פרוייקט הנדסת תכנה 5 יח"למגיש: נועם בראון י"ב 2ספר פרוייקט הנדסת תכנה 5 יח"למגיש: נועם בראון י"ב 2ספר פרוייקט הנדסת תכנה 5 יח"למגיש: נועם בראון י"ב 2ספר פרוייקט הנדסת תכנה 5 יח"למגיש: נועם בראון י"ב 2
+[a9|right|b=n|sz=28|f=David] ‏5/5/2026
+[a9|right|b=n|sz=28|f=David] ‏5/5/2026
+[a9|-|b=n|sz=72|f=-] ספר פרוייקט הנדסת תכנה 5 יח"ל
+[-|-|b=n|sz=36|f=-] מגיש: נועם בראון י"ב 2
+[a9|-|b=n|sz=72|f=-] ספר פרוייקט הנדסת תכנה 5 יח"ל
+[-|-|b=n|sz=36|f=-] מגיש: נועם בראון י"ב 2
+[-|-|b=n|sz=20,26|f=David] נועם בראוןמורה: אולגה גנדלמןנועם בראוןמורה: אולגה גנדלמןנועם בראוןמורה: אולגה גנדלמןנועם בראוןמורה: אולגה גנדלמן
+[a9|center|b=n|sz=26|f=-] נועם בראון
+[a9|center|b=n|sz=20|f=-] מורה: אולגה גנדלמן
+[a9|center|b=n|sz=26|f=-] נועם בראון
+[a9|center|b=n|sz=20|f=-] מורה: אולגה גנדלמן
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[a3|-|b=n|sz=-|f=David] תוכן
+[TOC1|-|b=n|sz=-|f=-] רשימת נושאים3
+[TOC1|-|b=n|sz=-|f=-] פרק 1: מבוא (ייזום ואפיון)4
+[TOC2|-|b=n|sz=-|f=David] 1.1 רקע לפרויקט4
+[TOC2|-|b=n|sz=-|f=David] 1.2 מטרות המערכת4
+[TOC2|-|b=n|sz=-|f=David] 1.3 תיאור המערכת4
+[TOC2|-|b=n|sz=-|f=David] 1.4 סביבת הפיתוח ושפות תכנות4
+[TOC2|-|b=n|sz=-|f=David] 1.5 אתגרים מרכזיים ופתרונות4
+[TOC2|-|b=n|sz=-|f=David] 1.6 מדריך למשתמש5
+[TOC1|-|b=n|sz=-|f=-] פרק 2: ניתוח המערכת8
+[TOC2|-|b=n|sz=-|f=David] 2.1 ממשקי משתמש (UI/XAML)8
+[TOC3|-|b=n|sz=-|f=David] 2.1.1 עיצוב הממשק והנדסת אנוש (UI Design & Human Engineering)8
+[TOC3|-|b=n|sz=-|f=David] 2.1.2 פירוט דפי המערכת (XAML Pages)9
+[TOC3|-|b=n|sz=-|f=David] 2.1.3 ניהול הרשאות בממשק (Permissions & Access Control)10
+[TOC2|-|b=n|sz=-|f=David] 2.2 השרת (WCF Service)10
+[TOC3|-|b=n|sz=-|f=David] 2.2.1 ארכיטקטורת השרת (Server Architecture)10
+[TOC3|-|b=n|sz=-|f=David] 2.2.2 ממשק השירות (The Service Contract - IChessService)11
+[TOC3|-|b=n|sz=-|f=David] 2.2.3 לוגיקה עסקית וניהול מצב (Business Logic - GameManager)11
+[TOC3|-|b=n|sz=-|f=David] 2.2.4 מימוש תכנות אסינכרוני (Asynchronous Programming)12
+[TOC3|-|b=n|sz=-|f=David] 2.2.5 קישור למסד הנתונים (Data Access Layer)12
+[TOC2|-|b=n|sz=-|f=David] 2.3 שכבת המודל (Model Layer)12
+[TOC3|-|b=n|sz=-|f=David] 2.3.1 תפקיד השכבה12
+[TOC3|-|b=n|sz=-|f=David] 2.3.2 שימוש בירושה (Inheritance)12
+[TOC3|-|b=n|sz=-|f=David] 2.3.3 פירוט מחלקות מרכזיות13
+[TOC2|-|b=n|sz=-|f=David] 4.2 ניהול אוספים ומחלקות גנריות14
+[TOC1|-|b=n|sz=-|f=-] פרק 2.4: בסיס הנתונים (Database)14
+[TOC3|-|b=n|sz=-|f=David] 2.4.1 תיאור כללי14
+[TOC3|-|b=n|sz=-|f=David] 2.4.2 פירוט הטבלאות (Data Dictionary)14
+[TOC3|-|b=n|sz=-|f=David] 2.4.3 קשרי גומלין (ERD & Normalization)16
+[TOC3|-|b=n|sz=-|f=David] 2.4.4 שכבת הגישה לנתונים (Data Access Layer - ViewDB)16
+[TOC1|-|b=n|sz=-|f=-] פרק 3: מימוש הפרויקט (Project Implementation)17
+[TOC2|-|b=n|sz=-|f=David] 3.1 מבנה הקוד וניהול פרויקט17
+[TOC2|-|b=n|sz=-|f=David] 3.2 תיעוד מחלקות  - צד השרת17
+[TOC3|-|b=n|sz=-|f=David] 3.2.1 מחלקות המודל17
+[TOC3|-|b=n|sz=-|f=David] 3.2.2 מנהל המשחקים19
+[TOC3|-|b=n|sz=-|f=David] 3.2.3  ממשק בסיס הנתונים20
+[TOC3|-|b=n|sz=-|f=David] 3.2.4ממשק השרת22
+[TOC2|-|b=n|sz=-|f=David] 3.3 תיעוד מחלקות - צד הלקוח23
+[TOC3|-|b=n|sz=-|f=David] 3.3.1 שליטות גרפיקה גלובליות23
+[TOC3|-|b=n|sz=-|f=David] 3.3.2  לוגיקת החלונות ומחלקות עזר23
+[TOC1|-|b=n|sz=-|f=-] רפלקציה30
+[TOC1|-|b=n|sz=-|f=-] נספחים30
+[-|-|b=Y|sz=-|f=David] (empty)
+[1|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=n|sz=-|f=David] רשימת נושאים
+[-|-|b=n|sz=-|f=Arial] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=n|sz=-|f=David] פרק 1: מבוא (ייזום ואפיון)
+[2|-|b=n|sz=-|f=David] 1.1 רקע לפרויקט
+[-|-|b=n|sz=-|f=David] שם הפרויקט: JustChess
+[-|-|b=n|sz=-|f=David] תיאור קצר: המערכת הינה אפליקציית "לקוח-שרת" המאפשרת ניהול ומשחק שחמט בזמן אמת דרך הרשת. המערכת כוללת ניהול משתמשים, מעקב אחר דירוגי Elo, ואפשרות למשחק מול שחקנים אחרים או מול מנוע משחק (Stockfish).
+[-|-|b=n|sz=-|f=David] קהל היעד: חובבי שחמט המעוניינים לשחק ברשת, להתחרות על דירוג, ולנהל את היסטוריית המשחקים שלהם.
+[-|-|b=n|sz=-|f=David] הסיבה לבחירת הנושא: שחמט הוא משחק אסטרטגי מורכב הדורש ניהול לוגיקה סבוכה בזמן אמת, מה שמאפשר ליישם טכנולוגיות מתקדמות של תכנות אסינכרוני וניהול נתונים מורכב.
+[2|-|b=n|sz=-|f=David] 1.2 מטרות המערכת
+[-|-|b=n|sz=-|f=David] מטרת על: יצירת פלטפורמה יציבה ומאובטחת למשחקי שחמט מרובי משתמשים ברשת המבוססת על ארכיטקטורת שירותי רשת.
+[-|-|b=n|sz=-|f=David] מטרות נלוות:
+[-|-|b=n|sz=-|f=David] מימוש מערכת דירוג (Elo) אוטומטית לעדכון רמת השחקנים.
+[-|-|b=n|sz=-|f=David] מתן ממשק ניהול (Admin) לחסימה וניהול משתמשים
+[-|-|b=n|sz=-|f=David] תמיכה בחוויית משתמש חלקה באמצעות תכנות אסינכרוני למניעת קפיאת הממשק.
+[2|-|b=n|sz=-|f=David] 1.3 תיאור המערכת
+[-|-|b=n|sz=-|f=David] המערכת מורכבת משרת מרכזי המנהל את כל הלוגיקה של המשחקים והתקשורת מול בסיס הנתונים, ומלקוח (Client) המספק ממשק גרפי (WPF). המערכת מאפשרת רישום, התחברות, העלאת תמונת פרופיל, צפייה ברשימת משחקים פעילה, וניהול משחק מלא כולל חוקי התנועה של הכלים.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=n|sz=-|f=David] 1.4 סביבת הפיתוח ושפות תכנות
+[-|-|b=n|sz=-|f=David] סביבת פיתוח: Microsoft Visual Studio.
+[-|-|b=n|sz=-|f=David] שפות תכנות: C# עבור לוגיקת השרת והלקוח, ו-XAML עבור עיצוב ממשק המשתמש.
+[-|-|b=n|sz=-|f=David] טכנולוגיות מרכזיות:
+[-|-|b=n|sz=-|f=David] WPF (Windows Presentation Foundation) לצד הלקוח.
+[-|-|b=n|sz=-|f=David] WCF (Web Communication Foundation) או שירותי רשת מקבילים לניהול התקשורת.
+[-|-|b=n|sz=-|f=David] OleDb לעבודה מול בסיס נתונים Access (או דומה).
+[-|-|b=n|sz=-|f=David] ארכיטקטורת שכבות: הפרויקט מחולק לשכבות: Model (ייצוג הנתונים), ViewDB (גישה למסד הנתונים), BusinessLogic (ניהול לוגיקת המשחק), ו-Client (ממשק המשתמש).
+[2|-|b=n|sz=-|f=David] 1.5 אתגרים מרכזיים ופתרונות
+[-|-|b=n|sz=-|f=David] הבעיה: הצורך לנהל תקשורת רשת רציפה מבלי להפריע לחוויית המשתמש.
+[-|-|b=n|sz=-|f=David] הפתרון: שימוש בתכנות אסינכרוני (Async/Await) ושימוש במשימות (Tasks) לשליפת נתונים, כפי שניתן לראות במימוש השליפה של תמונות פרופיל (GetPfpByID).
+[-|-|b=n|sz=-|f=David] אתגר אלגוריתמי: ניהול תור השחקנים הממתינים (isWaiting) והתאמת משחקים בזמן אמת בשרת.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=n|sz=-|f=David] 1.6 מדריך למשתמש
+[-|-|b=n|sz=-|f=David] תרשים דפים:
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] בעת פתיחת האפליקציה מוצגות מספר אפשרויות למשתמש.
+[-|-|b=n|sz=-|f=David] הוא יכול לשחק נגד בוט, לשחק נגד שחקן אחר כאורח, או להירשם למשתמש שלו. אם המשתמש בוחר להירשם, הוא יובא לדף הרשמה. בדף הזה הוא יכול להיכנס למשתמש קיים או ליצור משתמש חדש.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] אם בוחר ליצור משתמש חדש יובא למסך יצירת משתמש בו הוא מכניס את פרטיו.
+[-|-|b=n|sz=-|f=David] כשהמשתמש מסיים הוא חוזר חזרה לדף הבית וצריך להירשם לחשבון שייצר.
+[-|-|b=n|sz=-|f=David] כאשר המשתמש רשום הוא יכול לראות פרטים על עצמו כמו הדירוג שלו וכמות הנצחונות שלו. הוא יכול לבחור גם לראות את רשימת המשחקים ששיחק בעבר. והוא יכול גם לשחק נגד שחקן אחר עם השפעה על דירוג. הוא גם יכול לבחור לצאת מהמשתמש שלו.
+[-|-|b=n|sz=-|f=David] אם המשתמש מנהל קיימת לו אפשרות לקדם שחקן אחר למנהל או לחסום שחקן אחר מלשחק. כאשר השחקן מחליט לשחק הוא מובא ללוח משחק שחמט.
+[-|-|b=n|sz=-|f=David] לאחר ששחקן אחר מצטרף (או מייד אם החליט לשחק נגד בוט), המשחק מתחיל. כאשר המשחק נגמר, המשתמש מובא למסך תוצאות ולאחר מכן מוחזר למסך הבית.
+[1|-|b=n|sz=-|f=David] (empty)
+[1|-|b=n|sz=-|f=-] (empty)
+[1|-|b=n|sz=-|f=David] פרק 2: ניתוח המערכת
+[2|-|b=n|sz=-|f=David] 2.1 ממשקי משתמש (UI/XAML)
+[3|-|b=n|sz=-|f=David] 2.1.1 עיצוב הממשק והנדסת אנוש (UI Design & Human Engineering)
+[-|-|b=n|sz=-|f=David] המערכת עוצבה בגישה מודרנית ונקייה (Dark Mode), תוך שימוש באלמנטים הבאים כדי להבטיח חוויית משתמש (UX) גבוהה:
+[-|-|b=n|sz=-|f=David] עקביות ויזואלית: כל דפי המערכת משתמשים ברקע אחיד בגווני אפור כהה, מה שיוצר מראה מקצועי ומפחית עומס על עיני המשתמש.
+[-|-|b=n|sz=-|f=David] רספונסיביות: דפי האפליקציה משתמשים ב-Viewbox עם Stretch="Uniform". בחירה זו מבטיחה שלוח השחמט והרכיבים הגרפיים ישמרו על יחס גובה-רוחב תקין ויתאימו את עצמם לכל גודל חלון שהמשתמש יבחר.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] שימוש ב-Styles ומשאבים: ב-App.xaml הוגדרו סגנונות גלובליים, המאפשרים שימוש חוזר בעיצובים מורכבים (כמו אפקט זכוכית) ושומרים על אחידות בכל רחבי האפליקציה.
+[-|-|b=n|sz=-|f=David] (empty)
+[3|-|b=n|sz=-|f=David] 2.1.2 פירוט דפי המערכת (XAML Pages)
+[-|-|b=n|sz=-|f=David] המערכת מבוססת על ארכיטקטורת Single Window, שבה ה-MainWindow משמש כמכולה (Container) המכילה Frame לניווט בין הדפים השונים.
+[-|-|b=n|sz=-|f=David] MainWindow (חלון ראשי):
+[-|-|b=n|sz=-|f=David] תפקיד: ניהול הניווט הראשי והצגת אנימציות טעינה גלובליות.
+[-|-|b=n|sz=-|f=David] מרכיבים: מכיל אלמנט LoadingGrid עם Storyboard המופעל בזמן פעולות אסינכרוניות (כמו התחברות או שליפת נתונים) כדי לספק משוב למשתמש.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] דף התחברות ורישום (LogIn & Register):
+[-|-|b=n|sz=-|f=David] מבנה: שימוש ב-Grid לסידור מדויק של תיבות הטקסט והכפתורים.
+[-|-|b=n|sz=-|f=David] קישור נתונים (Data Binding): הדפים משתמשים ב-DataContext המקושר לאובייקט Player, מה שמאפשר עדכון אוטומטי של הנתונים מול השרת.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] דף רשימת משחקים (GamesList):
+[-|-|b=n|sz=-|f=David] מרכיבים: שימוש ב-ListView מורכב עם ItemContainerStyle מותאם אישית.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] דף לוח המשחק (GamePage / SingleGamePage):
+[-|-|b=n|sz=-|f=David] מבנה: הלוח מיוצג ב-Grid מרכזי המחולק ל-8 עמודות ו-8 תורים.
+[-|-|b=n|sz=-|f=David] הלוח מוכל ב-Grid הכולל גם את שמות השחקנים, תמונות הפרופיל, דירוגם וארצם.
+[-|-|b=n|sz=-|f=David] המרת נתונים (Converters): שימוש ב-IValueConverter כדי להפוך נתוני מערך בייטים של מסד הנתונים לתמונות פרופיל ויזואליות בזמן אמת או להמיר בין מספר מזהה של שחקן לשמו.
+[-|-|b=n|sz=-|f=David] ניהול קידום חייל (Promotion): קיים Grid ייעודי (PromotionGrid) המופיע רק כאשר שחקן צריך לבחור כלי לקידום, מה שמונע עומס ויזואלי מיותר.
+[3|-|b=n|sz=-|f=David] 2.1.3 ניהול הרשאות בממשק (Permissions & Access Control)
+[-|-|b=n|sz=-|f=David] בהתאם לדרישות הפרויקט, הממשק מגיב לסוג המשתמש (Admin/Player):
+[-|-|b=n|sz=-|f=David] רמת משתמש: שחקן רגיל נחשף לממשקי המשחק, הצפייה בסטטיסטיקות ורשימת משחקים ששיחק.
+[-|-|b=n|sz=-|f=David] רמת מנהל (Admin): בקוד ה-TitleScreen קיימת בדיקת isAdmin. במידה והמשתמש הוא מנהל, יופיעו בפניו אפשרויות ניהול ייעודיות (כמו חסימת משתמשים - BanPlayerByName) שאינן זמינות למשתמש רגיל.
+[-|-|b=n|sz=-|f=David] (empty)
+[2|-|b=n|sz=-|f=David] 2.2 השרת (WCF Service)
+[3|-|b=n|sz=-|f=David] 2.2.1 ארכיטקטורת השרת (Server Architecture)
+[-|-|b=n|sz=-|f=David] השרת בפרויקט תוכנן כשרת מרכזי המבוסס על טכנולוגיית WCF (Windows Communication Foundation), המממש ארכיטקטורת Stateless (חסינת מצב) לצורך ניהול בקשות הלקוח. השרת משמש כמתווך בין ממשק המשתמש (Client) לבין בסיס הנתונים (Database), ובכך שומר על הפרדה מוחלטת בין שכבת התצוגה לשכבת הנתונים (Separation of Concerns).
+[3|-|b=n|sz=-|f=David] 2.2.2 ממשק השירות (The Service Contract - IChessService)
+[-|-|b=n|sz=-|f=David] כל הפעולות שהשרת חושף ללקוח מוגדרות בממשק IChessService. הממשק כולל חוזים (Operation Contracts) המאפשרים לנהל את מחזור החיים המלא של המערכת:
+[-|-|b=n|sz=-|f=David] ניהול משתמשים: פעולות כמו AddPlayer, CheckLogin, ו-CheckEmailTaken לניהול מערך הרישום והכניסה.
+[-|-|b=n|sz=-|f=David] ניהול משחק: פעולות קריטיות כמו StartPlay (ליצירת משחק חדש), ConfirmMove (לעדכון מהלך בשרת), ו-EndGame.
+[-|-|b=n|sz=-|f=David] ניהול הרשאות (Admin): פונקציות ייעודיות למנהלים בלבד, כגון BanPlayerByName ו-IsAdmin, המבטיחות אבטחת מידע וניהול תקין של הקהילה.
+[3|-|b=n|sz=-|f=David] 2.2.3 לוגיקה עסקית וניהול מצב (Business Logic - GameManager)
+[-|-|b=n|sz=-|f=David] הלוגיקה המורכבת ביותר מרוכזת במחלקת ה-GameManager. מחלקה זו אחראית על "ניהול הזיכרון" של השרת בזמן אמת:
+[-|-|b=n|sz=-|f=David] ניהול משחקים פעילים: השרת משתמש באוספים מסוג Dictionary (מילונים) כדי לשמור את נתוני המשחקים הרצים בזיכרון (gamesDict, singleGamesDict), מה שמאפשר גישה מהירה לכל משחק לפי מזהה ייחודי.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] מנגנון ה-Matchmaking: נעשה שימוש במשתנה isWaiting מסוג Player. כאשר שחקן מחפש משחק, השרת בודק אם יש שחקן אחר הממתין בתור; אם כן – נוצר משחק חדש, ואם לא – השחקן נכנס למצב המתנה.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] אתחול לוח המשחק: המחלקה מגדירה את מערך הכלים ההתחלתי (STARTING_PIECES), הכולל מיקומי X ו-Y, צבע וסוג לכל כלי שחמט.
+[-|-|b=n|sz=-|f=-] (empty)
+[3|-|b=n|sz=-|f=David] 2.2.4 מימוש תכנות אסינכרוני (Asynchronous Programming)
+[-|-|b=n|sz=-|f=David] בהתאם לדרישות החובה, השרת עושה שימוש נרחב במשימות אסינכרוניות כדי למנוע חסימה של משאבי מערכת.
+[-|-|b=n|sz=-|f=David] דוגמה מרכזית היא הפעולה GetPfpByID, המחזירה אובייקט <<Task<Pfp>. השימוש ב-Task מאפשר לשרת לשלוף תמונות פרופיל כבדות מבסיס הנתונים ומהAPI בצורה אסינכרונית, מבלי לעצור את הטיפול בבקשות של שחקנים אחרים בזמן פעולת ה-I/O מול מסד הנתונים.
+[-|-|b=n|sz=-|f=David] (empty)
+[3|-|b=n|sz=-|f=David] 2.2.5 קישור למסד הנתונים (Data Access Layer)
+[-|-|b=n|sz=-|f=David] השרת אינו ניגש ישירות לטבלאות, אלא משתמש בשכבת ה-ViewDB. כל פעולה בשרת (כמו GetAllPlayers או AddAdminByName) קוראת למחלקות ייעודיות כגון PlayerDB או AdminDB, המבצעות שאילתות מורכבות .
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=n|sz=-|f=David] 2.3 שכבת המודל (Model Layer)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] List<Type> הוא רשימה של האובייקטים שהמחלקה מכילה. למשל:
+[-|-|b=n|sz=-|f=David] PlayerList יורש מ- List<Player>
+[-|-|b=Y|sz=-|f=David] n..m זו נוטציה המסמלת קשר אחד לרבים. למשל:
+[-|-|b=n|sz=-|f=David] PieceList 2..32 Piece: הרשימה מכילה בין 2 ל 32 אובייקטים של חייל.
+[-|-|b=n|sz=-|f=David] 0..* מסמל מינימום 0 אובייקטים ללא מגבלה עליונה.
+[-|-|b=n|sz=-|f=-] (empty)
+[3|-|b=n|sz=-|f=David] 2.3.1 תפקיד השכבה
+[-|-|b=n|sz=-|f=David] שכבת המודל אחראית על ייצוג הנתונים במערכת כאובייקטים לוגיים. שכבה זו משותפת הן לשרת והן ללקוח, מה שמאפשר העברת מידע אחידה ומובנית דרך שירותי הרשת (Web Services). כל המחלקות בשכבה זו מוגדרות תחת ה-Namespace Model.
+[3|-|b=n|sz=-|f=David] 2.3.2 שימוש בירושה (Inheritance)
+[-|-|b=n|sz=-|f=David] המערכת עושה שימוש נרחב בירושה כדי למנוע כפילות קוד ולשמור על היררכיה לוגית:
+[-|-|b=n|sz=-|f=David] מחלקת האב Base: כל מחלקות המודל יורשות ממחלקת בסיס אחת המכילה את המשתנה id. מבנה זה מבטיח שלכל ישות במערכת (שחקן, כלי שחמט, מדינה וכו') יהיה מזהה ייחודי התואם למפתח הראשי במסד הנתונים.
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] דוגמה לירושה רב-שכבתית: המחלקה JustElo יורשת מ-Base, והמחלקה EloStats יורשת מ-JustElo. ירושה זו מאפשרת הרחבה הדרגתית של הנתונים – מנתון בסיסי של דירוג ועד לסטטיסטיקות מורכבות הכוללות תאריכי שינוי ודירוג שיא.
+[-|-|b=n|sz=-|f=David] (empty)
+[3|-|b=n|sz=-|f=David] 2.3.3 פירוט מחלקות מרכזיות
+[-|-|b=n|sz=-|f=David] 1. מחלקת Player (שחקן):
+[-|-|b=n|sz=-|f=David] תפקיד: מייצגת את הישות המרכזית במערכת – המשתמש.
+[-|-|b=n|sz=-|f=David] משתני מחלקה:
+[-|-|b=n|sz=-|f=David] wins, losses, draws: סטטיסטיקות ביצועים מהן נגזר הדירוג.
+[-|-|b=n|sz=-|f=David] countryId: מזהה המקשר בין השחקן לטבלת המדינות (קשר גומלין).
+[-|-|b=n|sz=-|f=David] 2. מחלקת Piece (כלי שחמט):
+[-|-|b=n|sz=-|f=David] תפקיד: מייצגת כלי בודד על לוח המשחק.
+[-|-|b=n|sz=-|f=David] x, y: מיקום הכלי על הלוח.
+[-|-|b=n|sz=-|f=David] type: סוג הכלי (Pawn, Rook וכו').
+[-|-|b=n|sz=-|f=David] color: צבע הכלי (White/Black).
+[-|-|b=n|sz=-|f=David] moveCount: משתנה עזר לניהול חוקי תנועה מיוחדים (כמו הצרחה או תנועה כפולה של חייל).
+[-|-|b=n|sz=-|f=David] 3. מחלקת GameInfo (מידע על משחק):
+[-|-|b=n|sz=-|f=David] תפקיד: אובייקט מורכב המרכז את כל נתוני המשחק הפעיל לצורך סנכרון בין השרת ללקוח.
+[-|-|b=n|sz=-|f=David] משתני מחלקה:
+[-|-|b=n|sz=-|f=David] pieces: אובייקט מסוג PieceList המכיל את מצב הכלים הנוכחי.
+[-|-|b=n|sz=-|f=David] turnId: מזהה השחקן שזהו תורו.
+[-|-|b=n|sz=-|f=David] player1Id, player2Id: מזהי השחקנים המתחרים.
+[-|-|b=n|sz=-|f=David] moveList: מחרוזת המתעדת את היסטוריית המהלכים.
+[2|-|b=n|sz=-|f=David] 4.2 ניהול אוספים ומחלקות גנריות
+[-|-|b=n|sz=-|f=David] כדי לאפשר העברה תקינה של רשימות אובייקטים דרך שירותי הרשת, נעשה שימוש ב-CollectionDataContract. דוגמאות למחלקות אלו הן PieceList, PlayerList, ו-GameList. מחלקות אלו יורשות מ-<<List<T> ומאפשרות לשרת להחזיר אוספים שלמים של נתונים (כמו רשימת כל המשחקים הפעילים) בבקשה אחת.
+[-|-|b=n|sz=-|f=David] (empty)
+[1|-|b=n|sz=-|f=David] פרק 2.4: בסיס הנתונים (Database)
+[3|-|b=n|sz=-|f=David] 2.4.1 תיאור כללי
+[-|-|b=n|sz=-|f=David] בסיס הנתונים של המערכת נבנה בטכנולוגיית Access (באמצעות ספק הנתונים OleDb), כפי שניתן לראות בשימוש ב-using System.Data.OleDb במחלקות ה-DB. מסד הנתונים מנורמל ומורכב מ-5 טבלאות מרכזיות המאפשרות ניהול מלא של משתמשים, משחקים, הרשאות וסטטיסטיקות, תוך עמידה בדרישה למסד נתונים הכולל לפחות שתי טבלאות מידע וטבלת קישור אחת.
+[3|-|b=n|sz=-|f=David] 2.4.2 פירוט הטבלאות (Data Dictionary)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] 1. טבלת שחקנים (PlayersTable):
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: אחסון פרטי הזהות והסטטיסטיקה האישית של כל משתמש במערכת.
+[-|-|b=n|sz=-|f=David] שדות מרכזיים:
+[-|-|b=n|sz=-|f=David] ID (PK): מפתח ראשי, מזהה ייחודי לשחקן.
+[-|-|b=n|sz=-|f=David] Name, Email, Password: נתוני גישה ואבטחה.
+[-|-|b=n|sz=-|f=David] Elo, Wins, Losses, Draws: נתונים לחישוב רמת השחקן.
+[-|-|b=n|sz=-|f=David] CountryId (FK): מפתח זר המקשר לטבלת המדינות.
+[-|-|b=n|sz=-|f=David] 2. טבלת מדינות (Countries):
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: טבלת עזר המכילה את רשימת המדינות המורשות במערכת לצורך פילוח שחקנים.
+[-|-|b=n|sz=-|f=David] שדות: ID (PK), CountryName, IsoCode.
+[-|-|b=n|sz=-|f=David] 3. טבלת משחקים (GamesTable):
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: תיעוד היסטוריית המשחקים שבוצעו במערכת.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] ID (PK): מזהה משחק.
+[-|-|b=n|sz=-|f=David] Player1Id, Player2Id (FK): מפתחות זרים המקשרים לטבלת השחקנים (מי שיחק נגד מי).
+[-|-|b=n|sz=-|f=David] GameDate: תאריך ושעת המשחק.
+[-|-|b=n|sz=-|f=David] MoveList: מחרוזת המייצגת את רצף המהלכים שבוצעו (פורמט PGN או דומה).
+[-|-|b=n|sz=-|f=David] 4. טבלת מנהלים (AdminTable):
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: ניהול הרשאות מיוחדות במערכת.
+[-|-|b=n|sz=-|f=David] שדות: ID (PK), PlayerId (FK), AdminSince.
+[-|-|b=n|sz=-|f=David] 5. טבלת חסימות (BannedPlayers):
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: תיעוד משתמשים שנחסמו מהמערכת על ידי מנהלים.
+[-|-|b=n|sz=-|f=David] שדות: ID (PK), PlayerId (FK), BannedById (FK), BanReason, DateBanned.
+[-|-|b=n|sz=-|f=David] 6. טבלת תמונות פרופיל:
+[-|-|b=n|sz=-|f=David] תפקיד: שמירת תמונות הפרופיל של משתמשי המערכת.
+[-|-|b=n|sz=-|f=David] שדות: PlayerID (FK), ImageData
+[-|-|b=n|sz=-|f=David] 7. טבלת היסטוריות דירוג:
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: שמירה על פרטים שונים על דירוג שחקנים
+[-|-|b=n|sz=-|f=David] שדות: PlayerID (FK), Elo, ChangeReasonID, ChangeDate, HighestElo
+[-|-|b=n|sz=-|f=David] הארה: קיים בטבלה שדה עם PlayerID 1 שנועד לזיהוי משתמשים אורחים בלוגיקה.
+[-|-|b=n|sz=-|f=David] 8. טבלת סיבות שינוי דירוג
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=David] תפקיד: טבלת עזר המאחסנת סיבות אפשריות לשינוי דירוג שחקן לפי מזהה.
+[-|-|b=n|sz=-|f=David] שדות: ID (PK), Reason
+[3|-|b=n|sz=-|f=David] 2.4.3 קשרי גומלין (ERD & Normalization)
+[-|-|b=n|sz=-|f=David] המערכת עומדת בעקרונות הנירמול (Normalization) הנדרשים:
+[-|-|b=n|sz=-|f=David] קשר יחיד לרבים (1:N): בין טבלת Countries לטבלת Players (למדינה אחת יש שחקנים רבים).
+[-|-|b=n|sz=-|f=David] טבלת קישור (Many-to-Many): טבלת ה-Games משמשת כטבלת קישור "לוגית" בין שחקנים, שכן כל משחק מקשר בין שני שחקנים שונים מטבלת ה-Players, ובכך מתאפשר קשר של "רבים לרבים" (שחקן יכול לשחק משחקים רבים, ובכל משחק משתתפים שחקנים).
+[3|-|b=n|sz=-|f=David] 2.4.4 שכבת הגישה לנתונים (Data Access Layer - ViewDB)
+[-|-|b=n|sz=-|f=David] הגישה למסד הנתונים מתבצעת דרך מחלקות ה-ViewDB (כגון PlayerDB, GameDB, AdminDB), אשר כולן יורשות ממחלקת הבסיס BaseDB.
+[-|-|b=n|sz=-|f=David] המערכת מבצעת שאילתות מורכבות (Complex Queries) הכוללות שליפה ממספר טבלאות בו-זמנית (Join), עדכון נתונים (Update), ומחיקה (Delete) בהתאם לצורך.
+[-|-|b=n|sz=-|f=David] נעשה שימוש בפרמטרים בשאילתות ה-SQL כדי להגן על מסד הנתונים מפני התקפות מסוג SQL Injection, בהתאם להמלצות הבונוס בפרויקט.
+[1|-|b=n|sz=-|f=David] פרק 3: מימוש הפרויקט (Project Implementation)
+[2|-|b=n|sz=-|f=David] 3.1 מבנה הקוד וניהול פרויקט
+[-|-|b=n|sz=-|f=David] הפרויקט ממומש בשפת C# ומשלב טכנולוגיות Client-Server. הקוד מחולק לספריות לוגיות (Namespaces) המפרידות בין ישויות הנתונים (Model), הגישה למסד הנתונים (ViewDB), הלוגיקה העסקית (BusinessLogic) וממשק המשתמש (ChessClient).
+[2|-|b=n|sz=-|f=David] 3.2 תיעוד מחלקות  - צד השרת
+[3|-|b=n|sz=-|f=David] 3.2.1 מחלקות המודל
+[-|-|b=n|sz=-|f=David] Base  - המחלקה הבסיסית שממנה יורשות כל המחלקות במערכת.
+[-|-|b=n|sz=-|f=David] Id (int) מזהה ייחודי של הרשומה במסד הנתונים
+[-|-|b=n|sz=-|f=David] Player  - מייצגת שחקן רשום במערכת.
+[-|-|b=n|sz=-|f=David] Name (string) שם המשתמש של השחקן
+[-|-|b=n|sz=-|f=David] Email (string) כתובת האימייל, משמשת לכניסה למערכת
+[-|-|b=n|sz=-|f=David] Password (string) סיסמת השחקן
+[-|-|b=n|sz=-|f=David] CountryID (int) מזהה המדינה של השחקן, מפתח זר לטבלת Countries
+[-|-|b=n|sz=-|f=David] Wins (int) מספר הניצחונות הכולל
+[-|-|b=n|sz=-|f=David] Losses (int) מספר ההפסדים הכולל
+[-|-|b=n|sz=-|f=David] Draws (int) מספר התיקו הכולל
+[-|-|b=n|sz=-|f=David] Admin  - מייצגת שחקן שהוענקה לו הרשאת מנהל. יורשת מ-Base ולא מ-Player — מנהל מזוהה לפי ה-PlayerID שלו בלבד.
+[-|-|b=n|sz=-|f=David] PlayerId (int) מזהה השחקן שהפך למנהל, מפתח זר לטבלת PlayersTable
+[-|-|b=n|sz=-|f=David] AdminSince (DateTime)התאריך שבו הוענקה הרשאת המנהל
+[-|-|b=n|sz=-|f=David] BannedPlayer -  מייצגת שחקן שנחסם מהמערכת.
+[-|-|b=n|sz=-|f=David] PlayerId (int)  מזהה השחקן החסום
+[-|-|b=n|sz=-|f=David] BannedById (int) מזהה המנהל שביצע את החסימה
+[-|-|b=n|sz=-|f=David] BanReason (string) סיבת ההשעיה
+[-|-|b=n|sz=-|f=David] DateBanned (DateTime) תאריך ביצוע ההשעיה
+[-|-|b=n|sz=-|f=David] Country  - מייצגת מדינה במערכת לצורך שיוך שחקנים.
+[-|-|b=n|sz=-|f=David] CountryName (string) שם המדינה המלא
+[-|-|b=n|sz=-|f=David] ISOCode (string) קוד ISO של המדינה, לדוגמה IL או US
+[-|-|b=n|sz=-|f=David] Piece  - מייצגת כלי שחמט בודד על הלוח.
+[-|-|b=n|sz=-|f=David] X (int) עמודה על הלוח, ערכים 0 עד 7 משמאל לימין
+[-|-|b=n|sz=-|f=David] Y (int)שורה על הלוח, ערכים 0 עד 7 מלמעלה למטה
+[-|-|b=n|sz=-|f=David] Type (string) סוג הכלי: Pawn, Rook, Knight, Bishop, Queen או King
+[-|-|b=n|sz=-|f=David] Color (string) צבע הכלי: White או Black
+[-|-|b=n|sz=-|f=David] MoveCount (int) מספר המהלכים שבוצעו עם כלי זה, משמש לבדיקת זכאות לרוקד
+[-|-|b=n|sz=-|f=David] DoubleMove (int) - מונה שיורד בכל תור, משמש לבדיקת זכאות לאן-פאסאן
+[-|-|b=n|sz=-|f=David] PieceList אוסף של .Piece היורש מ- List<Piece>ומעוטרת ב- [CollectionDataContract] לצורך העברה תקינה דרך WCF.
+[-|-|b=n|sz=-|f=David] Pfp  - מייצגת תמונת פרופיל של שחקן, מאוחסנת כמערך בייטים.
+[-|-|b=n|sz=-|f=David] PlayerId (int) מזהה השחקן הבעלים של התמונה
+[-|-|b=n|sz=-|f=David] ImageData (byte[]) נתוני התמונה הבינאריים
+[-|-|b=n|sz=-|f=David] JustElo  - מחלקת ביניים המייצגת ציון Elo בסיסי. יורשת מ-Base.
+[-|-|b=n|sz=-|f=David] PlayerId (int) מזהה השחקן
+[-|-|b=n|sz=-|f=David] Elo (int)ציון ה-Elo הנוכחי
+[-|-|b=n|sz=-|f=David] EloStats- מרחיבה את JustElo עם פרטים היסטוריים על שינויי הדירוג.
+[-|-|b=n|sz=-|f=David] ChangeReasonId (int סיבת השינוי: 1 ניצחון, 2 הפסד, 3 לא קיים
+[-|-|b=n|sz=-|f=David] ChangeDate (DateTime) תאריך השינוי האחרון
+[-|-|b=n|sz=-|f=David] HighestElo (int) ציון ה Elo-הגבוה ביותר שהשחקן הגיע אליו אי פעם
+[-|-|b=n|sz=-|f=David] GameInfo - מייצגת משחק מרובה משתתפים פעיל בזיכרון השרת.
+[-|-|b=n|sz=-|f=David] Pieces (PieceList)מצב הלוח הנוכחי
+[-|-|b=n|sz=-|f=David] GameOn (bool)האם המשחק פעיל
+[-|-|b=n|sz=-|f=David] TurnId (int)מזהה השחקן שתורו לשחק. ערכים שליליים מסמנים סיום: 1- סיום רגיל, 2- תיקו, 3- נטישה
+[-|-|b=n|sz=-|f=David] Player1Name / Player2Name (string) שמות שני השחקנים
+[-|-|b=n|sz=-|f=David] Player1Id / Player2Id (int) מזהי שני השחקנים
+[-|-|b=n|sz=-|f=David] Player1Elo / Player2Elo (int) דירוג Elo של כל שחקן בתחילת המשחק
+[-|-|b=n|sz=-|f=David] GameDate (DateTime) תאריך ושעת תחילת המשחק
+[-|-|b=n|sz=-|f=David] MoveList (string) רשימת המהלכים בפורמט שחמט סטנדרטי
+[-|-|b=n|sz=-|f=David] SingleGameInfo - מייצגת משחק יחיד מול מנוע ה-Stockfish.
+[-|-|b=n|sz=-|f=David] Pieces (PieceList)  הלוח הנוכחי
+[-|-|b=n|sz=-|f=David] Turn (int) מי צריך לשחק: 1 השחקן, 2  Stockfish, -1  שחמט,  -2 תיקו
+[-|-|b=n|sz=-|f=David] PlayerName (string) שם השחקן
+[-|-|b=n|sz=-|f=David] PlayerId (int) מזהה השחקן
+[-|-|b=n|sz=-|f=David] GameDate (DateTime)  תאריך ושעת תחילת המשחק
+[-|-|b=n|sz=-|f=David] MoveList (string רשימת המהלכים
+[-|-|b=n|sz=-|f=David] HMoveCount (int) מונה חצאי-מהלכים, משמש לבניית מחרוזת FEN לשליחה לStockfish-
+[-|-|b=n|sz=-|f=David] GameListItem - מייצגת פריט ברשימת המשחקים ההיסטוריים של שחקן, כולל כל המידע הדרוש להצגה ללא שאילתות נוספות.
+[-|-|b=n|sz=-|f=David] Player1Id / Player2Id (int)מזהי שני השחקנים
+[-|-|b=n|sz=-|f=David] Player1Name / Player2Name (string)שמות שני השחקנים
+[-|-|b=n|sz=-|f=David] Player1Pfp / Player2Pfp (byte[])תמונות הפרופיל של שני השחקנים
+[-|-|b=n|sz=-|f=David] GameDate (DateTime)תאריך המשחק
+[-|-|b=n|sz=-|f=David] MoveList (string)רשימת המהלכים המלאה
+[-|-|b=n|sz=-|f=David] GameList, PlayerList, CountryList אוספים מוטפסים עם [CollectionDataContract] לצורך העברה דרך WCF. כל אחד יורש מ List<T>-המתאים ומכיל בנאי שמקבל IEnumerable<Base> ומבצע Cast לסוג המתאים.
+[3|-|b=n|sz=-|f=David] 3.2.2 מנהל המשחקים
+[-|-|b=Y|sz=-|f=David] GameManger
+[-|-|b=n|sz=-|f=David] gamesDict מקשר בין מזהה משחק (int) לאובייקט .GameInfo מילון זה מייצג את כל משחקי הרב-שחקנים הפעילים, ומאפשר גישה מהירה למשחק לפי ה ID -הייחודי שלו. השני הוא .playersDict המקשר בין מזהה שחקן  (int) לאותו אובייקט .GameInfo כל משחק נכנס למילון זה פעמיים. פעם אחת עבור כל אחד מהשחקנים. כך כשאחד השחקנים שואל את השרת מה מצב המשחק שלו, השרת מוצא את התשובה ישירות לפי ה ID -שלו, בלי לחפש בכל המשחקים. הגישה לאותו האובייקט משני הצדדים מבטיחה שמהלך שאחד השחקנים מאשר מיד נראה גם לשני.
+[-|-|b=n|sz=-|f=David] singleGamesDict מקשר בין מזהה שחקן לאובייקט SingleGameInfo המייצג משחק יחיד נגד ה .AI -מכיוון שכל שחקן יכול להיות רק במשחק יחיד אחד בו-זמנית, מספיק רשומה אחת לכל שחקן. הרביעי הוא ,engineDict המקשר בין אובייקט SingleGameInfo לאובייקט .Process כלומר, לתהליך הריצה של מנוע השחמט .Stockfish כל משחק יחיד מקבל תהליך Stockfish משלו הרץ ברקע, ומילון זה מאפשר לשרת למצוא את התהליך המתאים לכל משחק כשצריך לבקש מ Stockfish -את המהלך הבא.
+[-|-|b=n|sz=-|f=David] isWaiting שומר את השחקן היחיד שממתין בתור למציאת יריב. כשמגיע שחקן שני, השניים מתחברים לאובייקט GameInfo אחד משותף, מתווספים ל ,playersDict -ו isWaiting-מתאפס ל .null -
+[-|-|b=Y|sz=-|f=David] STARTING_PIECES שדה שהוא PieceList סטטית המכילה את כל 32 הכלים במיקומי הפתיחה הקבועים, ומשמשת כערך ההתחלתי לכל משחק חדש. השדה counter הוא מספר שלם שעולה בכל יצירת משחק חדש ומשמש כמזהה ייחודי לכל GameInfo.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] StartPlay(string name, int id)  - מקבלת שם ומזהה של שחקן ומנסה להתאים אותו למשחק. אם אין שחקן שממתין, השחקן נשמר בתור ומוחז .null אם כבר קיים שחקן ממתין, נוצר GameInfo חדש עם שני השחקנים, הלוח מאותחל למצב ההתחלתי, ושני השחקנים נרשמים ב playersDict-וב.gamesDict-
+[-|-|b=n|sz=-|f=David] IsTherePlayer(int id)  - בודקת האם שחקן עם המזהה הנתון כבר נמצא במשחק פעיל. מחזירה את הGameInfo-אם קיים, אחרת .null
+[-|-|b=n|sz=-|f=David] IsMyTurn(int id)  בודקת האם תורו של השחקן לשחק. מחזירה את ה GameInfo-אם ה TurnId-שווה למזהה השחקן, או אם ה TurnId-הוא ערך שלילי המסמן סיום משחק, אחרת .null
+[-|-|b=n|sz=-|f=David] ConfirmMove(int playerId, PieceList pieces, string moveStr)  - מעדכנת את מצב הלוח לאחר מהלך של שחקן. מחליפה את רשימת הכלים, מורידה את מונה DoubleMove על כל כלי רלוונטי לצורך אן-פאסאן, מוסיפה את המהלך לרשימת המהלכים, ומעבירה את התור לשחקן השני.
+[-|-|b=n|sz=-|f=David] EndGame(int loserID, int condition)  - מסיימת משחק ומחשבת שינויי Elo לפי נוסחת Elo הסטנדרטית עם K=16. הפרמטר condition מציין את אופן הסיום: ערך שאינו אפס מסמן ניצחון והפסד, 0 מסמן תיקו, ו-2- מסמן נטישה. מעדכנת סטטיסטיקות ניצחונות והפסדים ב ,DB -ומגדירה את ה TurnId-לערך שלילי מתאים.
+[-|-|b=n|sz=-|f=David] RemoveGame(int winnerID)  - מסירה את המשחק מהזיכרון לאחר שהלקוח אישר קבלת התוצאה. אם אחד השחקנים הוא Guest, רשומתו נמחקת מה .DB -אם לפחות אחד השחקנים אינו ,Guest המשחק נשמר לטבלת ההיסטוריה.
+[-|-|b=n|sz=-|f=David] StartSinglePlay(string name, int id)  - מאתחלת משחק יחיד מול .Stockfish יוצרת SingleGameInfo חדש, מפעילה תהליך של stockfish.exe עם הפניית קלט ופלט, שולחת פקודות UCI לאתחול המנוע, ומגדירה MultiPV ל-3 כדי לאפשר בחירה אקראית בין שלושת המהלכים הטובים.
+[-|-|b=n|sz=-|f=David] ConfirmMoveSingle(int playerId, PieceList pieces)  - מעדכנת את מצב הלוח אחרי מהלך של השחקן במשחק יחיד, מעבירה את התור ל Stockfish -ומפעילה את GetStockfishMove באופן אסינכרוני.
+[-|-|b=n|sz=-|f=David] GetStockfishMove(SingleGameInfo game)  - פונקציה אסינכרונית שבונה מחרוזת FEN מהמצב הנוכחי, שולחת אותה ל ,Stockfish -ממתינה לתגובה, ובוחרת אקראית אחד משלושת המהלכים המוצעים. מטפלת בכל המקרים המיוחדים: רוקד, אן-פאסאן, קידום רגלי, ושחמט.
+[-|-|b=n|sz=-|f=David] IsMyTurnSingle(int id)  בודקת האם תורו של השחקן במשחק יחיד. מחזירה את ה SingleGameInfo-אם Turn שווה ל-1 (תור השחקן) או ל-1- (שחמט), אחרת .null
+[-|-|b=n|sz=-|f=David] EndGameSingle(int playerID, bool draw)  מסיימת משחק יחיד. אם draw הוא true, מגדירה Turn ל-2-, אחרת ל-1-.
+[-|-|b=n|sz=-|f=David] RemoveSingleGame(int playerId)  מסירה את המשחק היחיד מהזיכרון, עוצרת את תהליך ה-Stockfish, ואם השחקן הוא Guest מוחקת את רשומתו מה.DB-
+[-|-|b=n|sz=-|f=David] BuildFenString(SingleGameInfo gamestate)  בונה מחרוזת FEN תקנית מהמצב הנוכחי של הלוח. כוללת את מיקום כל הכלים, צד המשחק, זכויות רוקד לפי ,MoveCount ריבוע אן-פאסאן לפי ,DoubleMove ומונה חצאי-המהלכים.
+[-|-|b=n|sz=-|f=David] GetFENSymbol(Piece piece)  פונקציית עזר שממירה כלי לתו FEN המתאים. אותיות גדולות לכלים לבנים, קטנות לשחורים.
+[-|-|b=n|sz=-|f=David] GetGameManagerPath()  מחזירה את נתיב תיקיית ההרצה של השרת, משמשת ללקוח למציאת קבצים נדרשים.
+[-|-|b=n|sz=-|f=-] (empty)
+[3|-|b=n|sz=-|f=David] 3.2.3  ממשק בסיס הנתונים
+[-|-|b=n|sz=-|f=David] BaseDB  המחלקה הבסיסית המופשטת של שכבת הנתונים. כל מחלקות הDB - יורשות ממנה ומקבלות ממנה את כל הפונקציונליות של חיבור לAccess - וביצוע שאילתות.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] connectionString (static string) מחרוזת החיבור למסד הנתונים, נבנית פעם אחת ונשמרת לכל הפעלות הבאות
+[-|-|b=n|sz=-|f=David] connection (OleDbConnection) אובייקט החיבור הפעיל
+[-|-|b=n|sz=-|f=David] command (OleDbCommand אובייקט הפקודה הנוכחית
+[-|-|b=n|sz=-|f=David] reader (OleDbDataReader) אובייקט הקריאה לשאילתות  SELECT
+[-|-|b=n|sz=-|f=David] פונקציות מופשטות שכל מחלקה יורשת חייבת לממש:
+[-|-|b=n|sz=-|f=David] NewEntity() יוצרת אובייקט ריק מהסוג המתאים, לדוגמה Player או Piece
+[-|-|b=n|sz=-|f=David] CreateModel(Base entity) ממלאת את שדות האובייקט מהנתונים שנקראו מה .reader -הגרסה הבסיסית קוראת את שדה ה ,ID -המחלקות היורשות מוסיפות את שאר השדות.
+[-|-|b=n|sz=-|f=David] פונקציות מוגנות לשימוש פנימי:
+[-|-|b=n|sz=-|f=David] GetConnection()  בונה את מחרוזת החיבור בפעם הראשונה לפי נתיב קובץ ה accdb -יחסית לתיקיית ההרצה, ומחזירה OleDbConnection חדש
+[-|-|b=n|sz=-|f=David] Select(string sqlStr) מריצה שאילתת SELECT ומחזירה .List<Base> פותחת חיבור, מריצה את הפקודה, קוראת שורה שורה עם NewEntity ו-CreateModel, וסוגרת את החיבור ב-finally
+[-|-|b=n|sz=-|f=David] SelectCmd(OleDbCommand command) זהה ל-Select אך מקבלת OleDbCommand מוכן עם פרמטרים, משמשת לשאילתות עם פרמטרים להגנה מSQL Injection -
+[-|-|b=n|sz=-|f=David] SaveChanges(string sqlStr) מריצה פקודת ,INSERT ,UPDATE או DELETE ומחזירה מספר השורות שהושפעו
+[-|-|b=n|sz=-|f=David] SaveChangesCmd(OleDbCommand command) מקבלת פקודה מוכנה עם פרמטרים
+[-|-|b=n|sz=-|f=David] InsertAndGetID(string sqlStr) מריצה INSERT ומיד אחריה SELECT @@Identity כדי להחזיר את ה ID -שנוצר אוטומטית
+[-|-|b=n|sz=-|f=David] InsertAndGetIDCmd(OleDbCommand command) זהה ל InsertAndGetID -אך עם פקודה מוכנה עם פרמטרים
+[-|-|b=n|sz=-|f=David] רוב המחלקות כוללות רק שאילתות  פשוטות ובסיסיות ולכן אציג רק אחת מהן ומקרים יוצאי דופן.
+[-|-|b=Y|sz=-|f=David] GameDB  מחלקת DB המטפלת בשמירת וקריאת משחקים היסטוריים מטבל. GamesTable יורשת מ-.BaseDB
+[-|-|b=n|sz=-|f=David] NewEntity() מחזירה GameInfo ריק
+[-|-|b=n|sz=-|f=David] CreateModel(Base entity) ממלאת את שדות ה GameInfo -מה-reader:
+[-|-|b=n|sz=-|f=David] ID, Player1ID, Player1Name, Player2ID, Player2Name, GameDate, MoveList
+[-|-|b=n|sz=-|f=David] GetGameByID(int id)שולפת משחק בודד לפי מזהה. משתמשת בפרמטר @id להגנה מSQL -.Injection  מחזירה GameInfo או null אם לא נמצא
+[-|-|b=n|sz=-|f=David] AddGame(GameInfo game) שומרת משחק שהסתיים לטבלת ההיסטוריה. מכניסה את מזהי ושמות שני השחקנים, תאריך המשחק ורשימת המהלכים. נקראת מGameManager.RemoveGame - רק אם לפחות אחד השחקנים אינו  .Guest
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] GameListItemDB
+[-|-|b=n|sz=-|f=David] מחלקת DB המטפלת בשליפת רשימת המשחקים ההיסטוריים של שחקן. יורשת מ-BaseDB. מחלקה זו מיוחדת בכך שהיא מבצעת שאילתת JOIN כפולה בין שלוש טבלאות כדי לשלוף בבקשה אחת את כל המידע הדרוש להצגת המשחקים, כולל שמות השחקנים.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] CreateModel(Base entity)
+[-|-|b=n|sz=-|f=David] ממלאת את שדות ה-GameListItem מהנתונים שנקראו מה-reader. קוראת את כל השדות הבאים:
+[-|-|b=n|sz=-|f=David] Player1ID  מזהה שחקן 1
+[-|-|b=n|sz=-|f=David] Player2ID  מזהה שחקן   2
+[-|-|b=n|sz=-|f=David] Player1Name  שם שחקן 1 מגיע מ JOIN-עם PlayersTable
+[-|-|b=n|sz=-|f=David] Player2Name שם שחקן 2 מגיע מ JOIN-עם PlayersTable
+[-|-|b=n|sz=-|f=David] GameDate תאריך המשחק
+[-|-|b=n|sz=-|f=David] MoveList רשימת המהלכים המלאה
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] GetAllGamesForPlayer(int id)
+[-|-|b=n|sz=-|f=David] שולפת את כל המשחקים ההיסטוריים של שחקן נתון, ממוינים מהחדש לישן. זוהי השאילתה המורכבת ביותר בפרויקט — היא מבצעת JOIN כפול על טבלת PlayersTable פעמיים, פעם אחת עבור שחקן 1 ופעם עבור שחקן 2, כדי לשלוף את שמות שני השחקנים בשאילתה אחת.
+[-|-|b=n|sz=-|f=David] השאילתה:
+[-|right|b=n|sz=-|f=David] SELECT g.ID, g.Player1ID, g.Player2ID,
+[-|right|b=n|sz=-|f=David] w.[Name] AS Player1Name, b.[Name] AS Player2Name,
+[-|right|b=n|sz=-|f=David] g.[GameDate], g.MoveList
+[-|right|b=n|sz=-|f=David] FROM ((GamesTable AS g
+[-|right|b=n|sz=-|f=David] INNER JOIN PlayersTable AS w ON g.Player1ID = w.ID)
+[-|right|b=n|sz=-|f=David] INNER JOIN PlayersTable AS b ON g.Player2ID = b.ID)
+[-|right|b=n|sz=-|f=David] WHERE g.Player1ID = @id OR g.Player2ID = @id
+[-|right|b=n|sz=-|f=David] ORDER BY g.GameDate DESC
+[-|-|b=n|sz=-|f=David] הסבר השאילתה:
+[-|-|b=n|sz=-|f=David] GamesTable   מקבלת את הכינוי g לקיצור
+[-|-|b=n|sz=-|f=David] PlayersTable  מחוברת פעמיים. פעם כ-w ( / whiteשחקן 1( ופעם כ-w ( / blackשחקן 2(
+[-|-|b=n|sz=-|f=David] JOIN  ראשון מחבר את Player1ID ל w.ID -ושולף את שם שחקן 1
+[-|-|b=n|sz=-|f=David] JOIN שני מחבר את Player2ID ל b.ID -ושולף את שם שחקן 2
+[-|-|b=n|sz=-|f=David] תנאי ה-WHERE מחזיר משחקים שבהם השחקן הופיע בתור שחקן 1 או שחקן 2
+[-|-|b=n|sz=-|f=David] ORDER BY GameDate DESC  מחזיר את המשחקים מהאחרון לראשון
+[-|-|b=n|sz=-|f=David] התוצאה עטופה ב GameList-ומוחזרת ללקוח
+[-|-|b=Y|sz=-|f=David] PfpDB
+[-|-|b=n|sz=-|f=David] GetPfpByID(int id)  שולפת את תמונת הפרופיל של שחקן לפי מזהה. אם קיימת תמונה בטבלת PfpTable עבור השחקן, היא מוחזרת ישירות. אם לא קיימת תמונה, הפונקציה פונה ל API -חיצוני של TheCatAPI ומורידה תמונת חתול אקראית כתמונת ברירת מחדל עבור אותו שחקן.
+[-|-|b=n|sz=-|f=David] הפונקציה היא async ומחזירה Task<Pfp> הורדת התמונה מה API -מתבצעת באופן אסינכרוני כדי לא לחסום את השרת בזמן ההמתנה לתגובת הרשת.
+[-|-|b=n|sz=-|f=David] תהליך הפנייה ל:API -
+[-|-|b=n|sz=-|f=David] נוצר HttpClient עם מפתח API בכותרת x-api-key
+[-|-|b=n|sz=-|f=David] נשלחת בקשת GET לכתובת api.thecatapi.com/v1/images/search עם פרמטר size=small
+[-|-|b=n|sz=-|f=David] התגובה מגיעה כ ,JSON -והפונקציה מחלצת את ה url -של התמונה ידנית לפי מיקום המחרוזת "url": בתוך הJSON-
+[-|-|b=n|sz=-|f=David] לאחר חילוץ ה ,url -מתבצעת הורדת הבייטים של התמונה עצמה
+[-|-|b=n|sz=-|f=David] התמונה מוחזרת כאובייקט Pfp עם ה PlayerId -המתאים
+[-|-|b=n|sz=-|f=David] אם הפנייה ל API -נכשלת מכל סיבה שהיא, הcatch- תופס את ה HttpRequestException-ומחזיר .null
+[-|right|b=Y|sz=-|f=David] PlayerDB
+[-|-|b=Y|sz=-|f=David] RemovePlayer(int id) מוחקת שחקן מהמערכת. מכיוון שקיימות מספר טבלאות שמכילות רשומות המקושרות לשחקן, הפונקציה מבצעת מחיקה מדורגת בסדר הנכון כדי לא לשבור את קשרי הגומלין במסד הנתונים:
+[-|-|b=n|sz=-|f=David] מוחקת את רשומת ה-Elo מ-EloHistory
+[-|-|b=n|sz=-|f=David] מוחקת את תמונת הפרופיל מ-PfpTable
+[-|-|b=n|sz=-|f=David] מוחקת את הרשאת המנהל מ-AdminTable אם קיימת
+[-|-|b=n|sz=-|f=David] לבסוף מוחקת את השחקן עצמו מ-PlayersTable
+[-|-|b=n|sz=-|f=David] נקראת בשני מקרים: כשמנהל מוחק שחקן ידנית, וכשהשרת מנקה שחקני Guest בסיום משחק
+[-|-|b=n|sz=-|f=David] (empty)
+[3|-|b=n|sz=-|f=David] 3.2.4ממשק השרת
+[-|-|b=Y|sz=-|f=David] IChessService ממשק ה WCF-של הפרויקט. מגדיר את כל הפעולות שהשרת חושף ללקוח. כל פונקציה מעוטרת ב  [OperationContract]-כדי שה-WCF framework יידע לחשוף אותה כחלק מהשירות. הממשק מכיל פעולות לניהול שחקנים, ניהול משחקים, ניהול הרשאות מנהל, והעברת תמונות פרופיל.
+[-|-|b=n|sz=-|f=David] לדוגמה:
+[-|-|b=n|sz=-|f=David] GetPlayerByID(int id)  - שליפת שחקן
+[-|-|b=n|sz=-|f=David] - StartPlay(string name, int id) כניסה לתור ההמתנה למשחק
+[-|-|b=n|sz=-|f=David] ConfirmMove(int playerId, PieceList pieces, string moveStr) - שליחת מהלך
+[-|-|b=n|sz=-|f=David] - GetPfpByID(int id) שליפת תמונת פרופיל, מוגדרת כ Task<Pfp>-לתמיכה באסינכרוניות
+[-|-|b=Y|sz=-|f=David] ChessService  המימוש של .IChessService כל פונקציה במחלקה זו היא עטיפה דקה בלבד. היא מקבלת את הקריאה מהלקוח ומעבירה אותה ישירות לשכבה המתאימה, בין אם זה GameManager לענייני משחק, או מחלקות DB לענייני נתונים.
+[-|-|b=n|sz=-|f=David] לדוגמה:
+[-|-|b=n|sz=-|f=David] StartPlay  קוראת לGameManager.StartPlay-
+[-|-|b=n|sz=-|f=David] GetPlayerByID יוצרת PlayerDB חדש וקוראת ל GetPlayerByID-שלו.
+[2|-|b=n|sz=-|f=David] 3.3 תיעוד מחלקות - צד הלקוח
+[3|-|b=n|sz=-|f=David] 3.3.1 שליטות גרפיקה גלובליות
+[-|-|b=Y|sz=-|f=David] GlassBorder  פקד מותאם אישית היורש מ .ContentControl-מיישם אפקט זכוכית (glassmorphism) על כל תוכן שמוכנס לתוכו. מוגדר ב App.xaml-כסגנון גלובלי כך שכל שימוש בו בכל מסך יקבל אוטומטית את אותו מראה.
+[-|-|b=n|sz=-|f=David] ה Template-מכיל שני שכבות Border עם פינות מעוגלות ,(CornerRadius=16) מסגרת לבנה שקופה חלקית, וצבע רקע שנשלט דרך DependencyProperty בשם .GlassBrush מעל זה ContentPresenter שמציג את התוכן שהוכנס לפקד. לכל הפקד מוצמד DropShadowEffect עם צל כהול כהה ועדין.
+[-|-|b=n|sz=-|f=David] ה GlassBrush-הוא DependencyProperty מסוג Brush שמאפשר לכל שימוש ב-GlassBorder להגדיר את הצבע שלו בנפרד - ברירת המחדל היא LinearGradientBrush לבן שקוף חלקי.
+[-|-|b=Y|sz=-|f=David] RoundButton  סגנון גלובלי לכפתורים בעל שלושה אפקטים אנימציוניים:
+[-|-|b=n|sz=-|f=David] ריחוף - הופעת זוהר לבן (glow) בהדרגה תוך 0.15 שניות ודעיכה תוך 0.2 שניות
+[-|-|b=n|sz=-|f=David] לחיצה - הכפתור מתכווץ ל-95% מגודלו תוך 0.08 שניות וחוזר תוך 0.12 שניות, מה שנותן תחושת לחיצה פיזית
+[-|-|b=n|sz=-|f=David] מושבת - הכפתור הופך לחצי שקוף (Opacity=0.5)
+[-|-|b=n|sz=-|f=David] כל הכפתורים באפליקציה משתמשים בסגנון זה על ידי הוספת Style="{StaticResource RoundButton}".
+[-|-|b=Y|sz=-|f=David] textBoxInError  סגנון גלובלי לשדות טקסט עם Validation. כאשר ה-Validation מחזיר שגיאה, מוצג ToolTip עם הודעת השגיאה. כל שדות הטקסט מקבלים פינות מעוגלות (CornerRadius=15) ועיצוב אחיד.
+[-|-|b=Y|sz=-|f=David] RoundError תבנית מותאמת לתצוגת שגיאות Validation. במקום תיבת השגיאה האדומה הרגילה של WPF, מוצגת מסגרת כתומה מעוגלת סביב שדה הטקסט, ומתחתיה טקסט כתום קטן עם הודעת השגיאה. משמש יחד עם NameRule, EmailRule ו -PasswordRule.
+[-|-|b=Y|sz=-|f=David] LoadingOverlayStyle  סגנון לשכבת הטעינה ב-MainWindow. רקע שחור בשקיפות 50% שמכסה את כל הממשק בזמן פעולות אסינכרוניות. מוגדר כ-Collapsed כברירת מחדל ומוצג רק כשהLoadingManager-מפעיל אירוע .
+[-|-|b=Y|sz=-|f=David] MainWindow
+[-|-|b=n|sz=-|f=David] החלון הראשי של האפליקציה, זהו המיכל שבתוכו מתנהל כל הניווט בין הדפים. מכיל Frame בשם WindowFrame  שאליו כל הדפים מנווטים.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] srv (ChessServiceClient)  - אובייקט השירות המשותף לכל הדפים, נוצר פעם אחת ומועבר הלאה
+[-|-|b=n|sz=-|f=David] titlePage, gamePage, singleGamePage, loginPage -  הפניות לדפים הפעילים
+[-|-|b=n|sz=-|f=David] בנאי:
+[-|-|b=n|sz=-|f=David] מאתחל את LoginPage ו TitleScreen -ומנווט מיד לTitleScreen -
+[-|-|b=n|sz=-|f=David] פותח את החלון במצב מקסימלי
+[-|-|b=n|sz=-|f=David] מפעיל את אנימציית הספינר של מסך הטעינה
+[-|-|b=n|sz=-|f=David] נרשם לאירוע OnLoadingChanged של .LoadingManager בכל פעם שמתחילה או נגמרת פעולה אסינכרונית, מציג או מסתיר את LoadingOverlay על ה UI thread-באמצעות Dispatcher.Invoke
+[-|-|b=Y|sz=-|f=David] WindowClosing נקראת כשהמשתמש סוגר את החלון. אם קיים משחק פעיל, מפעילה Forfeit כדי לוודא שהשרת מקבל הודעת נטישה ומסיים את המשחק בצורה תקינה גם במשחק מרובה משתתפים וגם מול .Stockfish
+[3|-|b=n|sz=-|f=David] 3.3.2  לוגיקת החלונות ומחלקות עזר
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] TitleScreen
+[-|-|b=n|sz=-|f=David] מסך הבית הראשי של האפליקציה. זהו הדף הראשון שמוצג למשתמש עם פתיחת התוכנה, ומשמש כנקודת ניווט מרכזית לכל חלקי המערכת.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] - srv (ChessServiceClient) אובייקט השירות, מועבר מ-MainWindow
+[-|-|b=n|sz=-|f=David] loginPage (LogIn) - הפניה לדף ההתחברות, נשלפת מ-MainWindow בבנאי
+[-|-|b=n|sz=-|f=David] gamePage, singleGamePage הפניות לדפי המשחק הפעילים
+[-|-|b=n|sz=-|f=David] isAdmin (bool)  - האם המשתמש המחובר הוא מנהל
+[-|-|b=n|sz=-|f=David] pfp, country, eloStats, p  - נתוני השחקן המחובר
+[-|-|b=n|sz=-|f=David] בנאי:
+[-|-|b=n|sz=-|f=David] שולף את loginPage מ MainWindow-דרך לולאת Application.Current.Windows
+[-|-|b=n|sz=-|f=David] אם המשתמש מחובר, שולף את נתוניו מהשרת באמצעות GetInfoFromServer
+[-|-|b=n|sz=-|f=David] מתאים את הממשק לפי מצב ההתחברות  -מציג או מסתיר כפתורי מנהל, כפתור מחיקת חשבון, תמונת פרופיל וכו'
+[-|-|b=n|sz=-|f=David] מחבר את כפתור ההתחברות/יציאה לאירוע המתאים לפי המצב הנוכחי
+[-|-|b=n|sz=-|f=David] מפעיל אנימציית fade ו-rise על שם המשחק בטעינה
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] GetInfoFromServer(Player p) פונקציה אסינכרונית שמושכת במקביל את כל נתוני השחקן מהשרת. כל קריאה עטופה ב-LoadingManager.UseLoading כדי להציג את מסך הטעינה בזמן ההמתנה, ומורצת ב-Task.Run  כדי לא לחסום את ה .UI thread-שולפת isAdmin, country, eloStats ו ,pfp-ואז קוראת ל-UpdatePlayerData  ו.LoadStats-
+[-|-|b=Y|sz=-|f=David] UpdatePlayerData מעדכנת את ממשק המשתמש עם הנתונים שהגיעו מהשרת — ציון Elo, קוד מדינה, תמונת פרופיל, וחשיפת כפתורי מנהל אם רלוונטי.
+[-|-|b=Y|sz=-|f=David] LogIn LogIn / LogOut  מנווט פשוט לדף ההתחברות. LogOut מאפס את מצב ההתחברות, מאפס את      ,isAdmin  ויוצרת TitleScreen חדש ומנווטת אליו כדי לרענן את כל הממשק למצב לא מחובר.
+[-|-|b=Y|sz=-|f=David] Play / SinglePlay  יוצרות את דף המשחק המתאים, רושמות אותו ב- MainWindowדרך   ,SetGamePage/SetSingleGamePage  ומנווטות אליו.
+[-|-|b=Y|sz=-|f=David] PfpSelect פותחת חלון בחירת קובץ מסונן לקבצי תמונה בלבד. אחרי בחירה, מעבירה את הנתיב ל-ResizeImage  לדחיסה ל-128x128 ומעלה את הבייטים של התמונה לשרת.
+[-|-|b=Y|sz=-|f=David] AddAdmin / BanPlayer  פעולות מנהל בלבד. שתיהן פותחות InputBoxWindow לקבלת שם השחקן, ו-BanPlayer פותחת חלון נוסף לקבלת סיבת ההשעיה. שתי הפעולות אסינכרוניות עם .LoadingManager
+[-|-|b=Y|sz=-|f=David] HoverOnStats / HoverOffStats  אנימציות hover על פאנל הסטטיסטיקות - מרחיבות ומכווצות אותו בהחלקה חלקה עם QuadraticEase.
+[-|-|b=Y|sz=-|f=David] DelUser  מציגה MessageBox לאישור, ואם המשתמש אישר - מוחקת את חשבונו מהשרת, מנתקת אותו ומנווטת ל-TitleScreen חדש.
+[-|-|b=Y|sz=-|f=David] GameScreen / SingeGameScreen
+[-|-|b=n|sz=-|f=David] לדפים אלה כמה פונקציות משותפות הקשורות ללוגיקת המשחק:
+[-|-|b=Y|sz=-|f=David] CheckSpace(int x, int y)  פונקציית עזר שבודקת את תוכן משבצת בלוח. מחזירה 0 אם המשבצת ריקה, 2 אם היא מחוץ לגבולות הלוח או תפוסה בכלי מאותו צבע, ו-3 אם תפוסה בכלי של היריב. ערכים אלו משמשים את כל פונקציות תנועת הכלים.
+[-|-|b=Y|sz=-|f=David] PieceSelected(object sender, EventArgs e)  נקראת בלחיצה על כלי. מנקה את כפתורי הבחירה הקיימים מהלוח ואז מפעילה את פונקציית התנועה המתאימה לפי סוג הכלי שנבחר.
+[-|-|b=Y|sz=-|f=David] PawnMovement(Piece piece) מחשבת את המהלכים האפשריים לרגלי. בודקת מהלך קדימה אחד, מהלך כפול מהשורה ההתחלתית, לכידה באלכסון, ואן-פאסאן. אן-פאסאן נבדק לפי DoubleMove גדול מ-0 וMoveCount-שווה ל-1.-
+[-|-|b=Y|sz=-|f=David] DiagonalMovement(Piece piece)  מחשבת תנועה אלכסונית לבישוף ולמלכה. רצה בלולאה בכל אחד מארבעת הכיוונים האלכסוניים עד שפוגעת בגבול הלוח, בכלי מאותו צבע, או בכלי יריב (שאותו ניתן לאכול ואז עוצרת).
+[-|-|b=Y|sz=-|f=David] HorizontalMovement(Piece piece)  מחשבת תנועה אופקית ואנכית לצריח ולמלכה. אותו עיקרון של  DiagonalMovement  אבל בארבעת הכיוונים הישרים.
+[-|-|b=Y|sz=-|f=David] KnightMovement(Piece piece)  מחשבת את שמונת הקפיצות האפשריות של הפרש. בודקת כל קפיצה בנפרד, ומאפשרת מהלך כל עוד המשבצת אינה תפוסה בכלי מאותו צבע.
+[-|-|b=Y|sz=-|f=David] KingMovement(Piece piece)  מחשבת את תנועת המלך — שמונת המשבצות הסמוכות, ובנוסף רוקד. רוקד מתאפשר רק אם MoveCount של המלך הוא 0, הצריח הרלוונטי גם לא זז, והמשבצות ביניהם ריקות. RCastle הוא רוקד קצר ו-LCastle רוקד ארוך, והכיוונים מתהפכים בין לבן לשחור.
+[-|-|b=Y|sz=-|f=David] CreateMoveSelectButton(int x, int y, string special = "")  יוצרת כפתור ירוק שקוף על המשבצת הנתונה כדי להציג מהלך אפשרי. לפני שיוצרת את הכפתור, מבצעת סימולציה של המהלך בזיכרון ובודקת דרך CheckForCheck  שהמלך לא ייכנס לשח לאחריו — אם כן, הכפתור לא נוצר. כפתורי רוקד מקבלים תמונת צריח כתוכן. מחוברת לאירוע .PieceMoved
+[-|-|b=Y|sz=-|f=David] CheckForCheck(string checkcolor)  בודקת האם המלך של הצבע הנתון נמצא בשח. עוברת על כל כלי היריב ובודקת האם אחד מהם יכול להגיע למיקום המלך לפי כללי התנועה שלו. מוחזרת מCreateMoveSelectButton לצורך סינון מהלכים לא חוקיים.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] PieceMoved(object sender, RoutedEventArgs e)  נקראת כשהשחקן לוחץ על אחד מכפתורי הבחירה הירוקים. מטפלת בכל המקרים המיוחדים: רוקד (מזיזה גם את הצריח), אן-פאסאן (מסירה את הרגלי הנאכל), קידום רגלי לשורה האחרונה ,ולכידה רגילה. לאחר המהלך בונה מחרוזת מהלך בנוטציה שחמטאית סטנדרטית ומעדכנת את מונה MoveCount של הכלי שזז. מפעילה אפקט קול מתאים ושולחת את המהלך לשרת.
+[-|-|b=Y|sz=-|f=David] UpdateBoard()  מרעננת את תצוגת הלוח כולו. מנקה את כל הילדים מה ,ChessBoard Grid-ואז עבור כל כלי ב-PieceList  יוצרת כפתור עם תמונת הכלי המתאימה ממשאבי ה .Assets -ממקמת אותו בגריד לפי X ו ,Y -ומחברת אותו לאירוע PieceSelected רק אם הכלי מאותו צבע כמו השחקן — כלי היריב מוצגים כתמונה בלבד ללא אפשרות לחיצה. מעדכנת גם את pieceDict כדי לשמור את המיפוי בין כפתורים לכלים.
+[-|-|b=Y|sz=-|f=David] GamePage (Multiplayer)
+[-|-|b=Y|sz=-|f=David] TestForGame(object sender, EventArgs e)  נקראת כל שנייה על ידי gameCheckTimer בזמן ההמתנה ליריב. שואלת את השרת האם כבר נמצא משחק עבור השחקן. אם כן, עוצרת את הטיימר, שולפת את פרטי היריב )שם, מדינה ,Elo ,תמונת פרופיל( ומציגה אותם. קובעת את צבע השחקן לפי מי שחקן 1 ומי שחקן 2. שחקן 1 תמיד לבן, ומאתחלת את הלוח.
+[-|-|b=Y|sz=-|f=David] WaitForTurn() מפעילה את turnCheckTimer שיתחיל לפלל את השרת כל שנייה דרך.IsMyTurn
+[-|-|b=Y|sz=-|f=David] IsMyTurn(object sender, EventArgs e) נקראת כל שנייה על ידי turnCheckTimer בזמן שתור היריב. שואלת את השרת האם התור עבר. אם כן, עוצרת את הטיימר ומעדכנת את הלוח. בודקת את ערך TurnId לזיהוי אופן הסיום — 1- הפסד, 2- תיקו, 3- ניצחון בנטישה. אחרת מפעילה אפקט קול מתאים לפי מה שקרה (שח, לכידה, מהלך רגיל) וקוראת ל-MyTurn.
+[-|-|b=Y|sz=-|f=David] MyTurn() מופעלת בתחילת כל תור של השחקן. מחשבת את כל המהלכים האפשריים דרך   .UpdatePossibleMoves  אם אין מהלכים, בודקת האם יש שח כדי להבדיל בין שחמט לתיקו. אחרת מפעילה את כל כפתורי הכלים של השחקן.
+[-|-|b=Y|sz=-|f=David] UpdatePossibleMoves(bool forMe) עוברת על כל הכלים בלוח ומחשבת את סך כל המהלכים האפשריים על ידי הפעלת PieceSelected על כל כלי ברשימה. אם forMe הוא true בודקת את כלי השחקן, אחרת של היריב. משמשת לבדיקת שחמט ותיקו.
+[-|-|b=Y|sz=-|f=David] UpdatePieceList() מעדכנת את רשימת הכלים מהשרת. אם השחקן הוא שחור, מבצעת מירור של כל הקואורדינטות (X = 7-X, Y = 7-Y) כדי שהשחקן השחור תמיד יראה את הכלים שלו בתחתית הלוח.
+[-|-|b=Y|sz=-|f=David] BuildSAN(Piece, startX, startY, endX, endY, ...) בונה מחרוזת מהלך בנוטציה אלגברית סטנדרטית.(SAN)  מטפלת בכל המקרים: רוקד  O-O) או ,(O-O-O לכידה ,(x) לכידת רגלי לפי עמודה ,(exd5)0 אן-פאסאן ,(e.p.) שח (+) ושחמט (#). ממירה את קואורדינטות הגריד (0-7) לאותיות ומספרים שחמטאיים (a1-h8) תוך התחשבות בכיוון שחקן לבן/שחור.
+[-|-|b=Y|sz=-|f=David] Promote(object sender, RoutedEventArgs e) נקראת כשהשחקן בוחר כלי לקידום רגלי. מחליפה את סוג הרגלי בכלי הנבחר, מוסיפה את אות הקידום למחרוזת ה-SAN (=Q, =R, =B, =N), מנקה את גריד הקידום ושולחת את המהלך לשרת.
+[-|-|b=Y|sz=-|f=David] Checkmate(int isWinner) מטפלת בסיום המשחק. מפעילה את אפקט הקול המתאים לפי התוצאה, שולחת EndGame לשרת אם הסיום לא היה נטישה, ממתינה 1.2 שניות לאפקט דרמטי, ואז מנווטת ל EndScreen -עם תוצאת המשחק.
+[-|-|b=Y|sz=-|f=David] Forfeit() שולחת EndGame לשרת עם condition של 2- המסמן נטישה. נקראת מ-MainWindow.WindowClosing  כשהמשתמש סוגר את החלון באמצע משחק.
+[-|-|b=Y|sz=-|f=David] SingleGamePage (Singleplayer)
+[-|-|b=Y|sz=-|f=David] IsMyTurn(object sender, EventArgs e) נקראת כל שנייה על ידי turnCheckTimer בזמן שה Stockfish-מחשב. שואלת את השרת האם הגיעה תגובת .Stockfish אם כן, מסתירה את אנימציית הספינר ומעדכנת את הלוח. אם Turn שווה ל-1- בודקת האם יש שח על הלוח — אם כן שחמט לטובת השחקן (1), אחרת תיקו (0). שולחת RemoveSingleGame ועוצרת. אחרת מפעילה אפקט קול מתאים וקוראת ל.MyTurn-
+[-|-|b=Y|sz=-|f=David] MyTurn() עוצרת את הטיימר ומחשבת את כל המהלכים האפשריים של השחקן. בניגוד לגרסת המרובה משתתפים, כאן סיום המשחק מטופל ישירות בתוך MyTurn עצמה .אם אין מהלכים, שולחת EndGameSingle לשרת עם draw=true אם אין שח, ו draw=false -אם יש שח, ואז מנווטת ל.Checkmate-
+[-|-|b=Y|sz=-|f=David] Checkmate(int isWinner) מטפלת בסיום המשחק מול Stockfish. ערכים: 1 ניצחון, 0 תיקו, 1- הפסד. בניגוד לגרסת המרובה משתתפים, כאן אין שינוי Elo — EndScreen נוצר ללא פרמטר Elo.
+[-|-|b=Y|sz=-|f=David] PieceMoved(object sender, RoutedEventArgs e) דומה לגרסת המרובה משתתפים אך עם הבדל אחד משמעותי. אחרי שליחת המהלך לשרת דרך ,ConfirmMoveSingle מציגה את אנימציית הספינר כדי לסמן שה-  Stockfish  מחשב את תגובתו.
+[-|-|b=Y|sz=-|f=David] Promote(object sender, RoutedEventArgs e)  דומה לגרסת המרובה משתתפים אך פשוטה יותר .לא בונה מחרוזת SAN ולא מוסיפה אות קידום, פשוט מחליפה את סוג הרגלי ושולחת ConfirmMoveSingle .
+[-|-|b=Y|sz=-|f=David] Forfeit() שולחת EndGameSingle עם draw=false ואז RemoveSingleGame בניגוד לגרסת המרובה משתתפים, כאן יש צורך לשלוח גם RemoveSingleGame כי הסיום לא מגיע חזרה מהשרת.
+[-|-|b=Y|sz=-|f=David] EndScreen
+[-|-|b=n|sz=-|f=David] מסך הסיום המוצג בסוף כל משחק. מקבל בבנאי את תוצאת המשחק (won), מזהה השחקן, אובייקט השירות, וה-Elo  לפני המשחק.
+[-|-|b=n|sz=-|f=David] בנאי:
+[-|-|b=n|sz=-|f=David] מאפס את הפניות ל gamePage-ו singleGamePage-ב MainWindow-כי המשחק הסתיים
+[-|-|b=n|sz=-|f=David] קורא ל DisplayEndText-לפי תוצאת המשחק
+[-|-|b=n|sz=-|f=David] אם השחקן מחובר, שולף את הנתונים המעודכנים מהשרת ומציג את שינוי ה Elo
+[-|-|b=n|sz=-|f=David] בפורמט (+12, 1024 לדוגמה). אם הElo - שהועבר הוא 0 (משחק מול (Stockfish לא מציג כלום
+[-|-|b=n|sz=-|f=David] אם השחקן הוא ,Guest מוחק את רשומתו מהDB-
+[-|-|b=Y|sz=-|f=David] DisplayEndText(int won) מציגה את הכיתוב המתאים לפי התוצאה: 1 ניצחון, 0 תיקו, 1- הפסד, 2- ניצחון בנטישה.
+[-|-|b=Y|sz=-|f=David] MenuClick מעדכנת את ה-Elo השמור ב LoginPage -לערך החדש ואז מנווטת ל TitleScreen -חדש. כך שמסך הבית יציג את הדירוג המעודכן מיד.
+[-|-|b=n|sz=-|f=David] למטרת חישוב ה-Elo, חקרתי את הנוסחה בה נעשית שימוש נרחב:
+[-|-|b=Y|sz=-|f=David] נוסחת ה-Elo
+[-|-|b=n|sz=-|f=David] החישוב מתבצע בתוך EndGame בGameManager- ומשתמש בנוסחת Elo הסטנדרטית עם .K=16
+[-|-|b=n|sz=-|f=David] שלב ראשון — חישוב הסיכוי הצפוי לניצחון עבור כל שחקן:
+[-|right|b=n|sz=-|f=David] ציון_צפוי_שחקן 1 = 1 / (1 + 10^((Elo_שחקן2 - Elo_שחקן1) / 400))
+[-|right|b=n|sz=-|f=David] ציון_צפוי_שחקן 2 = 1/ (1 + 10^((Elo_שחקן1 - Elo_שחקן2) / 400))
+[-|-|b=n|sz=-|f=David] הנוסחה מחזירה ערך בין 0 ל-1 המייצג את הסיכוי הסטטיסטי לניצחון לפי הפרש הדירוגים. שחקן חזק יותר מקבל ציון צפוי גבוה יותר.
+[-|-|b=n|sz=-|f=David] שלב שני — עדכון הדירוג לפי התוצאה בפועל:
+[-|-|b=n|sz=-|f=David] ניצחון — תוצאה בפועל היא 1 לזוכה ו-0 למפסיד
+[-|-|b=n|sz=-|f=David] תיקו — תוצאה בפועל היא 0.5 לשניהם
+[-|right|b=n|sz=-|f=David] Elo_חדש = Elo_ישן + K * (תוצאה_בפועל - ציון_צפוי)
+[-|-|b=n|sz=-|f=David] כלומר, ניצחון על שחקן חזק ממך ייתן יותר נקודות מניצחון על שחקן חלש ממך, והפסד לשחקן חלש ממך יעלה יותר מהפסד לשחקן חזק. בנוסף, הדירוג לא יכול לרדת מתחת ל-100 בשום מקרה
+[-|-|b=Y|sz=-|f=David] LogIn  מסך ההתחברות של האפליקציה. מוחזק חי לאורך כל זמן ריצת התוכנה ב-MainWindow כדי לשמור את מצב ההתחברות.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] DataP (Player)  - אובייקט Player ריק שמשמש כ-DataContext לשדות הטקסט לצורך Validation
+[-|-|b=n|sz=-|f=David] player (Player)  -  השחקן המחובר כרגע
+[-|-|b=n|sz=-|f=David] loggedIn (bool)  - מצב ההתחברות הנוכחי
+[-|-|b=n|sz=-|f=David] srv  - אובייקט השירות
+[-|-|b=Y|sz=-|f=David] LoginClick  אסינכרונית. לפני שליחה לשרת, בודקת שאף שדה אינו ריק ידנית דרך Validation.MarkInvalid עם EmptyRule. אחר כך שולחת את האימייל והסיסמה לשרת דרך .CheckLogin מחזיר 1- אם האימייל לא נמצא, 2- אם הסיסמה שגויה, ו ID-השחקן אם הצליח. אם ההתחברות הצליחה, בודקת האם השחקן מושעה דרך IsBanned. אם מושעה, מחשבת את מספר הימים שנותרו להשעיה (30 ימים מתאריך הבאן) ומציגה הודעה מתאימה. אם עברו 30 יום, מבטלת את ההשעיה אוטומטית ומאפשרת כניסה. כל קריאות השרת עטופות ב-LoadingManager.UseLoading.
+[-|-|b=Y|sz=-|f=David] UpdatePlayerElo(int elo)  מעדכנת את ציון ה-Elo השמור בזיכרון אחרי סיום משחק, כדי שהTitleScreen -שייווצר לאחר מכן יציג את הציון הנכון.
+[-|-|b=Y|sz=-|f=David] IsLoggedIn / SetLoggedIn / GetPlayer פונקציות גישה פשוטות שמאפשרות לשאר הדפים לדעת את מצב ההתחברות ולשלוף את השחקן המחובר.
+[-|-|b=Y|sz=-|f=David] RegisterClick  מנווטת לדף ההרשמה.
+[-|-|b=Y|sz=-|f=David] Register  מסך ההרשמה. מאפשר יצירת חשבון חדש עם בחירת מדינה מרשימה נגללת.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] p (Player)  אובייקט Player שמתמלא בנתונים דרך Binding
+[-|-|b=n|sz=-|f=David] countrys (Dictionary<string, int>)  - מילון של שם מדינה למזהה, משמש לאכלוס ה- ComboBox
+[-|-|b=Y|sz=-|f=David] בנאי מגדיר את ה DataContext -של שדות הטקסט ל p -לצורך ,Validation וקורא ל GetCountryDict-לאכלוס רשימת המדינות.
+[-|-|b=Y|sz=-|f=David] GetCountryDict שולפת את כל המדינות מהשרת פעם אחת ובונה מהן .Dictionary אם כבר נשלפו, מחזירה את המילון הקיים בלי לפנות שוב לשרת.
+[-|-|b=Y|sz=-|f=David] RegisterClick מנקה את שגיאות ה- Validation הקודמות, ובודקת שכל השדות מלאים. לאחר מכן בודקת האם האימייל תפוס דרך .CheckEmailTaken אם עברו כל הבדיקות, בודקת שהסיסמה ואימות הסיסמה זהים. אם הכל תקין, קוראת ל AddPlayer -המוסיפה את השחקן החדש לבסיס הנתונים ומנווטת חזרה לדף ההתחברות.
+[-|-|b=Y|sz=-|f=David] CountrySelected נקראת כשהמשתמש בוחר מדינה מה .ComboBox -מעדכנת את CountryID ב p -לפי המילון.
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] מחלקות Validation כל מחלקות ה-Validation יורשות מ ValidationRule-ומממשות את
+[-|-|b=n|sz=-|f=David] Validate(object value, CultureInfo culture).
+[-|-|b=Y|sz=-|f=David] EmptyRule  מחזירה תמיד ValidationResult שגוי — משמשת לסימון שגיאות ידני דרך Validation.MarkInvalid במצבים שאי אפשר לבדוק דרך Binding רגיל, כמו שדה ריק או שגיאה שהגיעה מהשרת.
+[-|-|b=Y|sz=-|f=David] NameRule  מוודאת שאורך שם המשתמש הוא בין 3 ל-15 תווים.
+[-|-|b=Y|sz=-|f=David] EmailRule  מוודאת תקינות כתובת אימייל לפי הכללים הבאים:
+[-|-|b=n|sz=-|f=David] בדיוק תו @ אחד
+[-|-|b=n|sz=-|f=David] בדיוק תו נקודה אחת
+[-|-|b=n|sz=-|f=David] @ אינו התו הראשון או האחרון
+[-|-|b=n|sz=-|f=David] הנקודה מופיעה אחרי ה@-
+[-|-|b=n|sz=-|f=David] אין נקודה מיד אחרי ה@-
+[-|-|b=n|sz=-|f=David] הנקודה אינה התו האחרון
+[-|-|b=Y|sz=-|f=David] PasswordRule מוודאת שהסיסמה עומדת בדרישות הבאות:
+[-|-|b=n|sz=-|f=David] לפחות 8 תווים
+[-|-|b=n|sz=-|f=David] אינה מספר בלבד  -נבדק על ידי ניסיון Int32.Parse, אם הצליח הסיסמה נדחית
+[-|-|b=n|sz=-|f=David] מכילה גם אותיות גדולות וגם קטנות
+[-|-|b=n|sz=-|f=David] מכילה לפחות ספרה אחת - נבדק דרך  All(char.IsLetter)
+[-|-|b=Y|sz=-|f=David] GamesList  מסך רשימת המשחקים ההיסטוריים של השחקן המחובר. מציג ListView עם פרטי כל משחק כולל תמונות פרופיל של שני השחקנים ורשימת המהלכים.
+[-|-|b=n|sz=-|f=David] שדות:
+[-|-|b=n|sz=-|f=David] - Games (List<GameListItem>) רשימת המשחקים הנוכחית
+[-|-|b=n|sz=-|f=David] pfpCache (Dictionary<int, byte[]>) - מטמון תמונות פרופיל לפי מזהה שחקן, מונע פנייה חוזרת לשרת לאותה תמונה
+[-|-|b=Y|sz=-|f=David] UpdateListFromServer אסינכרונית. שולפת את כל המשחקים של השחקן המחובר מהשרת ומציגה אותם ב .ListView -לאחר ההצגה הראשונית, עוברת על כל משחק ושולפת את תמונות הפרופיל של שני השחקנים דרך .GetPfpAsync מרעננת את ה ItemsSource-פעמיים. פעם אחת עם הנתונים הבסיסיים ופעם נוספת אחרי שהתמונות נטענו.
+[-|-|b=Y|sz=-|f=David] GetPfpAsync(int playerId) שולפת תמונת פרופיל של שחקן באופן אסינכרוני תוך שימוש במטמון. אם התמונה כבר נשלפה בעבר, מחזירה אותה מהמטמון מבלי לפנות לשרת. שחקן עם ID=1 (Guest) אינו נשמר במטמון כי תמונתו משתנה בכל משחק.
+[-|-|b=Y|sz=-|f=David] MoveHeader_Click מאפשרת הרחבה וכיווץ של רשימת המהלכים בכל שורה ברשימה בלחיצה על הכותרת. מוצאת את ה MovesTextBlock-הרלוונטי ב StackPanel-ומחליפה את ה Visibility-שלו בין Visible ל-Collapsed.
+[-|-|b=Y|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=Y|sz=-|f=David] InputBoxWindowחלון דיאלוג קטן ומותאם אישית לקבלת קלט טקסטואלי מהמשתמש. משמש לפעולות מנהל כמו הזנת שם שחקן להרשאה או לבאן.
+[-|-|b=n|sz=-|f=David] בנאי מקבל prompt (הטקסט שמוצג למשתמש) ו) title -כותרת החלון(
+[-|-|b=n|sz=-|f=David] OkButton_Click  שומרת את הטקסט ומגדירה  DialogResult=true
+[-|-|b=n|sz=-|f=David] CancelButton_Click  מגדירה DialogResult=false בלי לשמור
+[-|-|b=n|sz=-|f=David] GetInputText  מחזירה את הטקסט שהוזן - נקראת אחרי סגירת החלון רק אם DialogResult היה  true
+[-|-|b=Y|sz=-|f=David] Value Converters
+[-|-|b=Y|sz=-|f=David] ByteToImageConverter ממיר byte[] ל-BitmapImage להצגה ב .UI-אם הערך הוא null מחזיר תמונת ברירת מחדל של רגלי שחור מה .Assets-משמש בכל מקום שמוצגת תמונת פרופיל.
+[-|-|b=Y|sz=-|f=David] IdToNameConverter  ממיר מזהה שחקן לשמו על ידי פנייה ישירה לשרת. מיועד לשימוש ב Binding -בלבד. לא מומלץ לשימוש ברשימות גדולות כי כל המרה יוצרת קריאת שרת חדשה.
+[-|-|b=Y|sz=-|f=David] DateToStringConverter  ממיר DateTime לפורמט תאריך קריא בפורמט dd/MM/yyyy.
+[-|-|b=Y|sz=-|f=David] LineBreakConverter  ממיר מחרוזת מהלכים לפורמט מרובה שורות להצגה נוחה. סופרת רווחים ומוסיפה תו שורה חדשה כל 5 מהלכים, כך שכל שורה מכילה 5 מהלכים בלבד.
+[1|-|b=n|sz=-|f=David] פרק 4: חלופה לאתר אינטרנטי
+[2|-|b=n|sz=-|f=David] 4.1 ממשק המשתמש
+[-|-|b=n|sz=-|f=David] לקוח ה Web-של הפרויקט הוא אתר ASP.NET WebForms הבנוי על גבי MasterPage משותף לכל הדפים. כל התקשורת עם הנתונים מתבצעת דרך ה WCF Service-באמצעות ChessServiceClient.
+[-|-|b=n|sz=-|f=David] האתר תומך בשלוש רמות הרשאה. אורח שטרם התחבר יכול לגשת לדפי Index, Features, About, Contact ו-Login  בלבד. משתמש מחובר מקבל גישה נוספת לדף הפרופיל האישי שלו. מנהל מקבל גישה לדף PlayersTable המציג את כל השחקנים במערכת.
+[-|-|b=Y|sz=-|f=David] MasterPage מגדיר את מבנה הדף הקבוע – סרגל ניווט עליון ו .Footer -סרגל הניווט מכיל קישורים קבועים (Home, Features, About, Contact) ולצידם תוכן דינמי שנקבע בזמן טעינת הדף לפי מצב ה .Session -אם המשתמש מחובר, מוצג שמו כקישור לפרופיל. אם הוא מנהל, מופיע גם קישור לטבלת השחקנים. אם אינו מחובר, מוצג קישור "Log In" .
+[-|-|b=Y|sz=-|f=David] דף הבית (Index.aspx) מציג Hero Section עם לוגו, שם האפליקציה וכפתור Get Started המעביר לדף ההתחברות או לדף הפרופיל אם המשתמש רשום. מתחתיו מוצגות כרטיסיות מידע עם אנימציית D3 tilt בעת ריחוף העכבר. האנימציה מחשבת את מיקום העכבר ביחס למרכז הכרטיסייה ומסובבת אותה בהתאם בCSS-.transform
+[-|-|b=Y|sz=-|f=David] דף ההתחברות (Login.aspx) מציג טופס עם שדות Email וסיסמה הנשלח ב .POST -בצד השרת נקראת הפונקציה CheckLogin מה.Service -אם ההתחברות הצליחה, ה-ID של המשתמש נשמר בSession["UserID"]-והמשתמש מועבר לדף הבית. אחרת, הדף נטען מחדש ללא פעולה.
+[-|-|b=Y|sz=-|f=David] דף הפרופיל (Profile.aspx) מציג את פרטי המשתמש המחובר – שם, אימייל, מדינה, Elo, HighestElo, נצחונות והפסדים. תמונת הפרופיל נטענת מהשרת כמערך בתים ומומרת ל-Base64 להצגה ישירה ב .HTML -הסיסמה מוצגת כנקודות ברירת מחדל, ולחיצה עליה חושפת אותה באמצעות .JavaScript אם ה Session-ריק,  כלומר המשתמש ניגש לדף כאשר לא מחובר, המשתמש מועבר אוטומטית לדף ההתחברות.
+[-|-|b=Y|sz=-|f=David] דף טבלת השחקנים (PlayersTable.aspx) נגיש למנהלים בלבד – בדיקה זו מתבצעת ב .Page_Load -הדף שולף את כל השחקנים מה Service -ובונה טבלת HTML דינמית הכוללת ,ID שם, אימייל, סיסמה, נצחונות, הפסדים, תיקו ומדינה. שחקן שהוא מנהל מסומן במפורש בטבלה עם הכיתוב (Admin) מודגש.
+[-|-|b=Y|sz=-|f=David] דפי המידע (About, Features, Contact) הם דפים סטטיים המציגים מידע על הפרויקט, תכונותיו ודרכי יצירת קשר. דף ה-Contact כולל כרטיסיות אייקונים לגיטהאב, טוויטר, דיסקורד ואימייל עם אפקט .hover דף ה-Features  מציג כרטיסיות תכונות עם אותה אנימציית D3 tilt שבדף הבית.
+[-|-|b=Y|sz=-|f=David] Logout.aspxמבצע Session.Abandon() ומעביר מיד לדף הבית, ללא תוכן מוצג למשתמש.
+[-|-|b=n|sz=-|f=-] (empty)
+[2|-|b=n|sz=-|f=David] 4.2 עיצוב האתר
+[-|-|b=n|sz=-|f=David] עיצוב האתר מבוסס על סגנון Glassmorphism כהה. שילוב של רקע כהה עם אלמנטים שקופים למחצה, טשטוש רקע (backdrop-filter blur) וגבולות עדינים. הסגנון יוצר מראה מודרני ונקי שמתאים לאפליקציית שחמט.
+[-|-|b=n|sz=-|f=David] רקע הדף הוא גרדיאנט אלכסוני בין שני גוונים כהים של אפור, והטקסט הכללי הוא לבן-אפרפר רך כדי לא לייצר ניגודיות חדה מדי לעיניים. הגופן בכל האתר הוא .Segoe UI
+[-|-|b=n|sz=-|f=David] סרגל הניווט מעוצב עם רקע כהה שקוף למחצה עם .blur גבול תחתון עדין ופריסת flexbox המרווחת את הלוגו, הקישורים ושם המשתמש לשני הצדדים. הקישורים מוצגים בצבע אפור בהיר ומתבהרים ללבן מלא בריחוף.
+[-|-|b=n|sz=-|f=David] כרטיסיות הבית וה Features -מעוצבות עם רקע שקוף ירקרק-כהה, גבול לבן עדין ופינות מעוגלות. העיצוב נשאר עקבי בין שני הדפים. שתי הכרטיסיות מגיבות לתנועת העכבר עם אנימציית  tilt 3D שהוסברה בסעיף הקודם.
+[-|-|b=n|sz=-|f=David] כפתור ה-Get Started בדף הבית עוצב עם פינות עגולות מאוד (border-radius: 30px), רקע סגלגל שקוף ומסגרת לבנה עדינה. בריחוף, הרקע מתכהה מעט והכפתור מתרחב קלות עם transform: scale.
+[-|-|b=n|sz=-|f=David] כרטיסיית ההתחברות ממורכזת באמצע המסך עם ,flexbox ומעוצבת עם זכוכית מטושטשת .רקע לבן שקוף מאוד עם .blur שדות הקלט מעוצבים בהתאם עם רקע שקוף, גבול לבן עדין וצבע טקסט לבן. בלחיצה על שדה (focus) הגבול מתבהר מעט.
+[-|-|b=n|sz=-|f=David] דף הפרופיל בנוי בשני אזורים עיקריים: תמונת הפרופיל עם שם המשתמש, ומתחתיה שורות מידע .(info-rows) כל שורה מעוצבת כבלוק נפרד עם רקע כחלחל-כהה שקוף, ובריחוף היא עולה מעלה מעט עם אפקט צל סגול עדין. תמונת הפרופיל עצמה עגולה עם גבול סגלגל ואפקט הגדלה קלה בריחוף.
+[-|-|b=n|sz=-|f=David] טבלת השחקנים מעוצבת בסגנון glass table .רקע שקוף עם .blur גבולות לבנים עדינים ושורות מפוסות לשיפור קריאות. בריחוף על שורה היא מתבהרת מעט.
+[-|-|b=n|sz=-|f=David] כרטיסיות ה Contact -מעוצבות כריבועים שווים עם אייקון גדול ומתחתיו שם הפלטפורמה. בריחוף הן גדלות מעט ומקבלות זוהר כחול box-shadow) עם צבע  (#4da6ff
+[2|-|b=n|sz=-|f=-] תרשים זרימת עמודים
+[-|-|b=n|sz=-|f=-] (empty)
+[-|-|b=n|sz=-|f=David] (empty)
+[-|-|b=n|sz=-|f=-] (empty)
+[1|-|b=n|sz=-|f=-] רפלקציה
+[-|-|b=n|sz=-|f=David] זהו הפרוייקט הגדול ביותר שלקחתי על עצמי עד היום. אני עוד יכול להיזכר בימים שהתחלתי לעבוד על לוגיקת המשחק. אני התרגשתי כשהתחלנו ללמוד על יחסי שרת לקוח כי תמיד התעניינתי בטכנולוגיה הזו ומימושה בכל רחבי חיינו.
+[-|-|b=n|sz=-|f=David] אני מאוד מסופק מהתוצאה הסופית. המערכת יציבה ומתוחכמת למדי, קיימת פה חווית משתמש שלמה, והיא שלי: דבר שאני מאוד מעריך. היה לי באמת כיף בשיעורי מדעי המחשב. כל פעם התקדמתי בפרוייקט לאט. לפעמים הייתי עובד עליו בבית כדי לסיים פיצ'ר שלא הספקתי בכיתה.
+[-|-|b=n|sz=-|f=David] עם זאת. כן היו קשיים. המצב הביטחוני האט משמעותית את קצב הלמידה ופגע במוטיבציה שלי. אבל הצלחתי להתגבר על זה.
+[-|-|b=n|sz=-|f=David] כתיבת ספר הפרוייקט לאי הפתעתי הייתה החלק הקשה ביותר. לאחר הסיפור של יצירת מוצר אינטרקטיבי. כתיבת הספר פרוייקט הרגישה הרבה פחות מרגשת.
+[-|-|b=n|sz=-|f=David] כן יש דברים שהיה אפשר להוסיף לפרוייקט. אולי מערכת הוספת חברים ששחקן יוכל לשחק עם שחקן אחר ספציפי כרצונו, או רמות שונות של בוטים, או טיימר משחק. אולי יהיה אפשרי להוסיף אפשרות לשחק דרך האתר, אך זה ייקח עבודה רבה.
+[-|-|b=n|sz=-|f=David] בכל מקרה אני מאושר שזכיתי ליצור את הפרוייקט הזה. ואני מצפה בקוצר רוח לעבוד על פרוייקטים נוספים ומשוכללים עוד יותר בעתיד.
+[-|right|b=n|sz=-|f=-] (empty)

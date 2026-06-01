@@ -1,0 +1,156 @@
+===== FIRST 40 PARAGRAPHS (COVER AREA) =====
+   1 [-|-|b=n|sz=56|f=David] בית ספר מקיף ז' הקריה אשדוד
+   2 [-|center|b=n|sz=-|f=-] (empty)
+   3 [-|center|b=n|sz=-|f=-] (empty)
+   4 [-|center|b=Y|sz=160|f=Segoe UI Symbol] ♕
+   5 [-|center|b=Y|sz=76|f=David] Online Checkers
+   6 [-|center|b=Y|sz=48|f=David] תיק פרויקט בהנדסת תוכנה
+   7 [-|-|b=n|sz=48,52,72|f=David] חלופה: תכנות אסינכרוני ומסדי נתונים
+   8 [-|-|b=n|sz=48,52,72|f=David] התלמיד : עידן ברשישט
+   9 [-|-|b=n|sz=48,52,72|f=David] ת.ז. : 332940972מנחה: אולגה גנדלמןתאריך: יוני 2026
+  10 [-|-|b=n|sz=-|f=-] (empty)
+  11 [-|-|b=n|sz=-|f=-] (empty)
+  12 [-|-|b=n|sz=48|f=David] (empty)
+  13 [-|-|b=n|sz=-|f=-] (empty)
+  14 [-|-|b=n|sz=24|f=David] (empty)
+  15 [1|-|b=Y|sz=44|f=David] תקציר
+  16 [-|-|b=n|sz=-|f=David] המסמך הזה מתעד פרויקט גמר בהנדסת תוכנה: פיתוח של מערכת רב-משתתפים למשחקי דמקה (אנגלית, 8x8) עם שרת WCF מרכזי ושלושה לקוחות עצמאיים, אפליקציית WPF לדסקטופ, אתר ASP.NET לפאנל מנהל מהדפדפן, ואפליקציית MAUI למובייל. המערכת מאוכלסת ב-Microsoft Access דרך OleDb, מציעה מטצמייקינג אוטומטי, מנוע Elo לדירוג שחקנים, מצב משחק נגד בוט, פלייבק של משחקים שהסתיימו, ומנגנון איתור ניתוקים שמעניש שחקן שעוזב באמצע. כל חוקי הדמקה, חובת אכילה, שרשור אכילות, הכתרה, נאכפים אך ורק בצד השרת על-ידי המנוע CheckersEngine, באופן שלא ניתן לעקיפה מצד הלקוח.
+  17 [-|-|b=n|sz=-|f=David] המסמך מתואר בחמישה חלקים: סקירה והקשר, ניתוח-נתונים-ארכיטקטורה, מימוש (שרת + שלושה לקוחות), אבטחה ובדיקות, ולסיכום: תיעוד, מדריכים, ורטרוספקטיבה. שלושה נספחים בסוף, מטריצת מענה למחוון, פירוט תהליכים מרכזיים, ודוגמאות קוד מורחבות.
+  18 [-|-|b=n|sz=-|f=-] (empty)
+  19 [2|-|b=Y|sz=-|f=David] מילות מפתח
+  20 [-|-|b=n|sz=-|f=David] WCF Service Library  ·  3-Tier Architecture  ·  MVVM  ·  Razor Pages  ·  .NET MAUI  ·  PBKDF2-SHA256  ·  DataContract  ·  Elo Rating System  ·  ConcurrentDictionary  ·  ValidationRule  ·  IValueConverter  ·  RoutedEvent.
+  21 [-|-|b=n|sz=-|f=David] (empty)
+  22 [1|-|b=Y|sz=44|f=David] תוכן עניינים
+  23 [a|-|b=n|sz=-|f=David] תקציר
+  24 [a|-|b=n|sz=-|f=David] חלק I, סקירה והקשר
+  25 [a|-|b=n|sz=-|f=David] פרק 1 · סיפור הפרויקט והמטרה
+  26 [a|-|b=n|sz=-|f=David] פרק 2 · מערך הטכנולוגיות וההחלטות
+  27 [a|-|b=n|sz=-|f=David] חלק II, ניתוח, נתונים, ארכיטקטורה
+  28 [a|-|b=n|sz=-|f=David] פרק 3 · דרישות פונקציונליות ותסריטי שימוש
+  29 [a|-|b=n|sz=-|f=David] פרק 4 · מודל הנתונים
+  30 [a|-|b=n|sz=-|f=David] פרק 5 · ארכיטקטורת תוכנה
+  31 [a|-|b=n|sz=-|f=David] חלק III, שירות הרשת והלקוחות
+  32 [a|-|b=n|sz=-|f=David] פרק 6 · שירות ה-WCF
+  33 [a|-|b=n|sz=-|f=David] פרק 7 · לקוח דסקטופ ב-WPF
+  34 [a|-|b=n|sz=-|f=David] פרק 8 · ממשק ניהול ברשת (Razor Pages)
+  35 [a|-|b=n|sz=-|f=David] פרק 9 · אפליקציית מובייל (MAUI)
+  36 [a|-|b=n|sz=-|f=David] חלק IV, אבטחה ובדיקות
+  37 [a|-|b=n|sz=-|f=David] פרק 10 · אסטרטגיית האבטחה
+  38 [a|-|b=n|sz=-|f=David] פרק 11 · בדיקות ותיקוף
+  39 [a|-|b=n|sz=-|f=David] חלק V, תיעוד, סיכום, מקורות
+  40 [a|-|b=n|sz=-|f=David] פרק 12 · הוראות הפעלה ומדריכים
+
+===== ALL HEADING PARAGRAPHS (styles 1/2/3) =====
+  15 [1|-|b=Y|sz=44|f=David] תקציר
+  19 [2|-|b=Y|sz=-|f=David] מילות מפתח
+  22 [1|-|b=Y|sz=44|f=David] תוכן עניינים
+  56 [1|-|b=Y|sz=44|f=David] פרק 1 · סיפור הפרויקט והמטרה
+  57 [2|-|b=Y|sz=-|f=David] 1.1  הניצוץ
+  59 [2|-|b=Y|sz=-|f=David] 1.2  מהו Online Checkers
+  62 [2|-|b=Y|sz=-|f=David] 1.3  ערך לכל סוג משתמש
+  76 [2|-|b=Y|sz=-|f=David] 1.4  מטרות מדידות
+  83 [2|-|b=Y|sz=-|f=David] 1.5  מה לא נכלל בגרסה הזו
+  91 [1|-|b=Y|sz=44|f=David] פרק 2 · מערך הטכנולוגיות וההחלטות
+  92 [2|-|b=Y|sz=-|f=David] 2.1  שלוש פלטפורמות לקוח, סטאק אחד
+ 111 [2|-|b=Y|sz=-|f=David] 2.2  בחירת שכבות שרת
+ 129 [2|-|b=Y|sz=-|f=David] 2.3  עברית, קוד, פלטפורמות
+ 156 [2|-|b=Y|sz=-|f=David] 2.4  חידושים והרחבות מעבר לדרישות הבסיס
+ 173 [1|-|b=Y|sz=44|f=David] פרק 3 · דרישות פונקציונליות ותסריטי שימוש
+ 174 [2|-|b=Y|sz=-|f=David] 3.1  בעלי תפקיד
+ 189 [2|-|b=Y|sz=-|f=David] 3.2  שמונה תסריטי שימוש מרכזיים
+ 191 [3|-|b=Y|sz=26|f=David] UC1 · הרשמת שחקן
+ 193 [3|-|b=Y|sz=26|f=David] UC2 · התחברות
+ 195 [3|-|b=Y|sz=26|f=David] UC3 · חיפוש משחק במטצמייקינג
+ 197 [3|-|b=Y|sz=26|f=David] UC4 · משחק נגד בוט
+ 199 [3|-|b=Y|sz=26|f=David] UC5 · ביצוע מהלך
+ 201 [3|-|b=Y|sz=26|f=David] UC6 · הצעת תיקו וקבלתה / דחייתה
+ 203 [3|-|b=Y|sz=26|f=David] UC7 · התפטרות
+ 205 [3|-|b=Y|sz=26|f=David] UC8 · ניהול משתמשים על-ידי אדמין
+ 207 [2|-|b=Y|sz=-|f=David] 3.3  תרשים זרימת מידע (DFD-0)
+ 227 [1|-|b=Y|sz=44|f=David] פרק 4 · מודל הנתונים
+ 228 [2|-|b=Y|sz=-|f=David] 4.1  הצגה כללית
+ 230 [2|-|b=Y|sz=-|f=David] 4.2  שלוש הטבלאות
+ 231 [3|-|b=Y|sz=26|f=David] טבלת Users
+ 272 [3|-|b=Y|sz=26|f=David] טבלת Games
+ 304 [3|-|b=Y|sz=26|f=David] טבלת Moves, טבלת קישור
+ 351 [2|-|b=Y|sz=-|f=David] 4.3  שאילתות מהותיות
+ 374 [2|-|b=Y|sz=-|f=David] 4.4  ERD, תרשים קשרי הגומלין
+ 398 [1|-|b=Y|sz=44|f=David] פרק 5 · ארכיטקטורת תוכנה
+ 399 [2|-|b=Y|sz=-|f=David] 5.1  פירוט שכבות
+ 421 [2|-|b=Y|sz=-|f=David] 5.2  חוזה DataContract
+ 435 [2|-|b=Y|sz=-|f=David] 5.3  דוגמת זרימה, ביצוע מהלך מקצה לקצה
+ 448 [2|-|b=Y|sz=-|f=David] 5.4  מבנה הסולושן
+ 477 [1|-|b=Y|sz=44|f=David] פרק 6 · שירות ה-WCF
+ 478 [2|-|b=Y|sz=-|f=David] 6.1  הגדרות הרשת ב-App.config
+ 517 [2|-|b=Y|sz=-|f=David] 6.2  חוזה ICheckersService
+ 556 [2|-|b=Y|sz=-|f=David] 6.3  דוגמאות מימוש
+ 557 [3|-|b=Y|sz=26|f=David] Login, הוצאת token
+ 569 [3|-|b=Y|sz=26|f=David] MakeMove, בדיקה ראשונית + ניתוב
+ 578 [3|-|b=Y|sz=26|f=David] RequireAuthAsync, השומר המרכזי
+ 592 [2|-|b=Y|sz=-|f=David] 6.4  שכבת ViewDB
+ 625 [3|-|b=Y|sz=26|f=David] תרשים ירושה
+ 633 [2|-|b=Y|sz=-|f=David] 6.5  שכבת BusinessLogic
+ 650 [1|-|b=Y|sz=44|f=David] פרק 7 · לקוח דסקטופ ב-WPF
+ 651 [2|-|b=Y|sz=-|f=David] 7.1  רשימת המסכים
+ 682 [2|-|b=Y|sz=-|f=David] 7.2  ValidationRules ו-IValueConverter
+ 738 [2|-|b=Y|sz=-|f=David] 7.3  UserControls עם RoutedEvent
+ 747 [2|-|b=Y|sz=-|f=David] 7.4  MVVM פנימי
+ 762 [1|-|b=Y|sz=44|f=David] פרק 8 · ממשק ניהול ברשת (Razor Pages)
+ 763 [2|-|b=Y|sz=-|f=David] 8.1  דפי האתר
+ 784 [2|-|b=Y|sz=-|f=David] 8.2  PageModel + Cookie Authentication
+ 812 [2|-|b=Y|sz=-|f=David] 8.3  ריענון אוטומטי חכם
+ 831 [1|-|b=Y|sz=44|f=David] פרק 9 · אפליקציית מובייל (MAUI)
+ 832 [2|-|b=Y|sz=-|f=David] 9.1  רשימת הדפים
+ 850 [2|-|b=Y|sz=-|f=David] 9.2  ServiceHelper ו-AppState
+ 879 [2|-|b=Y|sz=-|f=David] 9.3  פלטפורמות המטרה
+ 904 [1|-|b=Y|sz=44|f=David] פרק 10 · אסטרטגיית האבטחה
+ 906 [2|-|b=Y|sz=-|f=David] 10.1  הצפנת סיסמאות (PBKDF2-SHA256)
+ 951 [2|-|b=Y|sz=-|f=David] 10.2  שאילתות פרמטריות נגד SQL Injection
+ 970 [2|-|b=Y|sz=-|f=David] 10.3  אימות מבוסס Token (stateless)
+ 977 [2|-|b=Y|sz=-|f=David] 10.4  הגנות נוספות
+ 984 [1|-|b=Y|sz=44|f=David] פרק 11 · בדיקות ותיקוף
+ 986 [2|-|b=Y|sz=-|f=David] 11.1  ValidationRules בלקוח WPF
+1020 [2|-|b=Y|sz=-|f=David] 11.2  CRUD על Games + Moves
+1043 [2|-|b=Y|sz=-|f=David] 11.3  מחזור חיי סיסמה
+1063 [2|-|b=Y|sz=-|f=David] 11.4  ניסיונות SQL Injection
+1080 [2|-|b=Y|sz=-|f=David] 11.5  תאימות פלטפורמות (build status)
+1100 [2|-|b=Y|sz=-|f=David] 11.6  בדיקת End-to-End
+1124 [1|-|b=Y|sz=44|f=David] פרק 12 · הוראות הפעלה ומדריכים
+1125 [2|-|b=Y|sz=-|f=David] 12.1  דרישות מערכת
+1132 [2|-|b=Y|sz=-|f=David] 12.2  הפעלת השרת והלקוחות
+1139 [2|-|b=Y|sz=-|f=David] 12.3  מדריך לשחקן
+1140 [3|-|b=Y|sz=26|f=David] הרשמה והתחברות
+1145 [3|-|b=Y|sz=26|f=David] חיפוש משחק
+1149 [3|-|b=Y|sz=26|f=David] ביצוע מהלכים
+1154 [3|-|b=Y|sz=26|f=David] צפייה במשחק קודם (Replay)
+1159 [2|-|b=Y|sz=-|f=David] 12.4  מדריך למנהל
+1165 [2|-|b=Y|sz=-|f=David] 12.5  הודעות שגיאה נפוצות
+1182 [1|-|b=Y|sz=44|f=David] פרק 13 · רטרוספקטיבה אישית
+1183 [2|-|b=Y|sz=-|f=David] 13.1  איך זה התחיל
+1185 [2|-|b=Y|sz=-|f=David] 13.2  הצלחות
+1193 [2|-|b=Y|sz=-|f=David] 13.3  קשיים ופתרונות
+1209 [2|-|b=Y|sz=-|f=David] 13.4  מה למדתי
+1218 [2|-|b=Y|sz=-|f=David] 13.5  לו היה לי עוד זמן
+1227 [2|-|b=Y|sz=-|f=David] 13.6  שלוש תובנות עיקריות
+1232 [1|-|b=Y|sz=44|f=David] פרק 14 · רשימת מקורות
+1233 [2|-|b=Y|sz=-|f=David] 14.1  מקורות מיקרוסופט (Microsoft Learn)
+1243 [2|-|b=Y|sz=-|f=David] 14.2  הצפנה ואבטחה (NIST + OWASP)
+1247 [2|-|b=Y|sz=-|f=David] 14.3  משחק ודירוג
+1250 [2|-|b=Y|sz=-|f=David] 14.4  הקשר לימודי
+1254 [1|-|b=Y|sz=44|f=David] נספח א · מטריצת מענה למחוון
+1256 [2|-|b=Y|sz=-|f=David] א.1  סעיפי החובה (1-8)
+1285 [2|-|b=Y|sz=-|f=David] א.2  הרחבות סעיף 9
+1302 [2|-|b=Y|sz=-|f=David] א.3  הרחבות סעיף 10
+1322 [2|-|b=Y|sz=-|f=David] א.4  סיכום אגגרגטיבי
+1327 [1|-|b=Y|sz=44|f=David] נספח ב · תהליכים מרכזיים בפירוט מלא
+1328 [2|-|b=Y|sz=-|f=David] ב.1  הרשמת שחקן (חוצה את כל השכבות)
+1339 [2|-|b=Y|sz=-|f=David] ב.2  ביצוע מהלך + עדכון Elo
+1352 [2|-|b=Y|sz=-|f=David] ב.3  זיהוי ניתוק וקנס Elo
+1361 [2|-|b=Y|sz=-|f=David] ב.4  Replay של משחק שהסתיים
+1370 [1|-|b=Y|sz=44|f=David] נספח ג · דוגמאות קוד מורחבות
+1371 [2|-|b=Y|sz=-|f=David] ג.1  Model: Base.cs
+1388 [2|-|b=Y|sz=-|f=David] ג.2  Model: User.cs
+1420 [2|-|b=Y|sz=-|f=David] ג.3  BusinessLogic: PasswordHasher.cs (מלא)
+1473 [2|-|b=Y|sz=-|f=David] ג.4  CheckersEngine, קטע מ-GenerateLegalMoves
+1497 [2|-|b=Y|sz=-|f=David] ג.5  MAUI: ServiceHelper.cs (מלא)
+1535 [2|-|b=Y|sz=-|f=David] ג.6  Connection String של Access
