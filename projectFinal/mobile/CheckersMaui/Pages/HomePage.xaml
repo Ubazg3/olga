@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckersMaui.Pages.HomePage"
+             Title="Home">
+    <RefreshView x:Name="Refresher" Refreshing="OnRefreshing">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="14">
+
+                <!-- Header card with current user + rating -->
+                <Border Style="{StaticResource Panel}">
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="10">
+                        <Label Grid.Row="0" Grid.Column="0"
+                               x:Name="WelcomeLabel"
+                               Style="{StaticResource H1}" />
+                        <Label Grid.Row="1" Grid.Column="0"
+                               x:Name="MetaLabel"
+                               Style="{StaticResource MutedLabel}" />
+
+                        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"
+                                BackgroundColor="{StaticResource Accent}"
+                                Padding="14,8"
+                                VerticalOptions="Center">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="6" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout>
+                                <Label x:Name="RatingLabel"
+                                       TextColor="{StaticResource AccentText}"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="22"
+                                       HorizontalOptions="Center" />
+                                <Label Text="ELO"
+                                       TextColor="{StaticResource AccentText}"
+                                       FontSize="11"
+                                       HorizontalOptions="Center" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Stats strip: W/L/D -->
+                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                    <Border Grid.Column="0" Style="{StaticResource Card}">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="WinsLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="22"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource Success}" />
+                            <Label Text="Wins"
+                                   Style="{StaticResource MutedLabel}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" Style="{StaticResource Card}">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="LossesLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="22"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource Danger}" />
+                            <Label Text="Losses"
+                                   Style="{StaticResource MutedLabel}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource Card}">
+                        <VerticalStackLayout HorizontalOptions="Center">
+                            <Label x:Name="DrawsLabel"
+                                   FontFamily="OpenSansSemibold"
+                                   FontSize="22"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource Info}" />
+                            <Label Text="Draws"
+                                   Style="{StaticResource MutedLabel}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+
+                <!-- Navigation tiles -->
+                <Label Text="EXPLORE" Style="{StaticResource H3}" Margin="4,16,0,0" />
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="10">
+                        <Button Text="My profile"
+                                Style="{StaticResource SecondaryButton}"
+                                Clicked="OnProfile" />
+                        <Button Text="Game history"
+                                Style="{StaticResource SecondaryButton}"
+                                Clicked="OnGameHistory" />
+                        <Button Text="Leaderboard"
+                                Style="{StaticResource SecondaryButton}"
+                                Clicked="OnLeaderboard" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Online players preview -->
+                <Label Text="ONLINE NOW" Style="{StaticResource H3}" Margin="4,16,0,0" />
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label x:Name="NoOnlineLabel"
+                               Text="Nobody else is online right now."
+                               Style="{StaticResource MutedLabel}"
+                               IsVisible="False" />
+                        <CollectionView x:Name="OnlineList">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*,Auto" Padding="0,6">
+                                        <Label Grid.Column="0" Text="{Binding Username}" />
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Rating, StringFormat='{}{0}'}"
+                                               TextColor="{StaticResource Accent}"
+                                               FontFamily="OpenSansSemibold" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Sign out"
+                        Style="{StaticResource DangerButton}"
+                        Clicked="OnLogout"
+                        Margin="0,20,0,20" />
+
+                <Label x:Name="StatusLabel"
+                       IsVisible="False"
+                       HorizontalTextAlignment="Center"
+                       TextColor="{StaticResource Danger}" />
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

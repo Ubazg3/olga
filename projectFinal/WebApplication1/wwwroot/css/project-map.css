@@ -1,0 +1,371 @@
+/* ===== Project Map — public showcase page =====
+   Self-contained styles so this doesn't affect the admin / login pages.
+   All tokens come from site.css :root. */
+
+.map-page {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+}
+
+/* Layout shell wrapper from _Layout.cshtml (login-body) needs to be unset
+   for this page so we can scroll naturally. */
+body.login-body { display: block !important; min-height: auto !important; padding: 0 !important; }
+
+/* ---------- HERO ---------- */
+.map-hero {
+    background: linear-gradient(180deg, #232C3A 0%, #1A1F2A 100%);
+    border: 1px solid var(--divider);
+    border-radius: 18px;
+    padding: 48px 40px;
+    margin-bottom: 32px;
+    box-shadow: 0 16px 48px rgba(0,0,0,.35);
+}
+.map-hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+.map-hero-logo {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-size: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(244, 208, 96, .25);
+}
+.map-hero-text h1 {
+    margin: 0 0 8px;
+    font-size: 42px;
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    font-weight: 700;
+}
+.map-hero-tag {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin: 0 0 20px;
+    max-width: 720px;
+    line-height: 1.55;
+}
+.map-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-ghost {
+    display: inline-block;
+    padding: 11px 20px;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+    color: var(--text-primary) !important;
+    font-weight: 600;
+    transition: background .15s, border-color .15s;
+}
+.btn-ghost:hover {
+    background: var(--bg-card);
+    border-color: var(--accent);
+    text-decoration: none !important;
+}
+
+/* ---------- STATS ---------- */
+.map-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 48px;
+}
+.map-stat {
+    background: var(--bg-panel);
+    border: 1px solid var(--divider);
+    border-radius: 14px;
+    padding: 22px 20px;
+    text-align: center;
+}
+.map-stat-num {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.map-stat-label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.map-stat-sub {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* ---------- SECTIONS ---------- */
+.map-section { margin-bottom: 56px; }
+.map-section-head { margin-bottom: 24px; }
+.map-eyebrow {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.map-section-head h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+.map-section-sub {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin: 0;
+    max-width: 760px;
+    line-height: 1.55;
+}
+
+/* ---------- ARCHITECTURE SVG ---------- */
+.map-arch-wrap {
+    background: var(--bg-panel);
+    border: 1px solid var(--divider);
+    border-radius: 14px;
+    padding: 28px;
+    overflow-x: auto;
+}
+.map-arch { width: 100%; height: auto; min-width: 720px; }
+
+/* SVG element styles */
+.map-arch .tier-title {
+    fill: #F2F4F7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-anchor: middle;
+}
+.map-arch .tier-line {
+    fill: #A6B0C0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 12px;
+    text-anchor: middle;
+}
+.map-arch .tier-line.muted { fill: #6B7488; }
+.map-arch .gold-text { fill: #1A1F2A; }
+.map-arch .link-label {
+    fill: #6B7488;
+    font-family: "JetBrains Mono", "Consolas", monospace;
+    font-size: 11px;
+    text-anchor: middle;
+}
+.map-arch .links path,
+.map-arch .arrow {
+    stroke: #3D4860;
+    stroke-width: 2;
+    fill: none;
+}
+.map-arch .arrow {
+    marker-end: url(#arrowhead);
+}
+/* synthesise an arrowhead via a poly inline since markers can't live
+   in another <defs>; we just draw the triangle below */
+.map-arch path.arrow {
+    stroke-dasharray: none;
+}
+.map-arch .chip {
+    fill: rgba(255,255,255,0.06);
+    stroke: rgba(255,255,255,0.08);
+}
+.map-arch .chip-text {
+    fill: #F2F4F7;
+    font-family: "JetBrains Mono", "Consolas", monospace;
+    font-size: 11px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* ---------- COMPONENT CARDS ---------- */
+.map-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+}
+.map-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--divider);
+    border-radius: 14px;
+    padding: 22px 22px 18px;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.map-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+.map-card header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+.map-card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+}
+.map-card h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+}
+.map-card-meta {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+.map-card ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+}
+.map-card li {
+    padding: 4px 0;
+    border-top: 1px solid rgba(255,255,255,.04);
+}
+.map-card li:first-child { border-top: 0; }
+.map-card b {
+    color: var(--text-primary);
+    font-family: "JetBrains Mono", "Consolas", monospace;
+    font-size: 12px;
+    background: rgba(244,208,96,.08);
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+
+/* ---------- HEADLINE FEATURES ---------- */
+.map-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+}
+.map-feature {
+    background: var(--bg-card);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px;
+}
+.map-feature-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+.map-feature h4 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+}
+.map-feature p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.55;
+}
+.map-feature code {
+    background: rgba(244,208,96,.12);
+    color: var(--accent);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* ---------- TECH STACK TABLE ---------- */
+.map-stack {
+    background: var(--bg-panel);
+    border: 1px solid var(--divider);
+    border-radius: 14px;
+    overflow: hidden;
+}
+.map-stack-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.map-stack-table thead th {
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: .1em;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--divider);
+}
+.map-stack-table td {
+    padding: 14px 18px;
+    border-top: 1px solid var(--divider);
+    color: var(--text-primary);
+}
+.map-stack-table td:nth-child(1) {
+    color: var(--accent);
+    font-weight: 600;
+    width: 24%;
+}
+.map-stack-table td:nth-child(3) {
+    color: var(--text-muted);
+}
+
+/* ---------- FOOTER ---------- */
+.map-footer {
+    margin-top: 48px;
+    padding: 28px;
+    background: var(--bg-panel);
+    border: 1px solid var(--divider);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.map-footer p {
+    margin: 8px 0 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    max-width: 560px;
+}
+.map-foot-logo {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-size: 22px;
+    display: flex; align-items: center; justify-content: center;
+}
+.map-foot-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.map-foot-links a { font-weight: 600; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 720px) {
+    .map-stats   { grid-template-columns: repeat(2, 1fr); }
+    .map-hero    { padding: 32px 22px; }
+    .map-hero-text h1 { font-size: 30px; }
+    .map-section-head h2 { font-size: 22px; }
+}

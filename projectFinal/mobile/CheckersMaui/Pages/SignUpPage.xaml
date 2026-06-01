@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckersMaui.Pages.SignUpPage"
+             Shell.NavBarIsVisible="False"
+             Title="Sign up">
+    <ScrollView>
+        <VerticalStackLayout Padding="28" Spacing="14">
+            <Label Text="Create account"
+                   Style="{StaticResource H1}"
+                   HorizontalOptions="Center"
+                   Margin="0,16,0,4" />
+            <Label Text="Just username + password are required."
+                   Style="{StaticResource MutedLabel}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,16" />
+
+            <Border Style="{StaticResource Panel}">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="USERNAME" Style="{StaticResource H3}" />
+                    <Entry x:Name="UsernameEntry" Placeholder="alice" />
+
+                    <Label Text="PASSWORD" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="At least 6 characters" />
+
+                    <Label Text="EMAIL  (optional)" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="you@example.com" />
+
+                    <Label Text="BIRTH DATE  (optional)" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <!-- MinimumDate / MaximumDate / default Date set in code-behind so we
+                         don't have to declare an extra XML namespace just to reach
+                         System.DateTime. -->
+                    <DatePicker x:Name="BirthDatePicker" Format="d MMM yyyy" />
+
+                    <Label Text="COUNTRY  (optional)" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <Entry x:Name="CountryEntry" Placeholder="Israel" />
+
+                    <Button x:Name="RegisterButton"
+                            Text="Create account"
+                            Clicked="OnRegisterClicked"
+                            Margin="0,16,0,0" />
+
+                    <Button Text="Back to sign in"
+                            Style="{StaticResource SecondaryButton}"
+                            Clicked="OnBackClicked" />
+
+                    <ActivityIndicator x:Name="Spinner" IsRunning="False" IsVisible="False" />
+                    <Label x:Name="StatusLabel"
+                           IsVisible="False"
+                           HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource Danger}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

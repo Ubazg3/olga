@@ -1,0 +1,133 @@
+@page "{gameId:int?}"
+@model WebApplication1.Pages.Admin.GamesModel
+@{
+    ViewData["Title"]    = Model.SelectedGame == null ? "Games" : $"Game #{Model.SelectedGame.Id}";
+    ViewData["Subtitle"] = Model.SelectedGame == null
+        ? $"{Model.RecentGames.Count} most recent"
+        : "Move-by-move replay";
+}
+
+@if (Model.SelectedGame == null)
+{
+    @* ===== List view ===== *@
+    @if (Model.Error != null)
+    {
+        <div class="card"><span class="badge badge-danger">Error</span> @Model.Error</div>
+    }
+
+    <div class="table-wrap">
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Started</th>
+                    <th>White</th>
+                    <th>Black</th>
+                    <th>Moves</th>
+                    <th>Result</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var g in Model.RecentGames)
+            {
+                <tr>
+                    <td><strong>#@g.Id</strong></td>
+                    <td><span class="meta">@g.StartedAt.ToString("dd MMM yyyy HH:mm")</span></td>
+                    <td>@(Model.UserName(g.WhitePlayerId))</td>
+                    <td>@(Model.UserName(g.BlackPlayerId))</td>
+                    <td>@g.MoveCount</td>
+                    <td>
+                        @switch (g.Status)
+                        {
+                            case WebApplication1.CheckersServer.GameStatus.WhiteWins:
+                                <span class="badge badge-success">White wins</span> break;
+                            case WebApplication1.CheckersServer.GameStatus.BlackWins:
+                                <span class="badge badge-success">Black wins</span> break;
+                            case WebApplication1.CheckersServer.GameStatus.Draw:
+                                <span class="badge badge-info">Draw</span> break;
+                            case WebApplication1.CheckersServer.GameStatus.InProgress:
+                                <span class="badge badge-muted">In progress</span> break;
+                            default:
+                                <span class="badge badge-muted">@g.Status</span> break;
+                        }
+                    </td>
+                    <td style="text-align: right;">
+                        <a class="btn-secondary btn-small" asp-page="/Admin/Games" asp-route-gameId="@g.Id">Replay</a>
+                    </td>
+                </tr>
+            }
+            @if (Model.RecentGames.Count == 0)
+            {
+                <tr><td colspan="7" class="empty">No games yet.</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    @* ===== Replay view ===== *@
+    <div style="margin-bottom: 16px;">
+        <a class="btn-secondary btn-small" asp-page="/Admin/Games">← Back to all games</a>
+    </div>
+
+    <div class="replay-shell">
+        <div>
+            <div class="player-chips">
+                <div class="player-chip">
+                    <span class="avatar" style="background:linear-gradient(180deg,#FFF8E6,#E0C080); color:#1A1F2A;">
+                        ♛
+                    </span>
+                    <span>
+                        <div class="label">White</div>
+                        <div class="name">@Model.UserName(Model.SelectedGame.WhitePlayerId)</div>
+                    </span>
+                </div>
+                <div class="player-chip">
+                    <span class="avatar" style="background:linear-gradient(180deg,#333,#101010); color:#F4D060;">
+                        ♛
+                    </span>
+                    <span>
+                        <div class="label">Black</div>
+                        <div class="name">@Model.UserName(Model.SelectedGame.BlackPlayerId)</div>
+                    </span>
+                </div>
+            </div>
+
+            <div id="board" class="board" data-initial="@Model.InitialBoard"></div>
+
+            <div class="replay-controls">
+                <button id="btn-first">⏮ First</button>
+                <button id="btn-prev">◀ Prev</button>
+                <button id="btn-next">Next ▶</button>
+                <button id="btn-last">Last ⏭</button>
+                <button id="btn-play">▶ Play</button>
+            </div>
+        </div>
+
+        <aside class="replay-side">
+            <h2 class="card-title">Move list</h2>
+            <p class="card-subtitle">Click a move to jump to it.</p>
+            <div id="move-list" class="move-list"
+                 data-moves='@System.Text.Json.JsonSerializer.Serialize(Model.MovesForJs())'>
+                <div class="move active" data-idx="-1"><span class="num">0.</span> Start position</div>
+                @for (int i = 0; i < Model.Moves.Count; i++)
+                {
+                    var m = Model.Moves[i];
+                    <div class="move" data-idx="@i">
+                        <span><span class="num">@(i + 1).</span> @m.Notation</span>
+                        <span class="meta">@(m.MoverColor == WebApplication1.CheckersServer.PieceColor.White ? "♔" : "♚")</span>
+                    </div>
+                }
+            </div>
+        </aside>
+    </div>
+
+    @section Scripts {
+        @* Replay is interactive — don't let auto-refresh.js yank the
+           page back to move 0 every 15 s. *@
+        <script>window.__noAutoRefresh = true;</script>
+        <script src="~/js/replay.js" asp-append-version="true"></script>
+    }
+}

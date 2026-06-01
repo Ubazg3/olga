@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckersMaui.Pages.LoginPage"
+             Shell.NavBarIsVisible="False"
+             Title="Sign in">
+    <ScrollView>
+        <VerticalStackLayout Padding="28" Spacing="14" VerticalOptions="Center">
+
+            <!-- Branding -->
+            <Label Text="Checkers"
+                   Style="{StaticResource H1}"
+                   HorizontalOptions="Center"
+                   Margin="0,32,0,0" />
+            <Label Text="Online multiplayer board game"
+                   Style="{StaticResource MutedLabel}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,28" />
+
+            <!-- Form card -->
+            <Border Style="{StaticResource Panel}">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="USERNAME" Style="{StaticResource H3}" />
+                    <Entry x:Name="UsernameEntry" Placeholder="e.g. alice" />
+
+                    <Label Text="PASSWORD" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <Entry x:Name="PasswordEntry" Placeholder="••••••••" IsPassword="True" />
+
+                    <Button x:Name="LoginButton"
+                            Text="Sign in"
+                            Clicked="OnLoginClicked"
+                            Margin="0,12,0,0" />
+
+                    <Button Text="Create new account"
+                            Style="{StaticResource SecondaryButton}"
+                            Clicked="OnSignUpClicked" />
+
+                    <ActivityIndicator x:Name="Spinner" IsRunning="False" IsVisible="False" />
+                    <Label x:Name="StatusLabel"
+                           IsVisible="False"
+                           HorizontalTextAlignment="Center"
+                           TextColor="{StaticResource Danger}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckersMaui.Pages.ProfilePage"
+             Title="My profile">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <!-- Hero card -->
+            <Border Style="{StaticResource Panel}">
+                <VerticalStackLayout Spacing="6">
+                    <Label x:Name="UsernameLabel" Style="{StaticResource H1}" />
+                    <Label x:Name="RoleLabel"     Style="{StaticResource MutedLabel}" />
+                    <Label x:Name="MemberLabel"   Style="{StaticResource MutedLabel}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Stats strip -->
+            <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="10">
+                <Border Grid.Column="0" Style="{StaticResource Card}">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label x:Name="RatingValue"
+                               FontFamily="OpenSansSemibold" FontSize="22"
+                               HorizontalOptions="Center"
+                               TextColor="{StaticResource Accent}" />
+                        <Label Text="Rating" Style="{StaticResource MutedLabel}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Column="1" Style="{StaticResource Card}">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label x:Name="WinsValue"
+                               FontFamily="OpenSansSemibold" FontSize="22"
+                               HorizontalOptions="Center"
+                               TextColor="{StaticResource Success}" />
+                        <Label Text="Wins" Style="{StaticResource MutedLabel}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource Card}">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label x:Name="LossesValue"
+                               FontFamily="OpenSansSemibold" FontSize="22"
+                               HorizontalOptions="Center"
+                               TextColor="{StaticResource Danger}" />
+                        <Label Text="Losses" Style="{StaticResource MutedLabel}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Grid.Column="3" Style="{StaticResource Card}">
+                    <VerticalStackLayout HorizontalOptions="Center">
+                        <Label x:Name="DrawsValue"
+                               FontFamily="OpenSansSemibold" FontSize="22"
+                               HorizontalOptions="Center"
+                               TextColor="{StaticResource Info}" />
+                        <Label Text="Draws" Style="{StaticResource MutedLabel}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Edit form -->
+            <Label Text="EDIT PROFILE" Style="{StaticResource H3}" Margin="4,16,0,0" />
+            <Border Style="{StaticResource Panel}">
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="EMAIL" Style="{StaticResource H3}" />
+                    <Entry x:Name="EmailEntry" Keyboard="Email" Placeholder="you@example.com" />
+                    <Button Text="Update email" Clicked="OnUpdateEmailClicked" />
+
+                    <BoxView HeightRequest="1" Color="{StaticResource Divider}" Margin="0,12,0,12" />
+
+                    <Label Text="CURRENT PASSWORD" Style="{StaticResource H3}" />
+                    <Entry x:Name="CurrentPasswordEntry" IsPassword="True" />
+
+                    <Label Text="NEW PASSWORD" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <Entry x:Name="NewPasswordEntry" IsPassword="True" />
+
+                    <Label Text="CONFIRM NEW PASSWORD" Style="{StaticResource H3}" Margin="0,8,0,0" />
+                    <Entry x:Name="ConfirmPasswordEntry" IsPassword="True" />
+
+                    <Button Text="Change password" Clicked="OnChangePasswordClicked" />
+
+                    <ActivityIndicator x:Name="Spinner" IsRunning="False" IsVisible="False" />
+                    <Label x:Name="StatusLabel" IsVisible="False" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="← Back to home"
+                    Style="{StaticResource SecondaryButton}"
+                    Clicked="OnBackClicked"
+                    Margin="0,16,0,20" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

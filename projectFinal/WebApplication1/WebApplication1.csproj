@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>WebApplication1</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Lets the web app talk to the WCF server over net.tcp.
+         These NuGet packages are the .NET-Core/8 supported subset of
+         classic System.ServiceModel — same API surface, different
+         runtime. -->
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
+    <PackageReference Include="System.ServiceModel.NetTcp"     Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

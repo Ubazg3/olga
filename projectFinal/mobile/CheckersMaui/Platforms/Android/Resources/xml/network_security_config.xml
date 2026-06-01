@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Permits cleartext HTTP — required because the dev WCF server
+     speaks plain HTTP on the LAN. In production this would be HTTPS
+     and this whole file would go away. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

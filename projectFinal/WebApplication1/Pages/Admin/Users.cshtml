@@ -1,0 +1,112 @@
+@page
+@model WebApplication1.Pages.Admin.UsersModel
+@{
+    ViewData["Title"]    = "Users";
+    ViewData["Subtitle"] = $"{Model.Users.Count} accounts";
+}
+
+<form method="get" class="toolbar">
+    <input class="search-box"
+           type="search"
+           name="q"
+           value="@Model.Query"
+           placeholder="Search by username or email…" />
+    <button type="submit" class="btn-secondary">Search</button>
+    @if (!string.IsNullOrEmpty(Model.Query))
+    {
+        <a class="btn-secondary" asp-page="/Admin/Users">Clear</a>
+    }
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Status))
+{
+    <div class="card" style="margin-bottom: 12px;">
+        <span class="badge @(Model.IsError ? "badge-danger" : "badge-success")">
+            @(Model.IsError ? "Error" : "OK")
+        </span>
+        <span style="margin-left: 10px;">@Model.Status</span>
+    </div>
+}
+
+<div class="table-wrap">
+    <table class="data">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Rating</th>
+                <th>Record</th>
+                <th>Joined</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Users.Count == 0)
+        {
+            <tr><td colspan="7" class="empty">No users match this search.</td></tr>
+        }
+        else
+        {
+            @foreach (var u in Model.Users)
+            {
+                <tr>
+                    <td>
+                        <div class="user-row">
+                            <span class="avatar"
+                                  style="@Model.AvatarStyle(u)">
+                                @(u.ProfilePicture == null ? Model.Initials(u.Username) : "")
+                            </span>
+                            <span>
+                                <div class="name">@u.Username</div>
+                                <div class="meta">@(string.IsNullOrEmpty(u.Email) ? "—" : u.Email)</div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        @if (u.Role == WebApplication1.CheckersServer.UserRole.Admin)
+                        {
+                            <span class="badge badge-admin">Admin</span>
+                        }
+                        else
+                        {
+                            <span class="meta">Player</span>
+                        }
+                    </td>
+                    <td>@u.Rating</td>
+                    <td>
+                        <span style="color: var(--success); font-weight: 600;">@u.Wins</span>W ·
+                        <span style="color: var(--danger);  font-weight: 600;">@u.Losses</span>L ·
+                        <span style="color: var(--info);    font-weight: 600;">@u.Draws</span>D
+                    </td>
+                    <td><span class="meta">@u.CreatedAt.ToString("dd MMM yyyy")</span></td>
+                    <td>
+                        @if (u.IsBanned)
+                        {
+                            <span class="badge badge-banned">Banned</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Active</span>
+                        }
+                    </td>
+                    <td style="text-align: right;">
+                        <form method="post" asp-page-handler="ToggleBan" style="display:inline;">
+                            <input type="hidden" name="userId" value="@u.Id" />
+                            <input type="hidden" name="ban" value="@(!u.IsBanned)" />
+                            @if (u.IsBanned)
+                            {
+                                <button type="submit" class="btn-secondary btn-small">Unban</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn-danger btn-small">Ban</button>
+                            }
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

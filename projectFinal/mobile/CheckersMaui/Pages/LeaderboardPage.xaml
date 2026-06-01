@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckersMaui.Pages.LeaderboardPage"
+             Title="Leaderboard">
+    <Grid RowDefinitions="Auto,Auto,*,Auto" Padding="20">
+
+        <Label Grid.Row="0"
+               Text="Top players"
+               Style="{StaticResource H1}" />
+        <Label Grid.Row="1"
+               Text="Sorted by Elo rating — earned by winning games."
+               Style="{StaticResource MutedLabel}"
+               Margin="0,0,0,12" />
+
+        <RefreshView Grid.Row="2" x:Name="Refresher" Refreshing="OnRefreshing">
+            <CollectionView x:Name="List"
+                            SelectionMode="None"
+                            EmptyView="No players yet.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,8">
+                            <Grid ColumnDefinitions="36,*,Auto" ColumnSpacing="14">
+                                <!-- Rank chip -->
+                                <Border Grid.Column="0"
+                                        BackgroundColor="{Binding RankColor}"
+                                        Padding="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="18" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding RankText}"
+                                           TextColor="White"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="14"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="{Binding Username}" FontFamily="OpenSansSemibold" />
+                                    <Label Text="{Binding RecordText}" Style="{StaticResource MutedLabel}" />
+                                </VerticalStackLayout>
+
+                                <Label Grid.Column="2"
+                                       Text="{Binding RatingText}"
+                                       VerticalOptions="Center"
+                                       FontFamily="OpenSansSemibold"
+                                       TextColor="{StaticResource Accent}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Button Grid.Row="3"
+                Text="← Back to home"
+                Style="{StaticResource SecondaryButton}"
+                Clicked="OnBackClicked"
+                Margin="0,12,0,0" />
+    </Grid>
+</ContentPage>

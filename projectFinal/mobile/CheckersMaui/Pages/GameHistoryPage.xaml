@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckersMaui.Pages.GameHistoryPage"
+             Title="Game history">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20">
+
+        <Label Grid.Row="0"
+               Text="Past games"
+               Style="{StaticResource H1}"
+               Margin="0,0,0,4" />
+
+        <RefreshView Grid.Row="1" x:Name="Refresher" Refreshing="OnRefreshing">
+            <CollectionView x:Name="GamesList"
+                            SelectionMode="None"
+                            EmptyView="No games played yet.">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,8">
+                            <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" ColumnSpacing="10">
+                                <!-- Outcome chip -->
+                                <Border Grid.RowSpan="2" Grid.Column="0"
+                                        BackgroundColor="{Binding OutcomeColor}"
+                                        Padding="8,4"
+                                        VerticalOptions="Center">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="4" />
+                                    </Border.StrokeShape>
+                                    <Label Text="{Binding OutcomeText}"
+                                           TextColor="White"
+                                           FontFamily="OpenSansSemibold"
+                                           FontSize="11"
+                                           HorizontalOptions="Center" />
+                                </Border>
+
+                                <!-- vs Opponent -->
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Title}"
+                                       FontFamily="OpenSansSemibold" />
+                                <!-- Date + move count -->
+                                <Label Grid.Row="1" Grid.Column="1"
+                                       Text="{Binding Subtitle}"
+                                       Style="{StaticResource MutedLabel}" />
+
+                                <!-- Move count badge on the right -->
+                                <Label Grid.RowSpan="2" Grid.Column="2"
+                                       Text="{Binding MovesText}"
+                                       VerticalOptions="Center"
+                                       Style="{StaticResource MutedLabel}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Button Grid.Row="2"
+                Text="← Back to home"
+                Style="{StaticResource SecondaryButton}"
+                Clicked="OnBackClicked"
+                Margin="0,12,0,0" />
+    </Grid>
+</ContentPage>

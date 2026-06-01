@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Implicit defaults — applied to every control of the type
+         unless the page overrides them. We ship just the few that
+         visibly differ from the platform defaults. -->
+
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{StaticResource WindowBackground}" />
+        <Setter Property="Padding"         Value="0" />
+    </Style>
+
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.BackgroundColor"         Value="{StaticResource PanelBackground}" />
+        <Setter Property="Shell.ForegroundColor"         Value="{StaticResource PrimaryText}" />
+        <Setter Property="Shell.TitleColor"              Value="{StaticResource PrimaryText}" />
+        <Setter Property="Shell.NavBarHasShadow"         Value="False" />
+        <Setter Property="Shell.UnselectedColor"         Value="{StaticResource SecondaryText}" />
+        <Setter Property="Shell.TabBarBackgroundColor"   Value="{StaticResource PanelBackground}" />
+        <Setter Property="Shell.TabBarForegroundColor"   Value="{StaticResource Accent}" />
+        <Setter Property="Shell.TabBarTitleColor"        Value="{StaticResource Accent}" />
+        <Setter Property="Shell.TabBarUnselectedColor"   Value="{StaticResource SecondaryText}" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor"     Value="{StaticResource PrimaryText}" />
+        <Setter Property="FontFamily"    Value="OpenSansRegular" />
+        <Setter Property="FontSize"      Value="14" />
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="TextColor"       Value="{StaticResource PrimaryText}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource MutedText}" />
+        <Setter Property="FontFamily"      Value="OpenSansRegular" />
+        <Setter Property="FontSize"        Value="15" />
+        <Setter Property="HeightRequest"   Value="48" />
+    </Style>
+
+    <Style TargetType="Editor">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="TextColor"       Value="{StaticResource PrimaryText}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource MutedText}" />
+        <Setter Property="FontFamily"      Value="OpenSansRegular" />
+        <Setter Property="FontSize"        Value="15" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="TextColor"       Value="{StaticResource PrimaryText}" />
+        <Setter Property="TitleColor"      Value="{StaticResource MutedText}" />
+        <Setter Property="FontFamily"      Value="OpenSansRegular" />
+        <Setter Property="FontSize"        Value="15" />
+    </Style>
+
+    <Style TargetType="DatePicker">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="TextColor"       Value="{StaticResource PrimaryText}" />
+        <Setter Property="FontFamily"      Value="OpenSansRegular" />
+        <Setter Property="FontSize"        Value="15" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Accent}" />
+        <Setter Property="TextColor"       Value="{StaticResource AccentText}" />
+        <Setter Property="FontFamily"      Value="OpenSansSemibold" />
+        <Setter Property="FontSize"        Value="15" />
+        <Setter Property="HeightRequest"   Value="48" />
+        <Setter Property="CornerRadius"    Value="8" />
+        <Setter Property="Padding"         Value="14,0" />
+    </Style>
+
+    <Style x:Key="SecondaryButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="TextColor"       Value="{StaticResource PrimaryText}" />
+        <Setter Property="FontFamily"      Value="OpenSansSemibold" />
+        <Setter Property="FontSize"        Value="15" />
+        <Setter Property="HeightRequest"   Value="48" />
+        <Setter Property="CornerRadius"    Value="8" />
+        <Setter Property="BorderWidth"     Value="1" />
+        <Setter Property="BorderColor"     Value="{StaticResource Divider}" />
+    </Style>
+
+    <Style x:Key="DangerButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Danger}" />
+        <Setter Property="TextColor"       Value="{StaticResource White}" />
+        <Setter Property="FontFamily"      Value="OpenSansSemibold" />
+        <Setter Property="FontSize"        Value="15" />
+        <Setter Property="HeightRequest"   Value="48" />
+        <Setter Property="CornerRadius"    Value="8" />
+    </Style>
+
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource Accent}" />
+    </Style>
+
+    <!-- Reusable named text styles. -->
+
+    <Style x:Key="H1" TargetType="Label">
+        <Setter Property="TextColor"  Value="{StaticResource PrimaryText}" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize"   Value="28" />
+    </Style>
+
+    <Style x:Key="H2" TargetType="Label">
+        <Setter Property="TextColor"  Value="{StaticResource PrimaryText}" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize"   Value="20" />
+    </Style>
+
+    <Style x:Key="H3" TargetType="Label">
+        <Setter Property="TextColor"  Value="{StaticResource SecondaryText}" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize"   Value="13" />
+        <Setter Property="CharacterSpacing" Value="1" />
+    </Style>
+
+    <Style x:Key="MutedLabel" TargetType="Label">
+        <Setter Property="TextColor"  Value="{StaticResource MutedText}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize"   Value="12" />
+    </Style>
+
+    <!-- Card chrome — used as a Border style. -->
+
+    <Style x:Key="Card" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="10" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Stroke"  Value="{StaticResource Divider}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Padding" Value="14" />
+    </Style>
+
+    <Style x:Key="Panel" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{StaticResource PanelBackground}" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="12" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Stroke"  Value="{StaticResource Divider}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Padding" Value="20" />
+    </Style>
+</ResourceDictionary>

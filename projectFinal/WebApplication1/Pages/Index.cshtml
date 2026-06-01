@@ -1,0 +1,8 @@
+@page
+@{
+    Layout = null;
+    if (User.Identity?.IsAuthenticated == true)
+        Response.Redirect("/Admin/Dashboard");
+    else
+        Response.Redirect("/Login");
+}

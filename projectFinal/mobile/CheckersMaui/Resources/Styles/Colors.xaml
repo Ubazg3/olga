@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Mirrors the WPF client's Themes/Colors.xaml so the desktop and
+         the phone share an identifiable look. -->
+
+    <Color x:Key="WindowBackground">#1A1F2A</Color>
+    <Color x:Key="PanelBackground">#26303F</Color>
+    <Color x:Key="CardBackground">#2F3A4D</Color>
+    <Color x:Key="Divider">#3D4860</Color>
+
+    <Color x:Key="PrimaryText">#F2F4F7</Color>
+    <Color x:Key="SecondaryText">#A6B0C0</Color>
+    <Color x:Key="MutedText">#6B7488</Color>
+
+    <Color x:Key="Accent">#F4D060</Color>
+    <Color x:Key="AccentHover">#FFE38A</Color>
+    <Color x:Key="AccentText">#1A1F2A</Color>
+
+    <Color x:Key="Success">#6FC276</Color>
+    <Color x:Key="Danger">#E57373</Color>
+    <Color x:Key="Warning">#F0A04E</Color>
+    <Color x:Key="Info">#6699E5</Color>
+
+    <!-- Stock greys, kept around because some default MAUI styles
+         look them up by name. -->
+    <Color x:Key="Black">#000000</Color>
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="Gray100">#E1E1E1</Color>
+    <Color x:Key="Gray200">#C8C8C8</Color>
+    <Color x:Key="Gray300">#ACACAC</Color>
+    <Color x:Key="Gray400">#919191</Color>
+    <Color x:Key="Gray500">#6E6E6E</Color>
+    <Color x:Key="Gray600">#404040</Color>
+    <Color x:Key="Gray900">#212121</Color>
+    <Color x:Key="Gray950">#141414</Color>
+</ResourceDictionary>

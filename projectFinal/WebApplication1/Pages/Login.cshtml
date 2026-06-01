@@ -1,0 +1,43 @@
+@page
+@model WebApplication1.Pages.LoginModel
+@{
+    ViewData["Title"] = "Sign in";
+    Layout = "_Layout";
+}
+
+<div class="login-shell">
+    <div class="login-card">
+        <div class="login-brand">
+            <div class="login-logo">♛</div>
+            <h1>Checkers</h1>
+            <p class="login-tagline">Admin console</p>
+        </div>
+
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" class="form-input" autocomplete="username" autofocus />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-input" autocomplete="current-password" />
+            </div>
+
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="form-error">@Model.ErrorMessage</div>
+            }
+
+            <button type="submit" class="btn-primary">Sign in</button>
+
+            <p class="login-note">
+                Only admin accounts can sign in here. Regular players use the desktop client.
+            </p>
+        </form>
+
+        <div class="login-extra">
+            <a href="/ProjectMap">View the project map →</a>
+        </div>
+    </div>
+</div>

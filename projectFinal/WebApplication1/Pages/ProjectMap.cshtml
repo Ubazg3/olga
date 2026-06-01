@@ -1,0 +1,358 @@
+@page
+@model WebApplication1.Pages.ProjectMapModel
+@{
+    ViewData["Title"] = "Project map";
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/project-map.css" asp-append-version="true" />
+}
+
+<div class="map-page">
+
+    @* ============================== HERO ============================== *@
+    <header class="map-hero">
+        <div class="map-hero-inner">
+            <div class="map-hero-logo">♛</div>
+            <div class="map-hero-text">
+                <h1>Online Checkers</h1>
+                <p class="map-hero-tag">
+                    A multi-platform engineering project: WCF service core, three independent clients,
+                    one shared data contract.
+                </p>
+                <div class="map-hero-actions">
+                    <a class="btn-primary" href="/Login">Sign in</a>
+                    <a class="btn-ghost" href="#architecture">Explore the architecture ↓</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @* ============================== STATS ============================== *@
+    <section class="map-stats">
+        <div class="map-stat">
+            <div class="map-stat-num">3</div>
+            <div class="map-stat-label">Client platforms</div>
+            <div class="map-stat-sub">WPF · Web · MAUI</div>
+        </div>
+        <div class="map-stat">
+            <div class="map-stat-num">24</div>
+            <div class="map-stat-label">Service operations</div>
+            <div class="map-stat-sub">Auth · Game · Profile · Admin</div>
+        </div>
+        <div class="map-stat">
+            <div class="map-stat-num">3</div>
+            <div class="map-stat-label">Database tables</div>
+            <div class="map-stat-sub">Users · Games · Moves</div>
+        </div>
+        <div class="map-stat">
+            <div class="map-stat-num">60K</div>
+            <div class="map-stat-label">PBKDF2 iterations</div>
+            <div class="map-stat-sub">SHA-256 · 16-byte salt</div>
+        </div>
+    </section>
+
+    @* ============================== ARCHITECTURE DIAGRAM ============================== *@
+    <section id="architecture" class="map-section">
+        <div class="map-section-head">
+            <span class="map-eyebrow">§ 01</span>
+            <h2>System architecture</h2>
+            <p class="map-section-sub">
+                Three clients on three different .NET versions speak the same DataContract through WCF.
+                The server enforces every game rule — clients are pure presentation.
+            </p>
+        </div>
+
+        <div class="map-arch-wrap">
+            <svg class="map-arch" viewBox="0 0 1100 720" role="img"
+                 aria-label="Architecture diagram showing 3 clients connecting to a WCF service that fronts business logic, data access, and an Access database">
+
+                <!-- gradient + filter defs -->
+                <defs>
+                    <linearGradient id="lg-client" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#3A4660" />
+                        <stop offset="100%" stop-color="#26303F" />
+                    </linearGradient>
+                    <linearGradient id="lg-service" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#FFE38A" />
+                        <stop offset="100%" stop-color="#F4D060" />
+                    </linearGradient>
+                    <linearGradient id="lg-logic" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#4A5870" />
+                        <stop offset="100%" stop-color="#374355" />
+                    </linearGradient>
+                    <linearGradient id="lg-data" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#5C6B85" />
+                        <stop offset="100%" stop-color="#3F4A5E" />
+                    </linearGradient>
+                    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.35" />
+                    </filter>
+                </defs>
+
+                <!-- Top tier: 3 clients -->
+                <g class="tier" filter="url(#soft-shadow)">
+                    <!-- WPF -->
+                    <rect x="80"  y="40" width="280" height="100" rx="14" fill="url(#lg-client)" stroke="#3D4860" />
+                    <text x="220" y="78"  class="tier-title">WPF Desktop</text>
+                    <text x="220" y="100" class="tier-line">8 views · MVVM</text>
+                    <text x="220" y="118" class="tier-line">live-game polling 500 ms</text>
+
+                    <!-- Web -->
+                    <rect x="410" y="40" width="280" height="100" rx="14" fill="url(#lg-client)" stroke="#3D4860" />
+                    <text x="550" y="78"  class="tier-title">ASP.NET Razor 8</text>
+                    <text x="550" y="100" class="tier-line">admin console</text>
+                    <text x="550" y="118" class="tier-line">smart auto-refresh 15 s</text>
+
+                    <!-- MAUI -->
+                    <rect x="740" y="40" width="280" height="100" rx="14" fill="url(#lg-client)" stroke="#3D4860" />
+                    <text x="880" y="78"  class="tier-title">.NET MAUI 9</text>
+                    <text x="880" y="100" class="tier-line">android + windows</text>
+                    <text x="880" y="118" class="tier-line">profile · history · leaderboard</text>
+                </g>
+
+                <!-- Connection labels (transport) -->
+                <text x="220" y="170" class="link-label">net.tcp · 9100</text>
+                <text x="550" y="170" class="link-label">basicHttp · 8733</text>
+                <text x="880" y="170" class="link-label">basicHttp · 8733</text>
+
+                <!-- Connection lines from clients to service -->
+                <g class="links">
+                    <path d="M 220 140 V 200 H 550 V 220" />
+                    <path d="M 550 140 V 220" />
+                    <path d="M 880 140 V 200 H 550 V 220" />
+                </g>
+
+                <!-- Service tier (gold) -->
+                <g class="tier service" filter="url(#soft-shadow)">
+                    <rect x="280" y="220" width="540" height="86" rx="14" fill="url(#lg-service)" />
+                    <text x="550" y="252" class="tier-title gold-text">WCF Service Layer</text>
+                    <text x="550" y="276" class="tier-line gold-text">ICheckersService — 24 OperationContracts</text>
+                    <text x="550" y="294" class="tier-line gold-text">stateless · token-based auth · DataContract</text>
+                </g>
+
+                <!-- Arrow down -->
+                <path class="arrow" d="M 550 308 V 360" />
+
+                <!-- Business Logic tier -->
+                <g class="tier" filter="url(#soft-shadow)">
+                    <rect x="190" y="365" width="720" height="100" rx="14" fill="url(#lg-logic)" stroke="#3D4860" />
+                    <text x="550" y="395" class="tier-title">Business Logic</text>
+                    <g class="chip-row">
+                        <rect class="chip" x="220" y="410" width="120" height="36" rx="6" />
+                        <text x="280" y="433" class="chip-text">AuthService</text>
+
+                        <rect class="chip" x="350" y="410" width="146" height="36" rx="6" />
+                        <text x="423" y="433" class="chip-text">PasswordHasher</text>
+
+                        <rect class="chip" x="506" y="410" width="120" height="36" rx="6" />
+                        <text x="566" y="433" class="chip-text">GameManager</text>
+
+                        <rect class="chip" x="636" y="410" width="138" height="36" rx="6" />
+                        <text x="705" y="433" class="chip-text">CheckersEngine</text>
+
+                        <rect class="chip" x="784" y="410" width="100" height="36" rx="6" />
+                        <text x="834" y="433" class="chip-text">BotEngine</text>
+                    </g>
+                </g>
+
+                <!-- Arrow -->
+                <path class="arrow" d="M 550 467 V 510" />
+
+                <!-- Data Access tier -->
+                <g class="tier" filter="url(#soft-shadow)">
+                    <rect x="280" y="515" width="540" height="80" rx="14" fill="url(#lg-data)" stroke="#3D4860" />
+                    <text x="550" y="545" class="tier-title">Data Access (ViewDB)</text>
+                    <text x="550" y="569" class="tier-line">BaseDB → UsersDB · GamesDB · MovesDB</text>
+                    <text x="550" y="585" class="tier-line">parameterised OleDb · zero string-concat SQL</text>
+                </g>
+
+                <!-- Arrow -->
+                <path class="arrow" d="M 550 597 V 640" />
+
+                <!-- Database -->
+                <g class="tier db" filter="url(#soft-shadow)">
+                    <rect x="380" y="640" width="340" height="64" rx="14" fill="#1F2632" stroke="#F4D060" stroke-width="1.5" />
+                    <text x="550" y="670" class="tier-title">Microsoft Access</text>
+                    <text x="550" y="690" class="tier-line muted">ArchiveData3.accdb · 3 tables</text>
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    @* ============================== TECH STACK CARDS ============================== *@
+    <section class="map-section">
+        <div class="map-section-head">
+            <span class="map-eyebrow">§ 02</span>
+            <h2>Component breakdown</h2>
+            <p class="map-section-sub">Every layer in the system, what it owns, and which file holds it.</p>
+        </div>
+
+        <div class="map-cards">
+            <article class="map-card">
+                <header>
+                    <div class="map-card-icon" style="background:#F4D060; color:#1A1F2A;">⚙</div>
+                    <h3>WCF Service</h3>
+                    <p class="map-card-meta">.NET Framework 4.7.2 · WCF Service Library</p>
+                </header>
+                <ul>
+                    <li><b>ICheckersService.cs</b> — 24 OperationContracts in 7 categories</li>
+                    <li><b>CheckersService.cs</b> — implementation, token gate, fault handling</li>
+                    <li><b>App.config</b> — net.tcp on 9100 + basicHttp on 8733</li>
+                    <li><b>Bootstrap.cs</b> — DB init + admin a/a seed on first run</li>
+                </ul>
+            </article>
+
+            <article class="map-card">
+                <header>
+                    <div class="map-card-icon" style="background:#6699E5; color:#FFFFFF;">⌬</div>
+                    <h3>WPF Desktop</h3>
+                    <p class="map-card-meta">Windows · MVVM · 8 views · 3 UserControls</p>
+                </header>
+                <ul>
+                    <li><b>Views/</b> — Login, Lobby, Game, GameOver, Profile, Replay, Admin, About</li>
+                    <li><b>ViewModels/</b> — RelayCommand + ViewModelBase + DispatcherTimer polling</li>
+                    <li><b>UserControls/</b> — CheckersBoardControl, PlayerCardControl, PasswordBoxWithToggle</li>
+                    <li><b>Validation/ + Converters/</b> — 6 ValidationRules + 11 IValueConverter</li>
+                </ul>
+            </article>
+
+            <article class="map-card">
+                <header>
+                    <div class="map-card-icon" style="background:#6FC276; color:#1A1F2A;">▤</div>
+                    <h3>Web Admin (Razor)</h3>
+                    <p class="map-card-meta">ASP.NET Core 8 · Cookie auth · vanilla JS</p>
+                </header>
+                <ul>
+                    <li><b>/Admin/Dashboard</b> — server stats live tiles</li>
+                    <li><b>/Admin/Users</b> — search + ban/unban</li>
+                    <li><b>/Admin/Games</b> — recent games + browser-side replay</li>
+                    <li><b>auto-refresh.js</b> — pauses while typing in search box</li>
+                </ul>
+            </article>
+
+            <article class="map-card">
+                <header>
+                    <div class="map-card-icon" style="background:#9B77E5; color:#FFFFFF;">◐</div>
+                    <h3>MAUI Mobile</h3>
+                    <p class="map-card-meta">Android · Windows · single codebase</p>
+                </header>
+                <ul>
+                    <li><b>LoginPage / SignUpPage</b> — username + password (+ optional fields)</li>
+                    <li><b>HomePage</b> — welcome banner, rating chip, online list</li>
+                    <li><b>ProfilePage</b> — stats, email/password edit</li>
+                    <li><b>GameHistoryPage / LeaderboardPage</b> — read-only feeds</li>
+                </ul>
+            </article>
+
+            <article class="map-card">
+                <header>
+                    <div class="map-card-icon" style="background:#E57373; color:#FFFFFF;">▦</div>
+                    <h3>Data Layer</h3>
+                    <p class="map-card-meta">ViewDB · OleDb · 100% parameterised</p>
+                </header>
+                <ul>
+                    <li><b>BaseDB.cs</b> — abstract, exposes QueryAsync / NonQueryAsync / ScalarAsync</li>
+                    <li><b>UsersDB</b> — auth, profiles, leaderboard, admin ban</li>
+                    <li><b>GamesDB / MovesDB</b> — game lifecycle + per-move log</li>
+                    <li><b>ArchiveData3.accdb</b> — Microsoft Access database file</li>
+                </ul>
+            </article>
+
+            <article class="map-card">
+                <header>
+                    <div class="map-card-icon" style="background:#F0A04E; color:#1A1F2A;">⚒</div>
+                    <h3>Game Engine</h3>
+                    <p class="map-card-meta">BusinessLogic · server-only enforcement</p>
+                </header>
+                <ul>
+                    <li><b>CheckersEngine</b> — legal moves + capture chains + king promotion</li>
+                    <li><b>GameSession</b> — single live game state + draw-offer machine</li>
+                    <li><b>GameManager</b> — matchmaking queue + Elo update + StaleSweep</li>
+                    <li><b>BotEngine</b> — random legal move with king-promote preference</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    @* ============================== HEADLINE FEATURES ============================== *@
+    <section class="map-section">
+        <div class="map-section-head">
+            <span class="map-eyebrow">§ 03</span>
+            <h2>Headline features</h2>
+            <p class="map-section-sub">The pieces that take the project beyond the spec.</p>
+        </div>
+
+        <div class="map-features">
+            <div class="map-feature">
+                <div class="map-feature-tag">Anti-cheat</div>
+                <h4>Server-side rule enforcement</h4>
+                <p>Every legal-move check runs in CheckersEngine on the server. Clients are pure presentation — they cannot fake a capture or skip a forced jump.</p>
+            </div>
+            <div class="map-feature">
+                <div class="map-feature-tag">Rating</div>
+                <h4>Elo ladder, K = 20</h4>
+                <p>Standard Elo formula computed after every finished game. Floor of 100 prevents ratings from collapsing to zero on a losing streak.</p>
+            </div>
+            <div class="map-feature">
+                <div class="map-feature-tag">Replay</div>
+                <h4>Move-by-move playback</h4>
+                <p>Each move stores BoardAfter as serialised state. Stepping through history is O(1) per click — no replay engine needed.</p>
+            </div>
+            <div class="map-feature">
+                <div class="map-feature-tag">Reliability</div>
+                <h4>30-second disconnect detection</h4>
+                <p>StaleSweep timer scans active games every 5 s. Players who haven't called in for 30 s lose the game and take a -20 LP penalty.</p>
+            </div>
+            <div class="map-feature">
+                <div class="map-feature-tag">UX</div>
+                <h4>Smart auto-refresh</h4>
+                <p>Admin pages reload every 15 s — but only when the user isn't typing, the tab is visible, and the page hasn't opted out (replay view).</p>
+            </div>
+            <div class="map-feature">
+                <div class="map-feature-tag">Security</div>
+                <h4>PBKDF2-SHA256, 60K rounds</h4>
+                <p>Stored as <code>iter.salt.hash</code>. Verification uses constant-time byte comparison so timing leaks can't probe the secret.</p>
+            </div>
+        </div>
+    </section>
+
+    @* ============================== STACK TABLE ============================== *@
+    <section class="map-section">
+        <div class="map-section-head">
+            <span class="map-eyebrow">§ 04</span>
+            <h2>Technology stack</h2>
+        </div>
+        <div class="map-stack">
+            <table class="map-stack-table">
+                <thead>
+                    <tr><th>Layer</th><th>Tech</th><th>Notes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Server</td>           <td>WCF Service Library, .NET Framework 4.7.2</td><td>NetTcp + BasicHttp dual endpoints</td></tr>
+                    <tr><td>Database</td>         <td>Microsoft Access (.accdb)</td>            <td>Provider Microsoft.ACE.OLEDB.12.0 (x64)</td></tr>
+                    <tr><td>Desktop client</td>   <td>WPF, XAML, MVVM</td>                      <td>.NET Framework 4.7.2</td></tr>
+                    <tr><td>Web client</td>       <td>ASP.NET Core 8 Razor Pages</td>           <td>Cookie Auth · ClaimsIdentity · WcfToken claim</td></tr>
+                    <tr><td>Mobile client</td>    <td>.NET MAUI 9</td>                          <td>net9.0-android + net9.0-windows10</td></tr>
+                    <tr><td>Auth crypto</td>      <td>PBKDF2-SHA256</td>                        <td>60 000 iterations · 16 B salt · 32 B hash</td></tr>
+                    <tr><td>Communication</td>    <td>WCF DataContract</td>                     <td>Same Namespace across all 3 client stacks</td></tr>
+                    <tr><td>Languages</td>        <td>C# · XAML · HTML · Razor · SQL · JS · XML</td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    @* ============================== FOOTER ============================== *@
+    <footer class="map-footer">
+        <div>
+            <div class="map-foot-logo">♛</div>
+            <p>Online Checkers — built as a final project in software engineering. Multi-platform .NET stack with WCF at the core.</p>
+        </div>
+        <div class="map-foot-links">
+            <a href="/Login">Admin sign in →</a>
+            <a href="#architecture">Top of page ↑</a>
+        </div>
+    </footer>
+
+</div>

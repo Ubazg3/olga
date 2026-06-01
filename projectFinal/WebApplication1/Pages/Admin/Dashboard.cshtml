@@ -1,0 +1,62 @@
+@page
+@model WebApplication1.Pages.Admin.DashboardModel
+@{
+    ViewData["Title"]    = "Dashboard";
+    ViewData["Subtitle"] = "Server overview";
+}
+
+@if (Model.Error != null)
+{
+    <div class="card">
+        <p class="empty">@Model.Error</p>
+    </div>
+}
+else if (Model.Stats != null)
+{
+    <div class="stat-grid">
+        <div class="stat-card gold">
+            <div class="stat-num">@Model.Stats.TotalUsers</div>
+            <div class="stat-label">Total users</div>
+        </div>
+        <div class="stat-card green">
+            <div class="stat-num">@Model.Stats.OnlineUsers</div>
+            <div class="stat-label">Online now</div>
+        </div>
+        <div class="stat-card blue">
+            <div class="stat-num">@Model.Stats.ActiveGames</div>
+            <div class="stat-label">Active games</div>
+        </div>
+        <div class="stat-card orange">
+            <div class="stat-num">@Model.Stats.TotalGames</div>
+            <div class="stat-label">Games played</div>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-num">@Model.Stats.RegisteredToday</div>
+            <div class="stat-label">New users today</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-num">@Model.Stats.GamesToday</div>
+            <div class="stat-label">Games today</div>
+        </div>
+        <div class="stat-card red">
+            <div class="stat-num">@Model.Stats.BannedUsers</div>
+            <div class="stat-label">Banned</div>
+        </div>
+        <div class="stat-card gold">
+            <div class="stat-num">@Model.Stats.AdminUsers</div>
+            <div class="stat-label">Admins</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Quick actions</h2>
+        <p class="card-subtitle">Manage users, browse games, replay any past match.</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a class="btn-secondary" asp-page="/Admin/Users">Manage users</a>
+            <a class="btn-secondary" asp-page="/Admin/Games">Browse games</a>
+        </div>
+    </div>
+}

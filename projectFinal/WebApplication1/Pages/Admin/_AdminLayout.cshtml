@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · Checkers Admin</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="admin-body">
+    <aside class="admin-sidebar">
+        <div class="brand">
+            <span class="brand-logo">♛</span>
+            <span class="brand-text">Checkers</span>
+        </div>
+
+        <nav>
+            <a asp-page="/Admin/Dashboard"
+               class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Admin/Dashboard" ? "active" : "")">
+                <span class="nav-icon">▤</span> Dashboard
+            </a>
+            <a asp-page="/Admin/Users"
+               class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Admin/Users" ? "active" : "")">
+                <span class="nav-icon">⌬</span> Users
+            </a>
+            <a asp-page="/Admin/Games"
+               class="nav-link @(ViewContext.RouteData.Values["page"]?.ToString() == "/Admin/Games" ? "active" : "")">
+                <span class="nav-icon">♕</span> Games
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="me">
+                <div class="me-name">@User.Identity?.Name</div>
+                <div class="me-role">Admin</div>
+            </div>
+            <a class="signout" href="/Logout">Sign out</a>
+        </div>
+    </aside>
+
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <h1>@ViewData["Title"]</h1>
+            <div class="topbar-meta">@ViewData["Subtitle"]</div>
+        </header>
+
+        <div class="admin-content">
+            @RenderBody()
+        </div>
+    </main>
+
+    <!-- Auto-refresh every 15 s on every admin page; pauses while
+         the user is typing in a search box, and replay view opts out
+         via window.__noAutoRefresh = true. -->
+    <script src="~/js/auto-refresh.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
